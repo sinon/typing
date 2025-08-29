@@ -97,7 +97,8 @@ def generate_summary_html(root_dir: Path) -> str:
                     notes = "".join(
                         [f"<p>{note}</p>" for note in raw_notes.split("\n")]
                     )
-                    errors_diff_count = len(raw_errors_diff.split("\n")) if raw_errors_diff else 0
+                    false_negative_count = len([l for l in raw_errors_diff.split("\n") if ": Expected " in l])
+                    false_positive_count = len([l for l in raw_errors_diff.split("\n") if ": Unexpected errors" in l])
 
                     conformance_class = (
                         "conformant"
@@ -112,7 +113,7 @@ def generate_summary_html(root_dir: Path) -> str:
                         conformance = "Pass*"
                     
                     if conformance == "Unknown":
-                        conformance = f"Unknown ({errors_diff_count})"
+                        conformance = f"Unknown ({false_negative_count}f-/{false_positive_count}f+)"
 
                     conformance_cell = f"{conformance}"
                     
