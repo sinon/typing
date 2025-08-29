@@ -1,15 +1,15 @@
 conformance_automated = "Fail"
 errors_diff = """
-Line 21: Expected 1 errors
-Line 56: Expected 1 errors
-Line 118: Expected 1 errors
-Lines 59, 60: Expected error (tag 'method2')
-Lines 63, 64: Expected error (tag 'method3')
-Lines 67, 68, 75: Expected error (tag 'method4')
-Lines 80, 81, 89: Expected error (tag 'Derived3')
 Lines 84, 85, 86: Expected error (tag 'Derived3-2')
-Lines 94, 95, 102: Expected error (tag 'Derived4')
-Lines 125, 126: Expected error (tag 'func')
 """
 output = """
+ERROR /Users/rob/dev/typing/conformance/tests/qualifiers_final_decorator.py:21:16-21: Cannot extend final class `Base1` [invalid-inheritance]
+ERROR /Users/rob/dev/typing/conformance/tests/qualifiers_final_decorator.py:56:9-16: `method1` is declared as final in parent class `Base2` [bad-override]
+ERROR /Users/rob/dev/typing/conformance/tests/qualifiers_final_decorator.py:60:9-16: `method2` is declared as final in parent class `Base2` [bad-override]
+ERROR /Users/rob/dev/typing/conformance/tests/qualifiers_final_decorator.py:64:9-16: `method3` is declared as final in parent class `Base2` [bad-override]
+ERROR /Users/rob/dev/typing/conformance/tests/qualifiers_final_decorator.py:68:9-16: `method4` is declared as final in parent class `Base2` [bad-override]
+ERROR /Users/rob/dev/typing/conformance/tests/qualifiers_final_decorator.py:81:9-15: `method` is declared as final in parent class `Base3` [bad-override]
+ERROR /Users/rob/dev/typing/conformance/tests/qualifiers_final_decorator.py:95:9-15: `method` is declared as final in parent class `Base4` [bad-override]
+ERROR /Users/rob/dev/typing/conformance/tests/qualifiers_final_decorator.py:118:9-15: `method` is declared as final in parent class `Base5_2` [bad-override]
+ERROR /Users/rob/dev/typing/conformance/tests/qualifiers_final_decorator.py:125:1-7: Decorator `@final` can only be used on methods. [invalid-decorator]
 """

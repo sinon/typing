@@ -1,18 +1,27 @@
 conformance_automated = "Fail"
 errors_diff = """
-Line 40: Expected 1 errors
-Line 41: Expected 1 errors
 Line 49: Expected 1 errors
-Line 55: Expected 1 errors
-Line 69: Expected 1 errors
-Line 121: Expected 1 errors
-Line 157: Expected 1 errors
-Line 158: Expected 1 errors
-Line 162: Expected 1 errors
-Line 163: Expected 1 errors
-Line 171: Expected 1 errors
-Line 172: Expected 1 errors
-Line 208: Expected 1 errors
+Line 34: Unexpected errors ['ERROR /Users/rob/dev/typing/conformance/tests/generics_basic.py:34:12-17: `+` is not supported between `AnyStr` and `AnyStr` [unsupported-operation]', 'ERROR /Users/rob/dev/typing/conformance/tests/generics_basic.py:34:12-17: `+` is not supported between `AnyStr` and `AnyStr` [unsupported-operation]', 'ERROR /Users/rob/dev/typing/conformance/tests/generics_basic.py:34:12-17: Returned type `bytes | Unknown` is not assignable to declared return type `AnyStr` [bad-return]']
+Line 67: Unexpected errors ['ERROR /Users/rob/dev/typing/conformance/tests/generics_basic.py:67:16-35: assert_type(MyStr, str) failed [assert-type]']
+Line 68: Unexpected errors ['ERROR /Users/rob/dev/typing/conformance/tests/generics_basic.py:68:16-35: assert_type(MyStr, str) failed [assert-type]', 'ERROR /Users/rob/dev/typing/conformance/tests/generics_basic.py:68:27-28: Argument `str` is not assignable to parameter `y` with type `MyStr` in function `concat` [bad-argument-type]']
 """
 output = """
+ERROR /Users/rob/dev/typing/conformance/tests/generics_basic.py:34:12-17: `+` is not supported between `AnyStr` and `AnyStr` [unsupported-operation]
+ERROR /Users/rob/dev/typing/conformance/tests/generics_basic.py:34:12-17: `+` is not supported between `AnyStr` and `AnyStr` [unsupported-operation]
+ERROR /Users/rob/dev/typing/conformance/tests/generics_basic.py:34:12-17: Returned type `bytes | Unknown` is not assignable to declared return type `AnyStr` [bad-return]
+ERROR /Users/rob/dev/typing/conformance/tests/generics_basic.py:40:15-16: Argument `bytes` is not assignable to parameter `y` with type `str` in function `concat` [bad-argument-type]
+ERROR /Users/rob/dev/typing/conformance/tests/generics_basic.py:41:15-16: Argument `str` is not assignable to parameter `y` with type `bytes` in function `concat` [bad-argument-type]
+ERROR /Users/rob/dev/typing/conformance/tests/generics_basic.py:55:53-60: Type variable bounds and constraints must be concrete [invalid-annotation]
+ERROR /Users/rob/dev/typing/conformance/tests/generics_basic.py:67:16-35: assert_type(MyStr, str) failed [assert-type]
+ERROR /Users/rob/dev/typing/conformance/tests/generics_basic.py:68:16-35: assert_type(MyStr, str) failed [assert-type]
+ERROR /Users/rob/dev/typing/conformance/tests/generics_basic.py:68:27-28: Argument `str` is not assignable to parameter `y` with type `MyStr` in function `concat` [bad-argument-type]
+ERROR /Users/rob/dev/typing/conformance/tests/generics_basic.py:69:15-16: Argument `bytes` is not assignable to parameter `y` with type `MyStr` in function `concat` [bad-argument-type]
+ERROR /Users/rob/dev/typing/conformance/tests/generics_basic.py:121:24-25: Duplicated type parameter declaration `T` [invalid-inheritance]
+ERROR /Users/rob/dev/typing/conformance/tests/generics_basic.py:157:8-9: Cannot index into `MyMap1[str, int]` [index-error]
+ERROR /Users/rob/dev/typing/conformance/tests/generics_basic.py:158:8-9: Cannot index into `MyMap2[int, str]` [index-error]
+ERROR /Users/rob/dev/typing/conformance/tests/generics_basic.py:162:7-11: Expected a type variable, got `int` [invalid-type-var]
+ERROR /Users/rob/dev/typing/conformance/tests/generics_basic.py:163:7-11: Expected a type variable, got `int` [invalid-type-var]
+ERROR /Users/rob/dev/typing/conformance/tests/generics_basic.py:171:7-11: Class `Bad3` uses type variables not specified in `Generic` or `Protocol` base [invalid-type-var]
+ERROR /Users/rob/dev/typing/conformance/tests/generics_basic.py:172:7-11: Class `Bad4` uses type variables not specified in `Generic` or `Protocol` base [invalid-type-var]
+ERROR /Users/rob/dev/typing/conformance/tests/generics_basic.py:208:7-26: Metaclass may not be an unbound generic [invalid-inheritance]
 """

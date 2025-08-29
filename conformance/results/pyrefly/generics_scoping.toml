@@ -1,9 +1,7 @@
 conformance_automated = "Fail"
 errors_diff = """
-Line 29: Expected 1 errors
 Line 50: Expected 1 errors
 Line 54: Expected 1 errors
-Line 65: Expected 1 errors
 Line 75: Expected 1 errors
 Line 78: Expected 1 errors
 Line 87: Expected 1 errors
@@ -12,4 +10,6 @@ Line 95: Expected 1 errors
 Line 96: Expected 1 errors
 """
 output = """
+ERROR /Users/rob/dev/typing/conformance/tests/generics_scoping.py:29:10-13: Argument `Literal['a']` is not assignable to parameter `x` with type `int` in function `MyClass.meth_2` [bad-argument-type]
+ERROR /Users/rob/dev/typing/conformance/tests/generics_scoping.py:65:11-20: Redundant type parameter declaration [invalid-type-var]
 """

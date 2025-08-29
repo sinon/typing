@@ -1,10 +1,10 @@
-conformance_automated = "Fail"
+conformance_automated = "Pass"
 errors_diff = """
-Line 40: Expected 1 errors
-Line 41: Expected 1 errors
-Line 51: Expected 1 errors
-Line 59: Expected 1 errors
-Lines 60, 61: Expected error (tag 't14')
 """
 output = """
+ERROR /Users/rob/dev/typing/conformance/tests/tuples_unpacked.py:40:29-45: Only one unbounded type is allowed to be unpacked [bad-unpacking]
+ERROR /Users/rob/dev/typing/conformance/tests/tuples_unpacked.py:41:42-58: Only one unbounded type is allowed to be unpacked [bad-unpacking]
+ERROR /Users/rob/dev/typing/conformance/tests/tuples_unpacked.py:51:33-36: Only one unbounded type is allowed to be unpacked [bad-unpacking]
+ERROR /Users/rob/dev/typing/conformance/tests/tuples_unpacked.py:59:37-60: Only one unbounded type is allowed to be unpacked [bad-unpacking]
+ERROR /Users/rob/dev/typing/conformance/tests/tuples_unpacked.py:61:50-73: Only one unbounded type is allowed to be unpacked [bad-unpacking]
 """

@@ -1,8 +1,10 @@
 conformance_automated = "Fail"
 errors_diff = """
-Line 19: Expected 1 errors
-Line 86: Expected 1 errors
-Line 105: Expected 1 errors
+Line 32: Unexpected errors ["ERROR /Users/rob/dev/typing/conformance/tests/specialtypes_never.py:32:12-28: Returned type `Literal['whatever works']` is not assignable to declared return type `int` [bad-return]"]
 """
 output = """
+ERROR /Users/rob/dev/typing/conformance/tests/specialtypes_never.py:19:22-30: Function declared to return `NoReturn` but is missing an explicit `return` [bad-return]
+ERROR /Users/rob/dev/typing/conformance/tests/specialtypes_never.py:32:12-28: Returned type `Literal['whatever works']` is not assignable to declared return type `int` [bad-return]
+ERROR /Users/rob/dev/typing/conformance/tests/specialtypes_never.py:86:21-22: `list[Never]` is not assignable to `list[int]` [bad-assignment]
+ERROR /Users/rob/dev/typing/conformance/tests/specialtypes_never.py:105:12-27: Returned type `ClassC[Never]` is not assignable to declared return type `ClassC[U]` [bad-return]
 """

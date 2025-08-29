@@ -1,11 +1,11 @@
-conformance_automated = "Fail"
+conformance_automated = "Pass"
 errors_diff = """
-Line 24: Expected 1 errors
-Line 36: Expected 1 errors
-Line 50: Expected 1 errors
-Line 51: Expected 1 errors
-Line 60: Expected 1 errors
-Line 61: Expected 1 errors
 """
 output = """
+ERROR /Users/rob/dev/typing/conformance/tests/typeddicts_readonly.py:24:1-14: Key `members` in TypedDict `Band` is read-only [read-only]
+ERROR /Users/rob/dev/typing/conformance/tests/typeddicts_readonly.py:36:1-14: Key `members` in TypedDict `Band2` is read-only [read-only]
+ERROR /Users/rob/dev/typing/conformance/tests/typeddicts_readonly.py:50:1-12: Key `title` in TypedDict `Movie1` is read-only [read-only]
+ERROR /Users/rob/dev/typing/conformance/tests/typeddicts_readonly.py:51:1-11: Key `year` in TypedDict `Movie1` is read-only [read-only]
+ERROR /Users/rob/dev/typing/conformance/tests/typeddicts_readonly.py:60:1-12: Key `title` in TypedDict `Movie2` is read-only [read-only]
+ERROR /Users/rob/dev/typing/conformance/tests/typeddicts_readonly.py:61:1-11: Key `year` in TypedDict `Movie2` is read-only [read-only]
 """

@@ -2,9 +2,9 @@ conformance_automated = "Fail"
 errors_diff = """
 Line 25: Expected 1 errors
 Line 38: Expected 1 errors
-Line 66: Expected 1 errors
-Line 69: Expected 1 errors
-Lines 10, 11: Expected error (tag 'DC1')
 """
 output = """
+ERROR /Users/rob/dev/typing/conformance/tests/dataclasses_slots.py:11:7-10: Cannot specify both `slots=True` and `__slots__` [bad-class-definition]
+ERROR /Users/rob/dev/typing/conformance/tests/dataclasses_slots.py:66:1-14: Class `DC6` has no class attribute `__slots__` [missing-attribute]
+ERROR /Users/rob/dev/typing/conformance/tests/dataclasses_slots.py:69:1-17: Object of class `DC6` has no attribute `__slots__` [missing-attribute]
 """

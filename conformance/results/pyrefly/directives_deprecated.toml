@@ -14,4 +14,5 @@ Line 69: Expected 1 errors
 Line 98: Expected 1 errors
 """
 output = """
+ WARN /Users/rob/dev/typing/conformance/tests/directives_deprecated.py:18:44-47: `Ham` is deprecated [deprecated]
 """

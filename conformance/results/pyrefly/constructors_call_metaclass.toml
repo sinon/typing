@@ -1,7 +1,7 @@
-conformance_automated = "Fail"
+conformance_automated = "Pass"
 errors_diff = """
-Line 51: Expected 1 errors
-Line 65: Expected 1 errors
 """
 output = """
+ERROR /Users/rob/dev/typing/conformance/tests/constructors_call_metaclass.py:51:7-9: Missing argument `x` in function `Class3.__new__` [missing-argument]
+ERROR /Users/rob/dev/typing/conformance/tests/constructors_call_metaclass.py:65:7-9: Missing argument `x` in function `Class4.__new__` [missing-argument]
 """

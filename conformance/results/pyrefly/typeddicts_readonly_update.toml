@@ -1,6 +1,6 @@
-conformance_automated = "Fail"
+conformance_automated = "Pass"
 errors_diff = """
-Line 23: Expected 1 errors
 """
 output = """
+ERROR /Users/rob/dev/typing/conformance/tests/typeddicts_readonly_update.py:23:10-14: No matching overload found for function `A.update` [no-matching-overload]
 """

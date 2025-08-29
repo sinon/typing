@@ -8,6 +8,7 @@ from pathlib import Path
 import os
 import re
 import shutil
+from collections import defaultdict
 from subprocess import PIPE, CalledProcessError, run
 import sys
 from typing import Sequence
@@ -375,13 +376,14 @@ class TyTypeChecker(TypeChecker):
             )
         lines = proc.stdout.split("\n")
         for line in lines:
-            file_name = line.split(":")[0].strip()
-            results_dict[file_name] = results_dict.get(file_name, "") + line + "\n"
+            file_path = line.split(":")[0].strip()
+            file_name = file_path.split("/")[-1].strip()
+            results_dict[file_name] = results_dict.get(file_name, "") + line  + "\n"
         return results_dict
 
     def parse_errors(self, output: Sequence[str]) -> dict[int, list[str]]:
         # Example error: options.py:22:11: error[missing-argument] No argument provided for required parameter `report_only`
-        line_to_errors: dict[int, list[str]] = {}
+        line_to_errors: dict[int, list[str]] = defaultdict(list)
         for line in output:
             if line.count(":") < 2:
                 continue
@@ -391,16 +393,14 @@ class TyTypeChecker(TypeChecker):
             _, lineno, rest = parts
             if "error" not in rest:
                 continue
-            try:
-                line_to_errors.setdefault(int(lineno), []).append(line)
-            except ValueError:
-                continue
+            line_to_errors[int(lineno)].append(line)
         return line_to_errors
 
 class LocalTyTypeChecker(TyTypeChecker):
     @property
     def cmd(self) -> str:
-        return "/Users/rob/dev/ruff/target/debug/ty"
+        home = Path().home()
+        return str(home / "dev" / "ruff" / "target" / "debug" / "ty")
 
     @property
     def name(self) -> str:
@@ -409,6 +409,9 @@ class LocalTyTypeChecker(TyTypeChecker):
     def get_version(self) -> str:
         proc = run([self.cmd, "--version"], stdout=PIPE, text=True)
         return f"Local:{proc.stdout.strip()}"
+
+    def install(self) -> bool:
+        return True
 
 class PyreFlyTypeChecker(TypeChecker):
     @property
@@ -440,33 +443,31 @@ class PyreFlyTypeChecker(TypeChecker):
     def run_tests(self, test_files: Sequence[str]) -> dict[str, str]:
         results_dict: dict[str, str] = {}
         proc = run(
-                ["pyrefly", "check"],
+                ["pyrefly", "check", "--output-format", "min-text", "--no-summary"],
                 stdout=PIPE,
                 text=True,
                 encoding="utf-8",
             )
         lines = proc.stdout.split("\n")
         for line in lines:
-            file_name = line.split(":")[0].strip()
+            file_path = line.split(":")[0].strip()
+            file_name = file_path.split("/")[-1].strip()
             results_dict[file_name] = results_dict.get(file_name, "") + line + "\n"
         return results_dict
 
     def parse_errors(self, output: Sequence[str]) -> dict[int, list[str]]:
-        # Example error: some_file.py:12: error: Some error message
-        line_to_errors: dict[int, list[str]] = {}
+        # ERROR /Users/rob/dev/typing/conformance/tests/aliases_explicit.py:102:5-24: `TypeAlias[ListOrSetAlias, type[list[Unknown] | set[Unknown]]]` is not subscriptable [unsupported-operation]
+        line_to_errors: dict[int, list[str]] = defaultdict(list)
         for line in output:
+            if "ERROR" not in line:
+                continue
             if line.count(":") < 2:
                 continue
             parts = line.split(":", maxsplit=2)
             if len(parts) < 3:
                 continue
             _, lineno, rest = parts
-            if "error" not in rest:
-                continue
-            try:
-                line_to_errors.setdefault(int(lineno), []).append(line)
-            except ValueError:
-                continue
+            line_to_errors[int(lineno)].append(line)
         return line_to_errors
 
 

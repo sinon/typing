@@ -1,5 +1,9 @@
-conformance_automated = "Pass"
+conformance_automated = "Fail"
 errors_diff = """
+Line 50: Unexpected errors ['ERROR /Users/rob/dev/typing/conformance/tests/exceptions_context_managers.py:50:16-30: assert_type(str, int | str) failed [assert-type]']
+Line 57: Unexpected errors ['ERROR /Users/rob/dev/typing/conformance/tests/exceptions_context_managers.py:57:16-30: assert_type(str, int | str) failed [assert-type]']
 """
 output = """
+ERROR /Users/rob/dev/typing/conformance/tests/exceptions_context_managers.py:50:16-30: assert_type(str, int | str) failed [assert-type]
+ERROR /Users/rob/dev/typing/conformance/tests/exceptions_context_managers.py:57:16-30: assert_type(str, int | str) failed [assert-type]
 """

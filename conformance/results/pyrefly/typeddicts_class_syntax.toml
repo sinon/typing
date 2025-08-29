@@ -1,10 +1,10 @@
-conformance_automated = "Fail"
+conformance_automated = "Pass"
 errors_diff = """
-Line 29: Expected 1 errors
-Line 44: Expected 1 errors
-Line 49: Expected 1 errors
-Lines 33, 34: Expected error (tag 'method2')
-Lines 38, 39: Expected error (tag 'method3')
 """
 output = """
+ERROR /Users/rob/dev/typing/conformance/tests/typeddicts_class_syntax.py:29:9-16: TypedDict item `method1` may not be initialized [bad-class-definition]
+ERROR /Users/rob/dev/typing/conformance/tests/typeddicts_class_syntax.py:34:9-16: TypedDict item `method2` may not be initialized [bad-class-definition]
+ERROR /Users/rob/dev/typing/conformance/tests/typeddicts_class_syntax.py:39:9-16: TypedDict item `method3` may not be initialized [bad-class-definition]
+ERROR /Users/rob/dev/typing/conformance/tests/typeddicts_class_syntax.py:44:7-20: Typed dictionary definitions may not specify a metaclass [invalid-inheritance]
+ERROR /Users/rob/dev/typing/conformance/tests/typeddicts_class_syntax.py:49:7-20: TypedDict does not support keyword argument `other` [bad-typed-dict]
 """

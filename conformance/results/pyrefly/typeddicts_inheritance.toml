@@ -1,8 +1,8 @@
 conformance_automated = "Fail"
 errors_diff = """
-Line 44: Expected 1 errors
 Line 65: Expected 1 errors
-Lines 54, 55: Expected error (tag 'Y1')
 """
 output = """
+ERROR /Users/rob/dev/typing/conformance/tests/typeddicts_inheritance.py:44:7-19: `NonTypedDict` is not a typed dictionary. Typed dictionary definitions may only extend other typed dictionaries. [invalid-inheritance]
+ERROR /Users/rob/dev/typing/conformance/tests/typeddicts_inheritance.py:55:4-5: Class member `Y1.x` overrides parent class `X1` in an inconsistent manner [bad-override]
 """

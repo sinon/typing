@@ -1,6 +1,6 @@
-conformance_automated = "Fail"
+conformance_automated = "Pass"
 errors_diff = """
-Line 33: Expected 1 errors
 """
 output = """
+ERROR /Users/rob/dev/typing/conformance/tests/typeddicts_readonly_kwargs.py:33:5-19: Key `key1` in TypedDict `ReadOnlyArgs` is read-only [read-only]
 """

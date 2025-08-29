@@ -1,7 +1,7 @@
-conformance_automated = "Fail"
+conformance_automated = "Pass"
 errors_diff = """
-Line 22: Expected 1 errors
-Line 23: Expected 1 errors
 """
 output = """
+ERROR /Users/rob/dev/typing/conformance/tests/namedtuples_type_compat.py:22:23-24: `Point` is not assignable to `tuple[int, int]` [bad-assignment]
+ERROR /Users/rob/dev/typing/conformance/tests/namedtuples_type_compat.py:23:28-29: `Point` is not assignable to `tuple[int, str, str]` [bad-assignment]
 """

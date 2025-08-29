@@ -9,10 +9,8 @@ Line 29: Expected 1 errors
 Line 32: Expected 1 errors
 Line 47: Expected 1 errors
 Line 49: Expected 1 errors
-Line 60: Unexpected errors ['typeddicts_operations.py:60:1: error[type-assertion-failure] Argument does not have asserted type `str | None`']
 """
 output = """
 typeddicts_operations.py:37:5: error[missing-typed-dict-key] Missing required key 'name' in TypedDict `Movie` constructor
-typeddicts_operations.py:60:1: error[type-assertion-failure] Argument does not have asserted type `str | None`
 typeddicts_operations.py:62:1: error[unresolved-attribute] Type `MovieOptional` has no attribute `clear`
 """

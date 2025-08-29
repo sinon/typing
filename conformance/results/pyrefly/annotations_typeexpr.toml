@@ -1,20 +1,20 @@
-conformance_automated = "Fail"
+conformance_automated = "Pass"
 errors_diff = """
-Line 88: Expected 1 errors
-Line 89: Expected 1 errors
-Line 90: Expected 1 errors
-Line 91: Expected 1 errors
-Line 92: Expected 1 errors
-Line 93: Expected 1 errors
-Line 94: Expected 1 errors
-Line 95: Expected 1 errors
-Line 96: Expected 1 errors
-Line 97: Expected 1 errors
-Line 98: Expected 1 errors
-Line 99: Expected 1 errors
-Line 100: Expected 1 errors
-Line 101: Expected 1 errors
-Line 102: Expected 1 errors
 """
 output = """
+ERROR /Users/rob/dev/typing/conformance/tests/annotations_typeexpr.py:88:9-49: function call cannot be used in annotations [invalid-annotation]
+ERROR /Users/rob/dev/typing/conformance/tests/annotations_typeexpr.py:89:9-19: list literal cannot be used in annotations [invalid-annotation]
+ERROR /Users/rob/dev/typing/conformance/tests/annotations_typeexpr.py:90:9-19: tuple literal cannot be used in annotations [invalid-annotation]
+ERROR /Users/rob/dev/typing/conformance/tests/annotations_typeexpr.py:91:9-32: list comprehension cannot be used in annotations [invalid-annotation]
+ERROR /Users/rob/dev/typing/conformance/tests/annotations_typeexpr.py:92:9-11: dict literal cannot be used in annotations [invalid-annotation]
+ERROR /Users/rob/dev/typing/conformance/tests/annotations_typeexpr.py:93:9-24: function call cannot be used in annotations [invalid-annotation]
+ERROR /Users/rob/dev/typing/conformance/tests/annotations_typeexpr.py:94:9-17: invalid subscript expression cannot be used in annotations [invalid-annotation]
+ERROR /Users/rob/dev/typing/conformance/tests/annotations_typeexpr.py:95:9-30: if expression cannot be used in annotations [invalid-annotation]
+ERROR /Users/rob/dev/typing/conformance/tests/annotations_typeexpr.py:96:9-13: Expected a type form, got instance of `Literal[3]` [not-a-type]
+ERROR /Users/rob/dev/typing/conformance/tests/annotations_typeexpr.py:97:10-14: bool literal cannot be used in annotations [invalid-annotation]
+ERROR /Users/rob/dev/typing/conformance/tests/annotations_typeexpr.py:98:10-11: number literal cannot be used in annotations [invalid-annotation]
+ERROR /Users/rob/dev/typing/conformance/tests/annotations_typeexpr.py:99:10-12: unary operation cannot be used in annotations [invalid-annotation]
+ERROR /Users/rob/dev/typing/conformance/tests/annotations_typeexpr.py:100:10-20: boolean operation cannot be used in annotations [invalid-annotation]
+ERROR /Users/rob/dev/typing/conformance/tests/annotations_typeexpr.py:101:10-16: f-string cannot be used in annotations [invalid-annotation]
+ERROR /Users/rob/dev/typing/conformance/tests/annotations_typeexpr.py:102:10-15: Expected a type form, got instance of `Module[types]` [not-a-type]
 """
