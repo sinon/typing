@@ -1,0 +1,12 @@
+conformance_automated = "Fail"
+errors_diff = """
+Line 79: Expected 1 errors
+Line 80: Expected 1 errors
+Line 102: Expected 1 errors
+Line 103: Expected 1 errors
+"""
+output = """
+protocols_subtyping.py:16:6: error[call-non-callable] Cannot instantiate class `Proto1`: This call will raise `TypeError` at runtime
+protocols_subtyping.py:38:5: error[invalid-assignment] Object of type `Proto2` is not assignable to `Concrete2`
+protocols_subtyping.py:55:5: error[invalid-assignment] Object of type `Proto2` is not assignable to `Proto3`
+"""

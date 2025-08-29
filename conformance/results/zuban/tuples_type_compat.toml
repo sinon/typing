@@ -1,7 +1,3 @@
-conformant = "Pass"
-notes = """
-Does not support tuple narrowing based on `len()` type guard (optional).
-"""
 conformance_automated = "Fail"
 errors_diff = """
 Lines 80, 81: Expected exactly one error (tag 'func5_2')

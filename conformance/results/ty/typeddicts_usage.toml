@@ -1,0 +1,10 @@
+conformance_automated = "Fail"
+errors_diff = """
+Line 23: Expected 1 errors
+Line 24: Expected 1 errors
+Line 28: Expected 1 errors
+Line 35: Expected 1 errors
+"""
+output = """
+typeddicts_usage.py:40:24: error[invalid-type-form] The special form `typing.TypedDict` is not allowed in type expressions. Did you mean to use a concrete TypedDict or `collections.abc.Mapping[str, object]` instead?
+"""

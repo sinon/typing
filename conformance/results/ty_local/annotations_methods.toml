@@ -1,0 +1,18 @@
+conformance_automated = "Fail"
+errors_diff = """
+Line 31: Unexpected errors ['annotations_methods.py:31:1: error[type-assertion-failure] Argument does not have asserted type `A`']
+Line 36: Unexpected errors ['annotations_methods.py:36:1: error[type-assertion-failure] Argument does not have asserted type `B`']
+Line 48: Unexpected errors ['annotations_methods.py:48:1: error[type-assertion-failure] Argument does not have asserted type `A`']
+Line 49: Unexpected errors ['annotations_methods.py:49:1: error[type-assertion-failure] Argument does not have asserted type `B`']
+Line 50: Unexpected errors ['annotations_methods.py:50:1: error[type-assertion-failure] Argument does not have asserted type `B`']
+Line 51: Unexpected errors ['annotations_methods.py:51:1: error[type-assertion-failure] Argument does not have asserted type `A`']
+"""
+output = """
+annotations_methods.py:31:1: error[type-assertion-failure] Argument does not have asserted type `A`
+annotations_methods.py:36:1: error[type-assertion-failure] Argument does not have asserted type `B`
+annotations_methods.py:42:1: error[type-assertion-failure] Argument does not have asserted type `A`
+annotations_methods.py:48:1: error[type-assertion-failure] Argument does not have asserted type `A`
+annotations_methods.py:49:1: error[type-assertion-failure] Argument does not have asserted type `B`
+annotations_methods.py:50:1: error[type-assertion-failure] Argument does not have asserted type `B`
+annotations_methods.py:51:1: error[type-assertion-failure] Argument does not have asserted type `A`
+"""

@@ -1,0 +1,53 @@
+conformance_automated = "Fail"
+errors_diff = """
+Line 38: Expected 1 errors
+Line 39: Expected 1 errors
+Line 51: Expected 1 errors
+Line 65: Expected 1 errors
+Line 66: Expected 1 errors
+Line 67: Expected 1 errors
+Line 79: Expected 1 errors
+Line 80: Expected 1 errors
+Line 127: Expected 1 errors
+Line 144: Expected 1 errors
+Line 184: Expected 1 errors
+Line 195: Expected 1 errors
+Line 37: Unexpected errors ['constructors_callable.py:37:1: error[type-assertion-failure] Argument does not have asserted type `Class1`']
+Line 50: Unexpected errors ['constructors_callable.py:50:1: error[type-assertion-failure] Argument does not have asserted type `Class2`']
+Line 57: Unexpected errors ['constructors_callable.py:57:42: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `Self@__new__`']
+Line 64: Unexpected errors ['constructors_callable.py:64:1: error[type-assertion-failure] Argument does not have asserted type `Class3`']
+Line 73: Unexpected errors ['constructors_callable.py:73:33: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `int`']
+Line 78: Unexpected errors ['constructors_callable.py:78:1: error[type-assertion-failure] Argument does not have asserted type `int`']
+Line 100: Unexpected errors ['constructors_callable.py:100:5: error[type-assertion-failure] Argument does not have asserted type `Never`']
+Line 105: Unexpected errors ['constructors_callable.py:105:5: error[type-assertion-failure] Argument does not have asserted type `Never`']
+Line 126: Unexpected errors ['constructors_callable.py:126:1: error[type-assertion-failure] Argument does not have asserted type `Class6Proxy`']
+Line 164: Unexpected errors ['constructors_callable.py:164:1: error[type-assertion-failure] Argument does not have asserted type `Class7[int]`']
+Line 165: Unexpected errors ['constructors_callable.py:165:1: error[type-assertion-failure] Argument does not have asserted type `Class7[str]`']
+Line 183: Unexpected errors ['constructors_callable.py:183:1: error[type-assertion-failure] Argument does not have asserted type `Class8[str]`']
+Line 194: Unexpected errors ['constructors_callable.py:194:1: error[type-assertion-failure] Argument does not have asserted type `Class9`']
+"""
+output = """
+constructors_callable.py:36:13: info[revealed-type] Revealed type: `(...) -> Unknown`
+constructors_callable.py:37:1: error[type-assertion-failure] Argument does not have asserted type `Class1`
+constructors_callable.py:49:13: info[revealed-type] Revealed type: `(...) -> Unknown`
+constructors_callable.py:50:1: error[type-assertion-failure] Argument does not have asserted type `Class2`
+constructors_callable.py:57:42: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `Self@__new__`
+constructors_callable.py:63:13: info[revealed-type] Revealed type: `(...) -> Unknown`
+constructors_callable.py:64:1: error[type-assertion-failure] Argument does not have asserted type `Class3`
+constructors_callable.py:73:33: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `int`
+constructors_callable.py:77:13: info[revealed-type] Revealed type: `(...) -> Unknown`
+constructors_callable.py:78:1: error[type-assertion-failure] Argument does not have asserted type `int`
+constructors_callable.py:97:13: info[revealed-type] Revealed type: `(...) -> Unknown`
+constructors_callable.py:100:5: error[type-assertion-failure] Argument does not have asserted type `Never`
+constructors_callable.py:105:5: error[type-assertion-failure] Argument does not have asserted type `Never`
+constructors_callable.py:125:13: info[revealed-type] Revealed type: `(...) -> Unknown`
+constructors_callable.py:126:1: error[type-assertion-failure] Argument does not have asserted type `Class6Proxy`
+constructors_callable.py:142:13: info[revealed-type] Revealed type: `(...) -> Unknown`
+constructors_callable.py:162:5: info[revealed-type] Revealed type: `(...) -> Unknown`
+constructors_callable.py:164:1: error[type-assertion-failure] Argument does not have asserted type `Class7[int]`
+constructors_callable.py:165:1: error[type-assertion-failure] Argument does not have asserted type `Class7[str]`
+constructors_callable.py:182:13: info[revealed-type] Revealed type: `(...) -> Unknown`
+constructors_callable.py:183:1: error[type-assertion-failure] Argument does not have asserted type `Class8[str]`
+constructors_callable.py:193:13: info[revealed-type] Revealed type: `(...) -> Unknown`
+constructors_callable.py:194:1: error[type-assertion-failure] Argument does not have asserted type `Class9`
+"""

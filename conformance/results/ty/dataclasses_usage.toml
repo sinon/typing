@@ -1,0 +1,16 @@
+conformance_automated = "Fail"
+errors_diff = """
+Lines 58, 61: Expected error (tag 'DC1')
+Lines 64, 67: Expected error (tag 'DC2')
+Lines 70, 73: Expected error (tag 'DC3')
+"""
+output = """
+dataclasses_usage.py:50:6: error[missing-argument] No argument provided for required parameter `unit_price`
+dataclasses_usage.py:51:28: error[invalid-argument-type] Argument is incorrect: Expected `int | float`, found `Literal["price"]`
+dataclasses_usage.py:52:36: error[too-many-positional-arguments] Too many positional arguments: expected 3, got 4
+dataclasses_usage.py:83:13: error[too-many-positional-arguments] Too many positional arguments: expected 1, got 2
+dataclasses_usage.py:88:5: error[invalid-assignment] Object of type `dataclasses.Field[Literal[""]]` is not assignable to `int`
+dataclasses_usage.py:127:8: error[too-many-positional-arguments] Too many positional arguments: expected 1, got 2
+dataclasses_usage.py:130:1: error[missing-argument] No argument provided for required parameter `y` of bound method `__init__`
+dataclasses_usage.py:179:6: error[too-many-positional-arguments] Too many positional arguments to bound method `__init__`: expected 1, got 2
+"""

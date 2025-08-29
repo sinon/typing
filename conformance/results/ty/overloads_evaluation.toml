@@ -1,0 +1,19 @@
+conformance_automated = "Fail"
+errors_diff = """
+Line 62: Unexpected errors ['overloads_evaluation.py:62:35: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `int | float`']
+Line 161: Unexpected errors ['overloads_evaluation.py:161:5: error[type-assertion-failure] Argument does not have asserted type `Literal[0, 1]`']
+Line 234: Unexpected errors ['overloads_evaluation.py:234:5: error[type-assertion-failure] Argument does not have asserted type `int`']
+Line 291: Unexpected errors ['overloads_evaluation.py:291:33: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `T@example6`']
+Line 322: Unexpected errors ['overloads_evaluation.py:322:5: error[type-assertion-failure] Argument does not have asserted type `list[int]`']
+"""
+output = """
+overloads_evaluation.py:38:1: error[no-matching-overload] No overload of function `example1_1` matches arguments
+overloads_evaluation.py:46:15: error[invalid-argument-type] Argument to function `example1_1` is incorrect: Expected `str`, found `Literal[1]`
+overloads_evaluation.py:51:12: error[invalid-argument-type] Argument to function `example1_1` is incorrect: Expected `str`, found `Literal[1]`
+overloads_evaluation.py:62:35: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `int | float`
+overloads_evaluation.py:115:5: error[no-matching-overload] No overload of function `example2` matches arguments
+overloads_evaluation.py:161:5: error[type-assertion-failure] Argument does not have asserted type `Literal[0, 1]`
+overloads_evaluation.py:234:5: error[type-assertion-failure] Argument does not have asserted type `int`
+overloads_evaluation.py:291:33: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `T@example6`
+overloads_evaluation.py:322:5: error[type-assertion-failure] Argument does not have asserted type `list[int]`
+"""

@@ -1,0 +1,16 @@
+conformance_automated = "Fail"
+errors_diff = """
+Line 22: Expected 1 errors
+Line 23: Expected 1 errors
+Line 24: Expected 1 errors
+Line 26: Expected 1 errors
+Line 28: Expected 1 errors
+Line 29: Expected 1 errors
+Line 32: Expected 1 errors
+Line 47: Expected 1 errors
+Line 49: Expected 1 errors
+"""
+output = """
+typeddicts_operations.py:37:5: error[missing-typed-dict-key] Missing required key 'name' in TypedDict `Movie` constructor
+typeddicts_operations.py:62:1: error[unresolved-attribute] Type `MovieOptional` has no attribute `clear`
+"""

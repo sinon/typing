@@ -1,0 +1,6 @@
+conformance_automated = "Pass"
+errors_diff = """
+"""
+output = """
+ERROR /Users/rob/dev/typing/conformance/tests/overloads_basic.py:39:1-6: Cannot index into `Bytes` [index-error]
+"""

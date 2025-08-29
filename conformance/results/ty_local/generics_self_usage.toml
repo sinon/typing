@@ -1,0 +1,19 @@
+conformance_automated = "Fail"
+errors_diff = """
+Line 98: Unexpected errors ['generics_self_usage.py:98:22: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `T@Bar`']
+"""
+output = """
+generics_self_usage.py:73:14: error[invalid-type-form] Variable of type `typing.Self` is not allowed in a type expression
+generics_self_usage.py:73:23: error[invalid-type-form] Variable of type `typing.Self` is not allowed in a type expression
+generics_self_usage.py:76:6: error[invalid-type-form] Variable of type `typing.Self` is not allowed in a type expression
+generics_self_usage.py:82:54: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `Self@has_existing_self_annotation`
+generics_self_usage.py:86:16: error[invalid-return-type] Return type does not match returned value: expected `Self@return_concrete_type`, found `Foo3`
+generics_self_usage.py:98:22: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `T@Bar`
+generics_self_usage.py:101:15: error[invalid-type-form] Variable of type `typing.Self` is not allowed in a type expression
+generics_self_usage.py:103:12: error[invalid-base] Invalid class base with type `typing.Self`
+generics_self_usage.py:106:30: error[invalid-type-form] Variable of type `typing.Self` is not allowed in a type expression
+generics_self_usage.py:111:19: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `Self@make`
+generics_self_usage.py:116:40: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `Self@return_parameter`
+generics_self_usage.py:121:37: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `Self@__new__`
+generics_self_usage.py:125:37: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `list[Self@__mul__]`
+"""

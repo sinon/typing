@@ -1,0 +1,50 @@
+conformance_automated = "Fail"
+errors_diff = """
+Line 70: Expected 1 errors
+Line 144: Expected 1 errors
+Line 44: Unexpected errors ['specialtypes_type.py:44:1: error[type-assertion-failure] Argument does not have asserted type `TeamUser`']
+Line 84: Unexpected errors ['specialtypes_type.py:84:5: error[type-assertion-failure] Argument does not have asserted type `type[Any]`']
+Line 98: Unexpected errors ['specialtypes_type.py:98:5: error[type-assertion-failure] Argument does not have asserted type `tuple[type, ...]`']
+Line 99: Unexpected errors ['specialtypes_type.py:99:17: error[unresolved-attribute] Type `type` has no attribute `unknown`']
+Line 100: Unexpected errors ['specialtypes_type.py:100:17: error[unresolved-attribute] Type `type` has no attribute `unknown`']
+Line 102: Unexpected errors ['specialtypes_type.py:102:5: error[type-assertion-failure] Argument does not have asserted type `tuple[type, ...]`']
+Line 106: Unexpected errors ['specialtypes_type.py:106:5: error[type-assertion-failure] Argument does not have asserted type `tuple[type, ...]`']
+Line 107: Unexpected errors ['specialtypes_type.py:107:17: error[unresolved-attribute] Type `type` has no attribute `unknown`']
+Line 108: Unexpected errors ['specialtypes_type.py:108:17: error[unresolved-attribute] Type `type` has no attribute `unknown`']
+Line 110: Unexpected errors ['specialtypes_type.py:110:5: error[type-assertion-failure] Argument does not have asserted type `tuple[type, ...]`']
+Line 127: Unexpected errors ['specialtypes_type.py:127:5: error[type-assertion-failure] Argument does not have asserted type `ProUser`']
+Line 137: Unexpected errors ['specialtypes_type.py:137:5: error[type-assertion-failure] Argument does not have asserted type `type[Any]`']
+Line 138: Unexpected errors ['specialtypes_type.py:138:5: error[type-assertion-failure] Argument does not have asserted type `type[Any]`']
+Line 139: Unexpected errors ['specialtypes_type.py:139:5: error[type-assertion-failure] Argument does not have asserted type `type[Any]`']
+Line 140: Unexpected errors ['specialtypes_type.py:140:5: error[type-assertion-failure] Argument does not have asserted type `type[Any]`']
+Line 160: Unexpected errors ['specialtypes_type.py:160:1: error[type-assertion-failure] Argument does not have asserted type `int`']
+Line 161: Unexpected errors ['specialtypes_type.py:161:1: error[type-assertion-failure] Argument does not have asserted type `int`']
+Line 169: Unexpected errors ['specialtypes_type.py:169:5: error[invalid-assignment] Object of type `type` is not assignable to `type[int]`']
+"""
+output = """
+specialtypes_type.py:44:1: error[type-assertion-failure] Argument does not have asserted type `TeamUser`
+specialtypes_type.py:56:7: error[invalid-argument-type] Argument to function `func4` is incorrect: Expected `type[BasicUser] | type[ProUser]`, found `<class 'TeamUser'>`
+specialtypes_type.py:76:17: error[invalid-type-form] type[...] must have exactly one type argument
+specialtypes_type.py:84:5: error[type-assertion-failure] Argument does not have asserted type `type[Any]`
+specialtypes_type.py:98:5: error[type-assertion-failure] Argument does not have asserted type `tuple[type, ...]`
+specialtypes_type.py:99:17: error[unresolved-attribute] Type `type` has no attribute `unknown`
+specialtypes_type.py:100:17: error[unresolved-attribute] Type `type` has no attribute `unknown`
+specialtypes_type.py:102:5: error[type-assertion-failure] Argument does not have asserted type `tuple[type, ...]`
+specialtypes_type.py:106:5: error[type-assertion-failure] Argument does not have asserted type `tuple[type, ...]`
+specialtypes_type.py:107:17: error[unresolved-attribute] Type `type` has no attribute `unknown`
+specialtypes_type.py:108:17: error[unresolved-attribute] Type `type` has no attribute `unknown`
+specialtypes_type.py:110:5: error[type-assertion-failure] Argument does not have asserted type `tuple[type, ...]`
+specialtypes_type.py:117:5: error[unresolved-attribute] Type `type` has no attribute `unknown`
+specialtypes_type.py:120:5: error[unresolved-attribute] Type `type` has no attribute `unknown`
+specialtypes_type.py:127:5: error[type-assertion-failure] Argument does not have asserted type `ProUser`
+specialtypes_type.py:137:5: error[type-assertion-failure] Argument does not have asserted type `type[Any]`
+specialtypes_type.py:138:5: error[type-assertion-failure] Argument does not have asserted type `type[Any]`
+specialtypes_type.py:139:5: error[type-assertion-failure] Argument does not have asserted type `type[Any]`
+specialtypes_type.py:140:5: error[type-assertion-failure] Argument does not have asserted type `type[Any]`
+specialtypes_type.py:143:1: error[unresolved-attribute] Type `typing.Type` has no attribute `unknown`
+specialtypes_type.py:145:1: error[unresolved-attribute] Type `<class 'type'>` has no attribute `unknown`
+specialtypes_type.py:146:1: error[unresolved-attribute] Type `GenericAlias` has no attribute `unknown`
+specialtypes_type.py:160:1: error[type-assertion-failure] Argument does not have asserted type `int`
+specialtypes_type.py:161:1: error[type-assertion-failure] Argument does not have asserted type `int`
+specialtypes_type.py:169:5: error[invalid-assignment] Object of type `type` is not assignable to `type[int]`
+"""

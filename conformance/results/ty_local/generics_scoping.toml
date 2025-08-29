@@ -1,0 +1,23 @@
+conformance_automated = "Fail"
+errors_diff = """
+Line 29: Expected 1 errors
+Line 50: Expected 1 errors
+Line 54: Expected 1 errors
+Line 65: Expected 1 errors
+Line 75: Expected 1 errors
+Line 78: Expected 1 errors
+Line 87: Expected 1 errors
+Line 94: Expected 1 errors
+Line 95: Expected 1 errors
+Line 96: Expected 1 errors
+Line 14: Unexpected errors ['generics_scoping.py:14:1: error[type-assertion-failure] Argument does not have asserted type `int`']
+Line 15: Unexpected errors ['generics_scoping.py:15:1: error[type-assertion-failure] Argument does not have asserted type `str`']
+Line 42: Unexpected errors ['generics_scoping.py:42:1: error[type-assertion-failure] Argument does not have asserted type `str`']
+Line 43: Unexpected errors ['generics_scoping.py:43:1: error[type-assertion-failure] Argument does not have asserted type `bytes`']
+"""
+output = """
+generics_scoping.py:14:1: error[type-assertion-failure] Argument does not have asserted type `int`
+generics_scoping.py:15:1: error[type-assertion-failure] Argument does not have asserted type `str`
+generics_scoping.py:42:1: error[type-assertion-failure] Argument does not have asserted type `str`
+generics_scoping.py:43:1: error[type-assertion-failure] Argument does not have asserted type `bytes`
+"""
