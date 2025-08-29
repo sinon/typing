@@ -29,6 +29,17 @@ def generate_summary_html(root_dir: Path) -> str:
     test_groups = get_test_groups(root_dir)
     test_cases = get_test_cases(test_groups, root_dir / "tests")
 
+    # Initialize counters for summary statistics
+    summary_stats = {}
+    for type_checker in TYPE_CHECKERS:
+        summary_stats[type_checker.name] = {
+            'passes': 0,
+            'fails': 0,
+            'false_positives': 0,
+            'false_negatives': 0,
+            'unknown': 0
+        }
+
     summary_html = ['<div class="table_container"><table><tbody>']
     summary_html.append('<tr><th class="col1">&nbsp;</th>')
 
@@ -100,6 +111,18 @@ def generate_summary_html(root_dir: Path) -> str:
                     false_negative_count = len([l for l in raw_errors_diff.split("\n") if ": Expected " in l])
                     false_positive_count = len([l for l in raw_errors_diff.split("\n") if ": Unexpected errors" in l])
 
+                    if conformance == "Pass":
+                        summary_stats[type_checker.name]['passes'] += 1
+                    elif conformance == "Partial":
+                        summary_stats[type_checker.name]['fails'] += 1  # Partial is considered a fail for summary
+                    elif conformance == "Unknown":
+                        summary_stats[type_checker.name]['unknown'] += 1
+                    else:
+                        summary_stats[type_checker.name]['fails'] += 1
+                    
+                    summary_stats[type_checker.name]['false_negatives'] += false_negative_count
+                    summary_stats[type_checker.name]['false_positives'] += false_positive_count
+
                     conformance_class = (
                         "conformant"
                         if conformance == "Pass"
@@ -117,7 +140,6 @@ def generate_summary_html(root_dir: Path) -> str:
 
                     conformance_cell = f"{conformance}"
                     
-                    # Create expander content if there are notes or errors_diff
                     expander_content = ""
                     if raw_notes != "":
                         expander_content += f"<div style='margin-bottom: 10px;'><strong>Notes:</strong>{notes}</div>"
@@ -133,5 +155,44 @@ def generate_summary_html(root_dir: Path) -> str:
                 summary_html.append("</tr>")
 
     summary_html.append("</tbody></table></div>\n")
+
+    # Add summary statistics table
+    summary_html.append('<div style="margin-top: 30px;"><h3>Summary Statistics</h3>')
+    summary_html.append('<div class="table_container"><table><tbody>')
+    
+    # Header row for summary table
+    summary_html.append('<tr><th class="col1">Type Checker</th>')
+    summary_html.append('<th class="column">Test Case Passes</th>')
+    summary_html.append('<th class="column">Test Case Fails</th>')
+    summary_html.append('<th class="column">Test Case Unknown status</th>')
+    summary_html.append('<th class="column">False Positives</th>')
+    summary_html.append('<th class="column">False Negatives</th>')
+    summary_html.append('</tr>')
+    
+    # Data rows for each type checker
+    for type_checker in TYPE_CHECKERS:
+        stats = summary_stats[type_checker.name]
+        
+        # Load the version file for the type checker for display name
+        version_file = root_dir / "results" / type_checker.name / "version.toml"
+        try:
+            with open(version_file, "rb") as f:
+                existing_info = tomli.load(f)
+        except FileNotFoundError:
+            existing_info = {}
+        except tomli.TOMLDecodeError:
+            existing_info = {}
+        
+        version = existing_info.get("version", "Unknown version")
+        
+        summary_html.append(f'<tr><th class="col1">{version}</th>')
+        summary_html.append(f'<td class="column conformant">{stats["passes"]}</td>')
+        summary_html.append(f'<td class="column not-conformant">{stats["fails"]}</td>')
+        summary_html.append(f'<td class="column">{stats["unknown"]}</td>')
+        summary_html.append(f'<td class="column">{stats["false_positives"]}</td>')
+        summary_html.append(f'<td class="column">{stats["false_negatives"]}</td>')
+        summary_html.append('</tr>')
+    
+    summary_html.append("</tbody></table></div></div>\n")
 
     return "\n".join(summary_html)
