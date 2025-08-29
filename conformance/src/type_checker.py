@@ -336,6 +336,10 @@ class ZubanLSTypeChecker(MypyTypeChecker):
 
 class TyTypeChecker(TypeChecker):
     @property
+    def cmd(self) -> str:
+        return "ty"
+
+    @property
     def name(self) -> str:
         return "ty"
 
@@ -358,13 +362,13 @@ class TyTypeChecker(TypeChecker):
             return False
 
     def get_version(self) -> str:
-        proc = run(["ty", "--version"], stdout=PIPE, text=True)
+        proc = run([self.cmd, "--version"], stdout=PIPE, text=True)
         return proc.stdout.strip()
 
     def run_tests(self, test_files: Sequence[str]) -> dict[str, str]:
         results_dict: dict[str, str] = {}
         proc = run(
-                ["ty", "check", "--output-format", "concise"],
+                [self.cmd, "check", "--output-format", "concise"],
                 stdout=PIPE,
                 text=True,
                 encoding="utf-8",
@@ -392,6 +396,19 @@ class TyTypeChecker(TypeChecker):
             except ValueError:
                 continue
         return line_to_errors
+
+class LocalTyTypeChecker(TyTypeChecker):
+    @property
+    def cmd(self) -> str:
+        return "/Users/rob/dev/ruff/target/debug/ty"
+
+    @property
+    def name(self) -> str:
+        return "ty_local"
+
+    def get_version(self) -> str:
+        proc = run([self.cmd, "--version"], stdout=PIPE, text=True)
+        return f"Local:{proc.stdout.strip()}"
 
 class PyreFlyTypeChecker(TypeChecker):
     @property
@@ -460,5 +477,6 @@ TYPE_CHECKERS: Sequence[TypeChecker] = (
     # *([] if os.name == "nt" else [PyreTypeChecker()]),
     ZubanLSTypeChecker(),
     TyTypeChecker(),
+    LocalTyTypeChecker(),
     PyreFlyTypeChecker(),
 )

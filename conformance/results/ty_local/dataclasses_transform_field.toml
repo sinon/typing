@@ -1,0 +1,9 @@
+conformance_automated = "Fail"
+errors_diff = """
+Line 64: Expected 1 errors
+Line 49: Unexpected errors ['dataclasses_transform_field.py:49:43: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `(...) -> @Todo(unsupported type[X] special form)`']
+"""
+output = """
+dataclasses_transform_field.py:49:43: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `(...) -> @Todo(unsupported type[X] special form)`
+dataclasses_transform_field.py:75:16: error[too-many-positional-arguments] Too many positional arguments: expected 0, got 1
+"""
