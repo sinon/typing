@@ -1,0 +1,24 @@
+conformance_automated = "Fail"
+errors_diff = """
+Line 33: Expected 1 errors
+Line 34: Expected 1 errors
+Line 48: Expected 1 errors
+Line 57: Expected 1 errors
+Line 58: Expected 1 errors
+Line 59: Expected 1 errors
+Line 67: Expected 1 errors
+Line 75: Expected 1 errors
+Line 76: Expected 1 errors
+Line 16: Unexpected errors ['generics_typevartuple_args.py:16:34: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `tuple[@Todo(PEP 646), ...]`']
+Line 20: Unexpected errors ['generics_typevartuple_args.py:20:1: error[type-assertion-failure] Argument does not have asserted type `tuple[int, str]`']
+Line 27: Unexpected errors ['generics_typevartuple_args.py:27:77: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `tuple[@Todo(PEP 646), ...]`']
+Line 31: Unexpected errors ['generics_typevartuple_args.py:31:1: error[type-assertion-failure] Argument does not have asserted type `tuple[()]`']
+Line 32: Unexpected errors ['generics_typevartuple_args.py:32:1: error[type-assertion-failure] Argument does not have asserted type `tuple[int, str]`']
+"""
+output = """
+generics_typevartuple_args.py:16:34: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `tuple[@Todo(PEP 646), ...]`
+generics_typevartuple_args.py:20:1: error[type-assertion-failure] Argument does not have asserted type `tuple[int, str]`
+generics_typevartuple_args.py:27:77: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `tuple[@Todo(PEP 646), ...]`
+generics_typevartuple_args.py:31:1: error[type-assertion-failure] Argument does not have asserted type `tuple[()]`
+generics_typevartuple_args.py:32:1: error[type-assertion-failure] Argument does not have asserted type `tuple[int, str]`
+"""

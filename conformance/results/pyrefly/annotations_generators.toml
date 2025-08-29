@@ -1,7 +1,3 @@
-conformant = "Partial"
-notes = """
-Does not detect that invalid yield is unreachable
-"""
 conformance_automated = "Fail"
 errors_diff = """
 Line 140: Unexpected errors ['This `yield` expression is unreachable [unreachable]']

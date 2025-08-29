@@ -1,0 +1,12 @@
+conformance_automated = "Fail"
+errors_diff = """
+Lines 27, 28: Expected exactly one error (tag 'red')
+Line 27: Unexpected errors ['enums_behaviors.py:27:1: error[type-assertion-failure] Argument does not have asserted type `Color`']
+Line 28: Unexpected errors ['enums_behaviors.py:28:1: error[type-assertion-failure] Argument does not have asserted type `Literal[Color.RED]`']
+"""
+output = """
+enums_behaviors.py:27:1: error[type-assertion-failure] Argument does not have asserted type `Color`
+enums_behaviors.py:28:1: error[type-assertion-failure] Argument does not have asserted type `Literal[Color.RED]`
+enums_behaviors.py:32:1: error[type-assertion-failure] Argument does not have asserted type `Literal[Color.BLUE]`
+enums_behaviors.py:44:21: error[subclass-of-final-class] Class `ExtendedShape` cannot inherit from final class `Shape`
+"""

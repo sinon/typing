@@ -1,0 +1,26 @@
+conformance_automated = "Fail"
+errors_diff = """
+Line 40: Expected 1 errors
+Line 41: Expected 1 errors
+Line 49: Expected 1 errors
+Line 55: Expected 1 errors
+Line 69: Expected 1 errors
+Line 121: Expected 1 errors
+Line 208: Expected 1 errors
+Line 34: Unexpected errors ['generics_basic.py:34:12: error[unsupported-operator] Operator `+` is unsupported between objects of type `AnyStr@concat` and `AnyStr@concat`']
+Line 139: Unexpected errors ['generics_basic.py:139:5: error[type-assertion-failure] Argument does not have asserted type `int`']
+Line 140: Unexpected errors ['generics_basic.py:140:5: error[type-assertion-failure] Argument does not have asserted type `int`']
+Line 199: Unexpected errors ['generics_basic.py:199:5: error[type-assertion-failure] Argument does not have asserted type `Iterator[Any]`']
+"""
+output = """
+generics_basic.py:34:12: error[unsupported-operator] Operator `+` is unsupported between objects of type `AnyStr@concat` and `AnyStr@concat`
+generics_basic.py:139:5: error[type-assertion-failure] Argument does not have asserted type `int`
+generics_basic.py:140:5: error[type-assertion-failure] Argument does not have asserted type `int`
+generics_basic.py:157:5: error[invalid-argument-type] Method `__getitem__` of type `bound method MyMap1[str, int].__getitem__(key: str, /) -> int` cannot be called with key of type `Literal[0]` on object of type `MyMap1[str, int]`
+generics_basic.py:158:5: error[invalid-argument-type] Method `__getitem__` of type `bound method MyMap2[int, str].__getitem__(key: str, /) -> int` cannot be called with key of type `Literal[0]` on object of type `MyMap2[int, str]`
+generics_basic.py:162:12: error[invalid-argument-type] `<class 'int'>` is not a valid argument to `Generic`
+generics_basic.py:163:12: error[invalid-argument-type] `<class 'int'>` is not a valid argument to `Protocol`
+generics_basic.py:171:1: error[invalid-generic-class] `Generic` base class must include all type variables used in other base classes
+generics_basic.py:172:1: error[invalid-generic-class] `Generic` base class must include all type variables used in other base classes
+generics_basic.py:199:5: error[type-assertion-failure] Argument does not have asserted type `Iterator[Any]`
+"""

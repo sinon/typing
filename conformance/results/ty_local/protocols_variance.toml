@@ -1,0 +1,14 @@
+conformance_automated = "Fail"
+errors_diff = """
+Line 21: Expected 1 errors
+Line 40: Expected 1 errors
+Line 56: Expected 1 errors
+Line 61: Expected 1 errors
+Line 66: Expected 1 errors
+Line 71: Expected 1 errors
+Line 104: Expected 1 errors
+Line 85: Unexpected errors ['protocols_variance.py:85:62: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `R@__call__`']
+"""
+output = """
+protocols_variance.py:85:62: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `R@__call__`
+"""

@@ -1,0 +1,14 @@
+conformance_automated = "Fail"
+errors_diff = """
+Line 24: Expected 1 errors
+Line 56: Expected 1 errors
+Line 37: Unexpected errors ['generics_upper_bound.py:37:1: error[type-assertion-failure] Argument does not have asserted type `list[int]`']
+Line 38: Unexpected errors ['generics_upper_bound.py:38:1: error[type-assertion-failure] Argument does not have asserted type `set[int]`']
+"""
+output = """
+generics_upper_bound.py:37:1: error[type-assertion-failure] Argument does not have asserted type `list[int]`
+generics_upper_bound.py:38:1: error[type-assertion-failure] Argument does not have asserted type `set[int]`
+generics_upper_bound.py:43:1: error[type-assertion-failure] Argument does not have asserted type `list[int] | set[int]`
+generics_upper_bound.py:51:8: error[invalid-argument-type] Argument to function `longer` is incorrect: Argument type `Literal[3]` does not satisfy upper bound of type variable `ST`
+generics_upper_bound.py:51:11: error[invalid-argument-type] Argument to function `longer` is incorrect: Argument type `Literal[3]` does not satisfy upper bound of type variable `ST`
+"""

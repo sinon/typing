@@ -1,0 +1,9 @@
+conformance_automated = "Fail"
+errors_diff = """
+Line 76: Unexpected errors ['protocols_recursive.py:76:35: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `T@func1`']
+Line 81: Unexpected errors ['protocols_recursive.py:81:1: error[type-assertion-failure] Argument does not have asserted type `list[int]`']
+"""
+output = """
+protocols_recursive.py:76:35: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `T@func1`
+protocols_recursive.py:81:1: error[type-assertion-failure] Argument does not have asserted type `list[int]`
+"""

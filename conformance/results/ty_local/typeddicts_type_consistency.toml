@@ -1,0 +1,15 @@
+conformance_automated = "Fail"
+errors_diff = """
+Line 21: Expected 1 errors
+Line 38: Expected 1 errors
+Line 65: Expected 1 errors
+Line 76: Expected 1 errors
+Line 77: Expected 1 errors
+Line 78: Expected 1 errors
+Line 82: Expected 1 errors
+Line 126: Expected 1 errors
+"""
+output = """
+typeddicts_type_consistency.py:69:21: error[invalid-key] Invalid key access on TypedDict `A3`: Unknown key "y"
+typeddicts_type_consistency.py:101:1: error[invalid-assignment] Object of type `@Todo(dict literal value type) | None` is not assignable to `str`
+"""

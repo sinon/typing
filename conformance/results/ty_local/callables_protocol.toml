@@ -1,0 +1,24 @@
+conformance_automated = "Fail"
+errors_diff = """
+Line 35: Expected 1 errors
+Line 36: Expected 1 errors
+Line 37: Expected 1 errors
+Line 67: Expected 1 errors
+Line 68: Expected 1 errors
+Line 69: Expected 1 errors
+Line 70: Expected 1 errors
+Line 169: Expected 1 errors
+Line 186: Expected 1 errors
+Line 187: Expected 1 errors
+Line 197: Expected 1 errors
+Line 238: Expected 1 errors
+Line 260: Expected 1 errors
+Line 284: Expected 1 errors
+Line 311: Expected 1 errors
+Line 179: Unexpected errors ['callables_protocol.py:179:62: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `R@__call__`']
+"""
+output = """
+callables_protocol.py:97:1: error[invalid-assignment] Object of type `def cb4_bad1(x: int) -> None` is not assignable to `Proto4`
+callables_protocol.py:121:1: error[invalid-assignment] Object of type `def cb6_bad1(*vals: bytes, *, max_len: int | None = None) -> list[bytes]` is not assignable to `NotProto6`
+callables_protocol.py:179:62: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `R@__call__`
+"""

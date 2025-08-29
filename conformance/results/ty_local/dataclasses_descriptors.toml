@@ -1,0 +1,13 @@
+conformance_automated = "Fail"
+errors_diff = """
+Line 23: Unexpected errors ['dataclasses_descriptors.py:23:62: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `int | Desc1`']
+Line 50: Unexpected errors ['dataclasses_descriptors.py:50:63: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `list[T@Desc2] | T@Desc2`']
+Line 66: Unexpected errors ['dataclasses_descriptors.py:66:1: error[type-assertion-failure] Argument does not have asserted type `int`']
+Line 67: Unexpected errors ['dataclasses_descriptors.py:67:1: error[type-assertion-failure] Argument does not have asserted type `str`']
+"""
+output = """
+dataclasses_descriptors.py:23:62: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `int | Desc1`
+dataclasses_descriptors.py:50:63: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `list[T@Desc2] | T@Desc2`
+dataclasses_descriptors.py:66:1: error[type-assertion-failure] Argument does not have asserted type `int`
+dataclasses_descriptors.py:67:1: error[type-assertion-failure] Argument does not have asserted type `str`
+"""

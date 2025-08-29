@@ -1,0 +1,13 @@
+conformance_automated = "Fail"
+errors_diff = """
+Line 23: Unexpected errors ['constructors_call_metaclass.py:23:1: error[type-assertion-failure] Argument does not have asserted type `Never`', 'constructors_call_metaclass.py:23:13: error[missing-argument] No argument provided for required parameter `x` of function `__new__`']
+Line 36: Unexpected errors ['constructors_call_metaclass.py:36:1: error[type-assertion-failure] Argument does not have asserted type `int | Meta2`', 'constructors_call_metaclass.py:36:13: error[missing-argument] No argument provided for required parameter `x` of function `__new__`']
+"""
+output = """
+constructors_call_metaclass.py:23:1: error[type-assertion-failure] Argument does not have asserted type `Never`
+constructors_call_metaclass.py:23:13: error[missing-argument] No argument provided for required parameter `x` of function `__new__`
+constructors_call_metaclass.py:36:1: error[type-assertion-failure] Argument does not have asserted type `int | Meta2`
+constructors_call_metaclass.py:36:13: error[missing-argument] No argument provided for required parameter `x` of function `__new__`
+constructors_call_metaclass.py:51:1: error[missing-argument] No argument provided for required parameter `x` of function `__new__`
+constructors_call_metaclass.py:65:1: error[missing-argument] No argument provided for required parameter `x` of function `__new__`
+"""

@@ -1,7 +1,3 @@
-conformant = "Partial"
-notes = """
-Return annotation of Self allows returning the concrete instance of the current class.
-"""
 conformance_automated = "Fail"
 errors_diff = """
 Line 20: Expected 1 errors

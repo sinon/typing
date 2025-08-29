@@ -1,0 +1,10 @@
+conformance_automated = "Fail"
+errors_diff = """
+Line 41: Expected 1 errors
+Line 32: Unexpected errors ['specialtypes_none.py:32:1: error[missing-argument] No argument provided for required parameter `value` of function `__eq__`']
+"""
+output = """
+specialtypes_none.py:21:7: error[invalid-argument-type] Argument to function `func1` is incorrect: Expected `None`, found `<class 'NoneType'>`
+specialtypes_none.py:27:1: error[invalid-assignment] Object of type `None` is not assignable to `Iterable[Unknown]`
+specialtypes_none.py:32:1: error[missing-argument] No argument provided for required parameter `value` of function `__eq__`
+"""

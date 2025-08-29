@@ -1,0 +1,19 @@
+conformance_automated = "Fail"
+errors_diff = """
+Line 60: Unexpected errors ['literals_interactions.py:60:49: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `Matrix[A@Matrix, B@Matrix]`']
+Line 63: Unexpected errors ['literals_interactions.py:63:52: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `Matrix[A@Matrix, C@__matmul__]`']
+Line 66: Unexpected errors ['literals_interactions.py:66:28: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `Matrix[B@Matrix, A@Matrix]`']
+Line 106: Unexpected errors ['literals_interactions.py:106:35: error[invalid-argument-type] Argument to function `expects_bad_status` is incorrect: Expected `Literal["MALFORMED", "ABORTED"]`, found `str`']
+Line 109: Unexpected errors ['literals_interactions.py:109:32: error[invalid-argument-type] Argument to function `expects_pending_status` is incorrect: Expected `Literal["PENDING"]`, found `str`']
+"""
+output = """
+literals_interactions.py:15:5: error[index-out-of-bounds] Index 5 is out of bounds for tuple `tuple[int, str, list[bool]]` with length 3
+literals_interactions.py:16:5: error[index-out-of-bounds] Index -5 is out of bounds for tuple `tuple[int, str, list[bool]]` with length 3
+literals_interactions.py:17:5: error[index-out-of-bounds] Index 4 is out of bounds for tuple `tuple[int, str, list[bool]]` with length 3
+literals_interactions.py:18:5: error[index-out-of-bounds] Index -4 is out of bounds for tuple `tuple[int, str, list[bool]]` with length 3
+literals_interactions.py:60:49: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `Matrix[A@Matrix, B@Matrix]`
+literals_interactions.py:63:52: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `Matrix[A@Matrix, C@__matmul__]`
+literals_interactions.py:66:28: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `Matrix[B@Matrix, A@Matrix]`
+literals_interactions.py:106:35: error[invalid-argument-type] Argument to function `expects_bad_status` is incorrect: Expected `Literal["MALFORMED", "ABORTED"]`, found `str`
+literals_interactions.py:109:32: error[invalid-argument-type] Argument to function `expects_pending_status` is incorrect: Expected `Literal["PENDING"]`, found `str`
+"""

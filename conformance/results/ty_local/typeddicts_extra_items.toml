@@ -1,0 +1,71 @@
+conformance_automated = "Fail"
+errors_diff = """
+Line 22: Expected 1 errors
+Line 49: Expected 1 errors
+Line 67: Expected 1 errors
+Line 73: Expected 1 errors
+Line 109: Expected 1 errors
+Line 114: Expected 1 errors
+Line 117: Expected 1 errors
+Line 128: Expected 1 errors
+Line 143: Expected 1 errors
+Line 174: Expected 1 errors
+Line 215: Expected 1 errors
+Line 222: Expected 1 errors
+Line 242: Expected 1 errors
+Line 256: Expected 1 errors
+Line 257: Expected 1 errors
+Line 268: Expected 1 errors
+Line 303: Expected 1 errors
+Line 352: Expected 1 errors
+Lines 91, 92: Expected error (tag 'MovieC')
+Lines 94, 95: Expected error (tag 'MovieD')
+Lines 184, 185: Expected error (tag 'MovieRequiredYear')
+Lines 187, 188: Expected error (tag 'MovieNotRequiredYear')
+Lines 196, 197: Expected error (tag 'BookWithPublisher')
+Line 14: Unexpected errors ['typeddicts_extra_items.py:14:37: error[invalid-key] Invalid key access on TypedDict `Movie`: Unknown key "novel_adaptation"']
+Line 29: Unexpected errors ['typeddicts_extra_items.py:29:5: error[type-assertion-failure] Argument does not have asserted type `bool`', 'typeddicts_extra_items.py:29:23: error[invalid-key] Invalid key access on TypedDict `Movie`: Unknown key "novel_adaptation"']
+Line 43: Unexpected errors ['typeddicts_extra_items.py:43:5: error[invalid-key] Invalid key access on TypedDict `InheritedMovie`: Unknown key "other_extra_key"']
+Line 129: Unexpected errors ['typeddicts_extra_items.py:129:15: error[invalid-key] Invalid key access on TypedDict `MovieEI`: Unknown key "year"']
+Line 254: Unexpected errors ['typeddicts_extra_items.py:254:63: error[invalid-key] Invalid key access on TypedDict `MovieExtraInt`: Unknown key "year"']
+Line 255: Unexpected errors ['typeddicts_extra_items.py:255:63: error[invalid-key] Invalid key access on TypedDict `MovieExtraStr`: Unknown key "description"']
+Line 266: Unexpected errors ['typeddicts_extra_items.py:266:64: error[invalid-key] Invalid key access on TypedDict `MovieExtraInt`: Unknown key "year"']
+Line 284: Unexpected errors ['typeddicts_extra_items.py:284:43: error[invalid-key] Invalid key access on TypedDict `ExtraMovie`: Unknown key "year"']
+Line 299: Unexpected errors ['typeddicts_extra_items.py:299:54: error[invalid-key] Invalid key access on TypedDict `MovieExtraStr`: Unknown key "summary"']
+Line 302: Unexpected errors ['typeddicts_extra_items.py:302:54: error[invalid-key] Invalid key access on TypedDict `MovieExtraInt`: Unknown key "year"']
+Line 310: Unexpected errors ['typeddicts_extra_items.py:310:5: error[type-assertion-failure] Argument does not have asserted type `list[tuple[str, int | str]]`']
+Line 311: Unexpected errors ['typeddicts_extra_items.py:311:5: error[type-assertion-failure] Argument does not have asserted type `list[int | str]`']
+Line 327: Unexpected errors ['typeddicts_extra_items.py:327:5: error[unresolved-attribute] Type `IntDict` has no attribute `clear`']
+Line 329: Unexpected errors ['typeddicts_extra_items.py:329:52: error[invalid-key] Invalid key access on TypedDict `IntDictWithNum`: Unknown key "bar" - did you mean "num"?']
+Line 337: Unexpected errors ['typeddicts_extra_items.py:337:1: error[unresolved-attribute] Type `IntDictWithNum` has no attribute `clear`']
+Line 339: Unexpected errors ['typeddicts_extra_items.py:339:1: error[type-assertion-failure] Argument does not have asserted type `tuple[str, int]`', 'typeddicts_extra_items.py:339:13: error[unresolved-attribute] Type `IntDictWithNum` has no attribute `popitem`']
+Line 342: Unexpected errors ['typeddicts_extra_items.py:342:27: error[invalid-key] Cannot access `IntDictWithNum` with a key of type `str`. Only string literals are allowed as keys on TypedDicts.']
+Line 343: Unexpected errors ['typeddicts_extra_items.py:343:31: error[invalid-key] TypedDict `IntDictWithNum` cannot be indexed with a key of type `str`']
+"""
+output = """
+typeddicts_extra_items.py:14:37: error[invalid-key] Invalid key access on TypedDict `Movie`: Unknown key "novel_adaptation"
+typeddicts_extra_items.py:15:37: error[invalid-key] Invalid key access on TypedDict `Movie`: Unknown key "year"
+typeddicts_extra_items.py:29:5: error[type-assertion-failure] Argument does not have asserted type `bool`
+typeddicts_extra_items.py:29:23: error[invalid-key] Invalid key access on TypedDict `Movie`: Unknown key "novel_adaptation"
+typeddicts_extra_items.py:39:54: error[invalid-argument-type] Invalid argument to key "year" with declared type `int` on TypedDict `InheritedMovie`: value of type `None`
+typeddicts_extra_items.py:43:5: error[invalid-key] Invalid key access on TypedDict `InheritedMovie`: Unknown key "other_extra_key"
+typeddicts_extra_items.py:129:15: error[invalid-key] Invalid key access on TypedDict `MovieEI`: Unknown key "year"
+typeddicts_extra_items.py:254:63: error[invalid-key] Invalid key access on TypedDict `MovieExtraInt`: Unknown key "year"
+typeddicts_extra_items.py:255:63: error[invalid-key] Invalid key access on TypedDict `MovieExtraStr`: Unknown key "description"
+typeddicts_extra_items.py:266:64: error[invalid-key] Invalid key access on TypedDict `MovieExtraInt`: Unknown key "year"
+typeddicts_extra_items.py:278:47: error[invalid-key] Invalid key access on TypedDict `NonClosedMovie`: Unknown key "year"
+typeddicts_extra_items.py:284:43: error[invalid-key] Invalid key access on TypedDict `ExtraMovie`: Unknown key "year"
+typeddicts_extra_items.py:285:43: error[invalid-key] Invalid key access on TypedDict `ExtraMovie`: Unknown key "language"
+typeddicts_extra_items.py:293:44: error[invalid-key] Invalid key access on TypedDict `ClosedMovie`: Unknown key "year"
+typeddicts_extra_items.py:299:54: error[invalid-key] Invalid key access on TypedDict `MovieExtraStr`: Unknown key "summary"
+typeddicts_extra_items.py:302:54: error[invalid-key] Invalid key access on TypedDict `MovieExtraInt`: Unknown key "year"
+typeddicts_extra_items.py:310:5: error[type-assertion-failure] Argument does not have asserted type `list[tuple[str, int | str]]`
+typeddicts_extra_items.py:311:5: error[type-assertion-failure] Argument does not have asserted type `list[int | str]`
+typeddicts_extra_items.py:327:5: error[unresolved-attribute] Type `IntDict` has no attribute `clear`
+typeddicts_extra_items.py:329:52: error[invalid-key] Invalid key access on TypedDict `IntDictWithNum`: Unknown key "bar" - did you mean "num"?
+typeddicts_extra_items.py:337:1: error[unresolved-attribute] Type `IntDictWithNum` has no attribute `clear`
+typeddicts_extra_items.py:339:1: error[type-assertion-failure] Argument does not have asserted type `tuple[str, int]`
+typeddicts_extra_items.py:339:13: error[unresolved-attribute] Type `IntDictWithNum` has no attribute `popitem`
+typeddicts_extra_items.py:342:27: error[invalid-key] Cannot access `IntDictWithNum` with a key of type `str`. Only string literals are allowed as keys on TypedDicts.
+typeddicts_extra_items.py:343:31: error[invalid-key] TypedDict `IntDictWithNum` cannot be indexed with a key of type `str`
+"""

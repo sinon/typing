@@ -1,7 +1,3 @@
-conformant = "Partial"
-notes = """
-Doesn't allow accessing `Self` in a classmethod
-"""
 conformance_automated = "Fail"
 errors_diff = """
 Line 43: Unexpected errors ['generics_self_advanced.py:43: error: Access to generic instance variables via class is ambiguous  [misc]']

@@ -1,7 +1,3 @@
-conformant = "Partial"
-notes = """
-Sometimes specializes to tuple[Any, ...] instead of empty tuple
-"""
 conformance_automated = "Fail"
 errors_diff = """
 Line 51: Unexpected errors ['assert_type(tuple[int, *tuple[Any, ...]], tuple[int]) failed [assert-type]']

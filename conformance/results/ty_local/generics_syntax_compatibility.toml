@@ -1,0 +1,9 @@
+conformance_automated = "Fail"
+errors_diff = """
+Line 14: Expected 1 errors
+Line 23: Unexpected errors ['generics_syntax_compatibility.py:23:38: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `V@ClassC | K@method1`']
+"""
+output = """
+generics_syntax_compatibility.py:23:38: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `V@ClassC | K@method1`
+generics_syntax_compatibility.py:26:41: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `M@method2 | K@method2`
+"""

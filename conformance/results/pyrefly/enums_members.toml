@@ -1,4 +1,3 @@
-conformant = "Pass"
 conformance_automated = "Pass"
 errors_diff = """
 """
@@ -8,7 +7,7 @@ ERROR enums_members.py:82:20-34: `Pet4.converter` is not a valid enum member [in
 ERROR enums_members.py:83:20-34: `Pet4.transform` is not a valid enum member [invalid-literal]
 ERROR enums_members.py:84:18-30: `Pet4.species` is not a valid enum member [invalid-literal]
 ERROR enums_members.py:85:16-26: `Pet4.speak` is not a valid enum member [invalid-literal]
-ERROR enums_members.py:116:12-43: assert_type(nonmember[int], Any) failed [assert-type]
+ERROR enums_members.py:116:12-43: assert_type(int, Any) failed [assert-type]
 ERROR enums_members.py:116:32-41: `Example.b` is not a valid enum member [invalid-literal]
 ERROR enums_members.py:129:20-57: assert_type(int, Any) failed [assert-type]
 ERROR enums_members.py:129:43-55: `Example2.__B` is not a valid enum member [invalid-literal]

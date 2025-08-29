@@ -1,0 +1,9 @@
+conformance_automated = "Pass"
+errors_diff = """
+"""
+output = """
+enums_member_names.py:21:1: error[type-assertion-failure] Argument does not have asserted type `Literal["RED"]`
+enums_member_names.py:22:1: error[type-assertion-failure] Argument does not have asserted type `Literal["RED"]`
+enums_member_names.py:26:5: error[type-assertion-failure] Argument does not have asserted type `Literal["RED", "BLUE"]`
+enums_member_names.py:30:5: error[type-assertion-failure] Argument does not have asserted type `Literal["RED", "BLUE", "GREEN"]`
+"""

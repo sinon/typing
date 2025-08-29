@@ -1,0 +1,15 @@
+conformance_automated = "Fail"
+errors_diff = """
+Line 51: Expected 1 errors
+Line 63: Expected 1 errors
+Line 66: Expected 1 errors
+Line 83: Expected 1 errors
+Line 103: Expected 1 errors
+Line 60: Unexpected errors ['dataclasses_transform_meta.py:60:36: error[unknown-argument] Argument `other_name` does not match any known parameter']
+Line 79: Unexpected errors ['dataclasses_transform_meta.py:79:6: error[unsupported-operator] Operator `<` is not supported for types `Customer2` and `Customer2`']
+"""
+output = """
+dataclasses_transform_meta.py:60:36: error[unknown-argument] Argument `other_name` does not match any known parameter
+dataclasses_transform_meta.py:73:6: error[unsupported-operator] Operator `<` is not supported for types `Customer1` and `Customer1`
+dataclasses_transform_meta.py:79:6: error[unsupported-operator] Operator `<` is not supported for types `Customer2` and `Customer2`
+"""

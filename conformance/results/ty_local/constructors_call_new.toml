@@ -1,0 +1,31 @@
+conformance_automated = "Fail"
+errors_diff = """
+Line 145: Expected 1 errors
+Line 24: Unexpected errors ['constructors_call_new.py:24:1: error[type-assertion-failure] Argument does not have asserted type `Class1[int | float]`']
+Line 49: Unexpected errors ['constructors_call_new.py:49:1: error[type-assertion-failure] Argument does not have asserted type `int`', 'constructors_call_new.py:49:13: error[missing-argument] No argument provided for required parameter `x` of bound method `__init__`']
+Line 64: Unexpected errors ['constructors_call_new.py:64:1: error[type-assertion-failure] Argument does not have asserted type `Class4 | Any`', 'constructors_call_new.py:64:13: error[missing-argument] No argument provided for required parameter `x` of bound method `__init__`']
+Line 76: Unexpected errors ['constructors_call_new.py:76:5: error[type-assertion-failure] Argument does not have asserted type `Never`', 'constructors_call_new.py:76:17: error[missing-argument] No argument provided for required parameter `x` of bound method `__init__`']
+Line 89: Unexpected errors ['constructors_call_new.py:89:1: error[type-assertion-failure] Argument does not have asserted type `int | Class6`', 'constructors_call_new.py:89:13: error[missing-argument] No argument provided for required parameter `x` of bound method `__init__`']
+Line 113: Unexpected errors ['constructors_call_new.py:113:42: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `Class8[list[T@Class8]]`']
+Line 116: Unexpected errors ['constructors_call_new.py:116:1: error[type-assertion-failure] Argument does not have asserted type `Class8[list[int]]`']
+Line 117: Unexpected errors ['constructors_call_new.py:117:1: error[type-assertion-failure] Argument does not have asserted type `Class8[list[str]]`']
+Line 125: Unexpected errors ['constructors_call_new.py:125:42: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `Self@__new__`']
+Line 140: Unexpected errors ['constructors_call_new.py:140:47: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `Class11[int]`']
+"""
+output = """
+constructors_call_new.py:21:13: error[invalid-argument-type] Argument to function `__new__` is incorrect: Expected `int`, found `float`
+constructors_call_new.py:24:1: error[type-assertion-failure] Argument does not have asserted type `Class1[int | float]`
+constructors_call_new.py:49:1: error[type-assertion-failure] Argument does not have asserted type `int`
+constructors_call_new.py:49:13: error[missing-argument] No argument provided for required parameter `x` of bound method `__init__`
+constructors_call_new.py:64:1: error[type-assertion-failure] Argument does not have asserted type `Class4 | Any`
+constructors_call_new.py:64:13: error[missing-argument] No argument provided for required parameter `x` of bound method `__init__`
+constructors_call_new.py:76:5: error[type-assertion-failure] Argument does not have asserted type `Never`
+constructors_call_new.py:76:17: error[missing-argument] No argument provided for required parameter `x` of bound method `__init__`
+constructors_call_new.py:89:1: error[type-assertion-failure] Argument does not have asserted type `int | Class6`
+constructors_call_new.py:89:13: error[missing-argument] No argument provided for required parameter `x` of bound method `__init__`
+constructors_call_new.py:113:42: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `Class8[list[T@Class8]]`
+constructors_call_new.py:116:1: error[type-assertion-failure] Argument does not have asserted type `Class8[list[int]]`
+constructors_call_new.py:117:1: error[type-assertion-failure] Argument does not have asserted type `Class8[list[str]]`
+constructors_call_new.py:125:42: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `Self@__new__`
+constructors_call_new.py:140:47: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `Class11[int]`
+"""
