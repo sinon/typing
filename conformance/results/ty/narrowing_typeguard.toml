@@ -1,0 +1,27 @@
+conformance_automated = "Fail"
+errors_diff = """
+Line 102: Expected 1 errors
+Line 107: Expected 1 errors
+Line 128: Expected 1 errors
+Line 148: Expected 1 errors
+Line 17: Unexpected errors ['narrowing_typeguard.py:17:9: error[type-assertion-failure] Type `tuple[str, str]` does not match asserted type `tuple[str, ...]`']
+Line 32: Unexpected errors ['narrowing_typeguard.py:32:9: error[type-assertion-failure] Type `set[int]` does not match asserted type `set[object]`']
+Line 69: Unexpected errors ['narrowing_typeguard.py:69:9: error[type-assertion-failure] Type `int` does not match asserted type `object`']
+Line 73: Unexpected errors ['narrowing_typeguard.py:73:9: error[type-assertion-failure] Type `int` does not match asserted type `object`']
+Line 77: Unexpected errors ['narrowing_typeguard.py:77:9: error[type-assertion-failure] Type `int` does not match asserted type `object`']
+Line 81: Unexpected errors ['narrowing_typeguard.py:81:9: error[type-assertion-failure] Type `int` does not match asserted type `object`']
+Line 85: Unexpected errors ['narrowing_typeguard.py:85:9: error[type-assertion-failure] Type `int` does not match asserted type `object`']
+Line 89: Unexpected errors ['narrowing_typeguard.py:89:9: error[type-assertion-failure] Type `B` does not match asserted type `object`']
+Line 93: Unexpected errors ['narrowing_typeguard.py:93:9: error[type-assertion-failure] Type `B` does not match asserted type `object`']
+"""
+output = """
+narrowing_typeguard.py:17:9: error[type-assertion-failure] Type `tuple[str, str]` does not match asserted type `tuple[str, ...]`
+narrowing_typeguard.py:32:9: error[type-assertion-failure] Type `set[int]` does not match asserted type `set[object]`
+narrowing_typeguard.py:69:9: error[type-assertion-failure] Type `int` does not match asserted type `object`
+narrowing_typeguard.py:73:9: error[type-assertion-failure] Type `int` does not match asserted type `object`
+narrowing_typeguard.py:77:9: error[type-assertion-failure] Type `int` does not match asserted type `object`
+narrowing_typeguard.py:81:9: error[type-assertion-failure] Type `int` does not match asserted type `object`
+narrowing_typeguard.py:85:9: error[type-assertion-failure] Type `int` does not match asserted type `object`
+narrowing_typeguard.py:89:9: error[type-assertion-failure] Type `B` does not match asserted type `object`
+narrowing_typeguard.py:93:9: error[type-assertion-failure] Type `B` does not match asserted type `object`
+"""

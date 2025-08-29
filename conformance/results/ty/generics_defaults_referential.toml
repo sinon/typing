@@ -1,0 +1,18 @@
+conformance_automated = "Fail"
+errors_diff = """
+Line 53: Expected 1 errors
+Line 60: Expected 1 errors
+Line 68: Expected 1 errors
+Line 74: Expected 1 errors
+Line 78: Expected 1 errors
+Line 23: Unexpected errors ["generics_defaults_referential.py:23:1: error[type-assertion-failure] Type `type[slice[int, int, int | None]]` does not match asserted type `<class 'slice'>`"]
+Line 94: Unexpected errors ["generics_defaults_referential.py:94:1: error[type-assertion-failure] Type `type[Bar[Any, list[Any]]]` does not match asserted type `<class 'Bar'>`"]
+Line 95: Unexpected errors ["generics_defaults_referential.py:95:1: error[type-assertion-failure] Type `type[Bar[int, list[int]]]` does not match asserted type `<class 'Bar[int, list[int]]'>`"]
+"""
+output = """
+generics_defaults_referential.py:23:1: error[type-assertion-failure] Type `type[slice[int, int, int | None]]` does not match asserted type `<class 'slice'>`
+generics_defaults_referential.py:36:13: error[invalid-argument-type] Argument to bound method `__init__` is incorrect: Expected `int`, found `Literal[""]`
+generics_defaults_referential.py:37:10: error[invalid-argument-type] Argument to bound method `__init__` is incorrect: Expected `int`, found `Literal[""]`
+generics_defaults_referential.py:94:1: error[type-assertion-failure] Type `type[Bar[Any, list[Any]]]` does not match asserted type `<class 'Bar'>`
+generics_defaults_referential.py:95:1: error[type-assertion-failure] Type `type[Bar[int, list[int]]]` does not match asserted type `<class 'Bar[int, list[int]]'>`
+"""

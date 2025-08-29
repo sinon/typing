@@ -1,0 +1,15 @@
+conformance_automated = "Fail"
+errors_diff = """
+Line 29: Expected 1 errors
+Line 34: Expected 1 errors
+Line 74: Expected 1 errors
+Line 104: Expected 1 errors
+Line 106: Expected 1 errors
+Line 107: Expected 1 errors
+Line 108: Expected 1 errors
+Line 59: Unexpected errors ["protocols_class_objects.py:59:16: error[invalid-assignment] Object of type `<class 'ConcreteA'>` is not assignable to `ProtoA2`"]
+"""
+output = """
+protocols_class_objects.py:58:16: error[invalid-assignment] Object of type `<class 'ConcreteA'>` is not assignable to `ProtoA1`
+protocols_class_objects.py:59:16: error[invalid-assignment] Object of type `<class 'ConcreteA'>` is not assignable to `ProtoA2`
+"""

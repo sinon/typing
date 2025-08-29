@@ -1,0 +1,13 @@
+conformance_automated = "Fail"
+errors_diff = """
+Line 36: Unexpected errors ["generics_self_advanced.py:36:9: error[type-assertion-failure] Type `list[Self@method2]` does not match asserted type `list[<special-form 'typing.Self'>]`"]
+Line 37: Unexpected errors ["generics_self_advanced.py:37:9: error[type-assertion-failure] Type `Self@method2` does not match asserted type `<special-form 'typing.Self'>`"]
+Line 43: Unexpected errors ["generics_self_advanced.py:43:9: error[type-assertion-failure] Type `list[Self@method3]` does not match asserted type `list[<special-form 'typing.Self'>]`"]
+Line 44: Unexpected errors ["generics_self_advanced.py:44:9: error[type-assertion-failure] Type `Self@method3` does not match asserted type `<special-form 'typing.Self'>`"]
+"""
+output = """
+generics_self_advanced.py:36:9: error[type-assertion-failure] Type `list[Self@method2]` does not match asserted type `list[<special-form 'typing.Self'>]`
+generics_self_advanced.py:37:9: error[type-assertion-failure] Type `Self@method2` does not match asserted type `<special-form 'typing.Self'>`
+generics_self_advanced.py:43:9: error[type-assertion-failure] Type `list[Self@method3]` does not match asserted type `list[<special-form 'typing.Self'>]`
+generics_self_advanced.py:44:9: error[type-assertion-failure] Type `Self@method3` does not match asserted type `<special-form 'typing.Self'>`
+"""

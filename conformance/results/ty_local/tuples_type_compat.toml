@@ -1,0 +1,41 @@
+conformance_automated = "Fail"
+errors_diff = """
+Lines 126, 127: Expected exactly one error (tag 'func7_1')
+Lines 129, 130: Expected exactly one error (tag 'func7_2')
+Line 47: Unexpected errors ['tuples_type_compat.py:47:5: error[invalid-assignment] Object of type `tuple[Any, ...]` is not assignable to `tuple[int, *tuple[str, ...]]`']
+Line 126: Unexpected errors ['tuples_type_compat.py:126:13: error[type-assertion-failure] Argument does not have asserted type `tuple[int | str, str]`']
+Line 127: Unexpected errors ['tuples_type_compat.py:127:13: error[type-assertion-failure] Argument does not have asserted type `@Todo(Support for `typing.TypeAlias`)`']
+Line 129: Unexpected errors ['tuples_type_compat.py:129:13: error[type-assertion-failure] Argument does not have asserted type `tuple[int | str, int]`']
+Line 130: Unexpected errors ['tuples_type_compat.py:130:13: error[type-assertion-failure] Argument does not have asserted type `@Todo(Support for `typing.TypeAlias`)`']
+Line 153: Unexpected errors ['tuples_type_compat.py:153:5: error[type-assertion-failure] Argument does not have asserted type `Sequence[Never]`']
+"""
+output = """
+tuples_type_compat.py:15:5: error[invalid-assignment] Object of type `tuple[int | float, int | float | complex]` is not assignable to `tuple[int, int]`
+tuples_type_compat.py:29:5: error[invalid-assignment] Object of type `tuple[int, ...]` is not assignable to `tuple[int, *tuple[int, ...]]`
+tuples_type_compat.py:32:5: error[invalid-assignment] Object of type `tuple[int, *tuple[int, ...]]` is not assignable to `tuple[int]`
+tuples_type_compat.py:33:5: error[invalid-assignment] Object of type `tuple[int, ...]` is not assignable to `tuple[int]`
+tuples_type_compat.py:43:5: error[invalid-assignment] Object of type `tuple[int, ...]` is not assignable to `tuple[int]`
+tuples_type_compat.py:47:5: error[invalid-assignment] Object of type `tuple[Any, ...]` is not assignable to `tuple[int, *tuple[str, ...]]`
+tuples_type_compat.py:62:5: error[invalid-assignment] Object of type `tuple[int, ...]` is not assignable to `tuple[int, int]`
+tuples_type_compat.py:75:9: error[type-assertion-failure] Argument does not have asserted type `tuple[int]`
+tuples_type_compat.py:80:9: error[type-assertion-failure] Argument does not have asserted type `tuple[str, str] | tuple[int, int]`
+tuples_type_compat.py:85:9: error[type-assertion-failure] Argument does not have asserted type `tuple[int, str, int]`
+tuples_type_compat.py:101:13: error[type-assertion-failure] Argument does not have asserted type `tuple[int]`
+tuples_type_compat.py:106:13: error[type-assertion-failure] Argument does not have asserted type `tuple[str, str] | tuple[int, int]`
+tuples_type_compat.py:111:13: error[type-assertion-failure] Argument does not have asserted type `tuple[int, str, int]`
+tuples_type_compat.py:126:13: error[type-assertion-failure] Argument does not have asserted type `tuple[int | str, str]`
+tuples_type_compat.py:127:13: error[type-assertion-failure] Argument does not have asserted type `@Todo(Support for `typing.TypeAlias`)`
+tuples_type_compat.py:129:13: error[type-assertion-failure] Argument does not have asserted type `tuple[int | str, int]`
+tuples_type_compat.py:130:13: error[type-assertion-failure] Argument does not have asserted type `@Todo(Support for `typing.TypeAlias`)`
+tuples_type_compat.py:153:5: error[type-assertion-failure] Argument does not have asserted type `Sequence[Never]`
+tuples_type_compat.py:157:1: error[invalid-assignment] Object of type `tuple[Literal[1], Literal[""], Literal[""]]` is not assignable to `tuple[int, str]`
+tuples_type_compat.py:162:1: error[invalid-assignment] Object of type `tuple[Literal[1], Literal[1], Literal[""]]` is not assignable to `tuple[int, *tuple[str, ...]]`
+tuples_type_compat.py:163:1: error[invalid-assignment] Object of type `tuple[Literal[1], Literal[""], Literal[1]]` is not assignable to `tuple[int, *tuple[str, ...]]`
+tuples_type_compat.py:169:1: error[invalid-assignment] Object of type `tuple[Literal[1], Literal[""], Literal[""]]` is not assignable to `tuple[int, *tuple[str, ...], int]`
+tuples_type_compat.py:170:1: error[invalid-assignment] Object of type `tuple[Literal[1], Literal[""], Literal[""], float]` is not assignable to `tuple[int, *tuple[str, ...], int]`
+tuples_type_compat.py:175:1: error[invalid-assignment] Object of type `tuple[Literal[1], Literal[""], Literal[1]]` is not assignable to `tuple[*tuple[str, ...], int]`
+tuples_type_compat.py:176:1: error[invalid-assignment] Object of type `tuple[Literal[""], Literal[""], float]` is not assignable to `tuple[*tuple[str, ...], int]`
+tuples_type_compat.py:181:5: error[invalid-assignment] Object of type `tuple[str, str]` is not assignable to `tuple[str, str, int]`
+tuples_type_compat.py:184:5: error[invalid-assignment] Object of type `tuple[str, str]` is not assignable to `tuple[str, str, str, *tuple[str, ...]]`
+tuples_type_compat.py:188:5: error[invalid-assignment] Object of type `tuple[str, str]` is not assignable to `tuple[*tuple[str, ...], str, str, str]`
+"""

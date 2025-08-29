@@ -1,0 +1,53 @@
+conformance_automated = "Fail"
+errors_diff = """
+Line 26: Expected 1 errors
+Line 27: Expected 1 errors
+Line 61: Expected 1 errors
+Line 98: Expected 1 errors
+Line 108: Expected 1 errors
+Line 120: Expected 1 errors
+Line 127: Expected 1 errors
+Line 132: Expected 1 errors
+Line 137: Expected 1 errors
+Line 13: Unexpected errors ['generics_paramspec_semantics.py:13:56: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `(...) -> str`']
+Line 17: Unexpected errors ['generics_paramspec_semantics.py:17:40: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `int`']
+Line 22: Unexpected errors ['generics_paramspec_semantics.py:22:1: error[type-assertion-failure] Argument does not have asserted type `(str, bool, /) -> str`']
+Line 30: Unexpected errors ['generics_paramspec_semantics.py:30:56: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `(...) -> bool`']
+Line 34: Unexpected errors ['generics_paramspec_semantics.py:34:28: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `int`']
+Line 38: Unexpected errors ['generics_paramspec_semantics.py:38:28: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `int`']
+Line 53: Unexpected errors ['generics_paramspec_semantics.py:53:34: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `int`']
+Line 57: Unexpected errors ['generics_paramspec_semantics.py:57:34: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `int`']
+Line 76: Unexpected errors ['generics_paramspec_semantics.py:76:30: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `str`']
+Line 82: Unexpected errors ['generics_paramspec_semantics.py:82:5: error[type-assertion-failure] Argument does not have asserted type `@Todo(specialized non-generic class)`', 'generics_paramspec_semantics.py:82:28: error[invalid-type-form] List literals are not allowed in this context in a type expression: Did you mean `list[int]`?']
+Line 84: Unexpected errors ['generics_paramspec_semantics.py:84:5: error[type-assertion-failure] Argument does not have asserted type `(int, /) -> str`']
+Line 87: Unexpected errors ['generics_paramspec_semantics.py:87:33: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `int`']
+Line 91: Unexpected errors ['generics_paramspec_semantics.py:91:33: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `(...) -> bool`']
+Line 101: Unexpected errors ['generics_paramspec_semantics.py:101:54: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `(...) -> bool`']
+Line 113: Unexpected errors ['generics_paramspec_semantics.py:113:6: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `(...) -> bool`']
+Line 128: Unexpected errors ['generics_paramspec_semantics.py:128:20: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `int`']
+Line 133: Unexpected errors ['generics_paramspec_semantics.py:133:23: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `int`']
+Line 138: Unexpected errors ['generics_paramspec_semantics.py:138:29: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `int`']
+Line 143: Unexpected errors ['generics_paramspec_semantics.py:143:25: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `int`']
+"""
+output = """
+generics_paramspec_semantics.py:13:56: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `(...) -> str`
+generics_paramspec_semantics.py:17:40: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `int`
+generics_paramspec_semantics.py:22:1: error[type-assertion-failure] Argument does not have asserted type `(str, bool, /) -> str`
+generics_paramspec_semantics.py:30:56: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `(...) -> bool`
+generics_paramspec_semantics.py:34:28: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `int`
+generics_paramspec_semantics.py:38:28: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `int`
+generics_paramspec_semantics.py:53:34: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `int`
+generics_paramspec_semantics.py:57:34: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `int`
+generics_paramspec_semantics.py:76:30: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `str`
+generics_paramspec_semantics.py:82:5: error[type-assertion-failure] Argument does not have asserted type `@Todo(specialized non-generic class)`
+generics_paramspec_semantics.py:82:28: error[invalid-type-form] List literals are not allowed in this context in a type expression: Did you mean `list[int]`?
+generics_paramspec_semantics.py:84:5: error[type-assertion-failure] Argument does not have asserted type `(int, /) -> str`
+generics_paramspec_semantics.py:87:33: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `int`
+generics_paramspec_semantics.py:91:33: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `(...) -> bool`
+generics_paramspec_semantics.py:101:54: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `(...) -> bool`
+generics_paramspec_semantics.py:113:6: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `(...) -> bool`
+generics_paramspec_semantics.py:128:20: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `int`
+generics_paramspec_semantics.py:133:23: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `int`
+generics_paramspec_semantics.py:138:29: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `int`
+generics_paramspec_semantics.py:143:25: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `int`
+"""

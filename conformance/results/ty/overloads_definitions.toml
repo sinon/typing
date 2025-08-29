@@ -1,0 +1,29 @@
+conformance_automated = "Fail"
+errors_diff = """
+Lines 15, 16: Expected error (tag 'func1')
+Lines 27, 28: Expected error (tag 'func2')
+Lines 58, 59: Expected error (tag 'not_abstract')
+Lines 122, 123, 124, 128: Expected error (tag 'invalid_final')
+Lines 137, 138, 139, 143, 144: Expected error (tag 'invalid_final_2')
+Lines 226, 227, 228, 231, 232: Expected error (tag 'override_impl')
+Line 20: Unexpected errors ['overloads_definitions.py:20:5: error[invalid-overload] Overloaded function `func1` requires at least two overloads']
+Line 33: Unexpected errors ['overloads_definitions.py:33:5: error[invalid-overload] Overloads for function `func2` must be followed by a non-`@overload`-decorated implementation function']
+Line 63: Unexpected errors ['overloads_definitions.py:63:9: error[invalid-overload] Overloads for function `not_abstract` must be followed by a non-`@overload`-decorated implementation function']
+Line 131: Unexpected errors ['overloads_definitions.py:131:9: error[invalid-overload] `@final` decorator should be applied only to the overload implementation']
+Line 148: Unexpected errors ['overloads_definitions.py:148:9: error[invalid-overload] `@final` decorator should be applied only to the overload implementation', 'overloads_definitions.py:148:9: error[invalid-overload] `@final` decorator should be applied only to the overload implementation']
+Line 235: Unexpected errors ['overloads_definitions.py:235:9: error[invalid-overload] `@override` decorator should be applied only to the overload implementation', 'overloads_definitions.py:235:9: error[invalid-overload] `@override` decorator should be applied only to the overload implementation']
+"""
+output = """
+overloads_definitions.py:20:5: error[invalid-overload] Overloaded function `func1` requires at least two overloads
+overloads_definitions.py:33:5: error[invalid-overload] Overloads for function `func2` must be followed by a non-`@overload`-decorated implementation function
+overloads_definitions.py:63:9: error[invalid-overload] Overloads for function `not_abstract` must be followed by a non-`@overload`-decorated implementation function
+overloads_definitions.py:81:9: error[invalid-overload] Overloaded function `func5` does not use the `@staticmethod` decorator consistently
+overloads_definitions.py:94:9: error[invalid-overload] Overloaded function `func6` does not use the `@classmethod` decorator consistently
+overloads_definitions.py:131:9: error[invalid-overload] `@final` decorator should be applied only to the overload implementation
+overloads_definitions.py:148:9: error[invalid-overload] `@final` decorator should be applied only to the overload implementation
+overloads_definitions.py:148:9: error[invalid-overload] `@final` decorator should be applied only to the overload implementation
+overloads_definitions.py:186:9: error[override-of-final-method] Cannot override final member `final_method` from superclass `Base`
+overloads_definitions.py:203:9: error[invalid-explicit-override] Method `bad_override` is decorated with `@override` but does not override anything
+overloads_definitions.py:235:9: error[invalid-overload] `@override` decorator should be applied only to the overload implementation
+overloads_definitions.py:235:9: error[invalid-overload] `@override` decorator should be applied only to the overload implementation
+"""

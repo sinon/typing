@@ -1,10 +1,8 @@
-conformant = "Partial"
-notes = """
-Does not detect that invalid yield is unreachable
-"""
 conformance_automated = "Fail"
 errors_diff = """
-Line 190: Unexpected errors ['Expected to yield a value of type `int`, but a bare `yield` gives `None` instead [invalid-yield]']
+Line 140: Unexpected errors ['This `yield` expression is unreachable [unreachable]']
+Line 145: Unexpected errors ['This `yield` expression is unreachable [unreachable]']
+Line 190: Unexpected errors ['This `yield` expression is unreachable [unreachable]']
 """
 output = """
 ERROR annotations_generators.py:51:21-39: Function declared to return `C`, but one or more paths are missing an explicit `return` [bad-return]
@@ -18,5 +16,7 @@ ERROR annotations_generators.py:91:27-30: Async generator function should return
 ERROR annotations_generators.py:118:5-29: Cannot yield from a generator of type `Generator[A, None, None]` because it does not match the declared return type `Generator[B, None, Unknown]` [invalid-yield]
 ERROR annotations_generators.py:119:5-19: Cannot yield from a generator of type `Generator[int, None, None]` because it does not match the declared return type `Generator[B, None, Unknown]` [invalid-yield]
 ERROR annotations_generators.py:135:5-29: Cannot yield from a generator of type `Generator[None, int, None]` because it does not match the declared return type `Generator[None, str, Unknown]` [invalid-yield]
-ERROR annotations_generators.py:190:5-10: Expected to yield a value of type `int`, but a bare `yield` gives `None` instead [invalid-yield]
+ERROR annotations_generators.py:140:5-13: This `yield` expression is unreachable [unreachable]
+ERROR annotations_generators.py:145:5-13: This `yield` expression is unreachable [unreachable]
+ERROR annotations_generators.py:190:5-10: This `yield` expression is unreachable [unreachable]
 """
