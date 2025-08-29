@@ -3,15 +3,14 @@ Type system conformance test for static type checkers.
 """
 
 import os
-from pathlib import Path
 import re
 import sys
+from pathlib import Path
 from time import time
 from typing import Sequence
 
 import tomli
 import tomlkit
-
 from options import parse_options
 from reporting import generate_summary
 from test_groups import get_test_cases, get_test_groups
@@ -26,7 +25,7 @@ def run_tests(
     print(f"Running tests for {type_checker.name}")
 
     test_start_time = time()
-    tests_output = type_checker.run_tests([file.name for file in test_cases])
+    tests_output = type_checker.run_tests()
     test_duration = time() - test_start_time
 
     print(f"Completed tests for {type_checker.name} in {test_duration:.2f} seconds")
@@ -44,7 +43,9 @@ def run_tests(
     update_type_checker_info(type_checker, root_dir)
 
 
-def get_expected_errors(test_case: Path) -> tuple[
+def get_expected_errors(
+    test_case: Path,
+) -> tuple[
     dict[int, tuple[int, int]],
     dict[str, tuple[list[int], bool]],
 ]:
@@ -99,11 +100,15 @@ def get_expected_errors(test_case: Path) -> tuple[
                 groups[tag] = ([i], allow_multiple)
             else:
                 if groups[tag][1] != allow_multiple:
-                    raise ValueError(f"Error group {tag} has inconsistent allow_multiple value in {test_case}")
+                    raise ValueError(
+                        f"Error group {tag} has inconsistent allow_multiple value in {test_case}"
+                    )
                 groups[tag][0].append(i)
     for group, linenos in groups.items():
         if len(linenos) == 1:
-            raise ValueError(f"Error group {group} only appears on a single line in {test_case}")
+            raise ValueError(
+                f"Error group {group} only appears on a single line in {test_case}"
+            )
     return output, groups
 
 
@@ -121,29 +126,43 @@ def diff_expected_errors(
             lineno: [
                 error
                 for error in errors_list
-                if not any(ignored in error for ignored in ignored_errors)]
+                if not any(ignored in error for ignored in ignored_errors)
+            ]
             for lineno, errors_list in errors.items()
         }
-        errors = {lineno: errors_list for lineno, errors_list in errors.items() if errors_list}
+        errors = {
+            lineno: errors_list for lineno, errors_list in errors.items() if errors_list
+        }
 
     differences: list[str] = []
     for expected_lineno, (expected_count, _) in expected_errors.items():
         if expected_lineno not in errors and expected_count > 0:
-            differences.append(f"Line {expected_lineno}: Expected {expected_count} errors")
+            differences.append(
+                f"Line {expected_lineno}: Expected {expected_count} errors"
+            )
         # We don't report an issue if the count differs, because type checkers may produce
         # multiple error messages for a single line.
     linenos_used_by_groups: set[int] = set()
     for group, (linenos, allow_multiple) in error_groups.items():
         num_errors = sum(1 for lineno in linenos if lineno in errors)
         if num_errors == 0:
-            differences.append(f"Lines {', '.join(map(str, linenos))}: Expected error (tag {group!r})")
+            differences.append(
+                f"Lines {', '.join(map(str, linenos))}: Expected error (tag {group!r})"
+            )
         elif num_errors == 1 or allow_multiple:
             linenos_used_by_groups.update(linenos)
         else:
-            differences.append(f"Lines {', '.join(map(str, linenos))}: Expected exactly one error (tag {group!r})")
+            differences.append(
+                f"Lines {', '.join(map(str, linenos))}: Expected exactly one error (tag {group!r})"
+            )
     for actual_lineno, actual_errors in errors.items():
-        if actual_lineno not in expected_errors and actual_lineno not in linenos_used_by_groups:
-            differences.append(f"Line {actual_lineno}: Unexpected errors {actual_errors}")
+        if (
+            actual_lineno not in expected_errors
+            and actual_lineno not in linenos_used_by_groups
+        ):
+            differences.append(
+                f"Line {actual_lineno}: Unexpected errors {actual_errors}"
+            )
     return "".join(f"{diff}\n" for diff in differences)
 
 
@@ -172,7 +191,9 @@ def update_output_for_test(
         existing_results = {}
 
     ignored_errors = existing_results.get("ignore_errors", [])
-    errors_diff = "\n" + diff_expected_errors(type_checker, test_case, output, ignored_errors)
+    errors_diff = "\n" + diff_expected_errors(
+        type_checker, test_case, output, ignored_errors
+    )
     old_errors_diff = "\n" + existing_results.get("errors_diff", "")
 
     if errors_diff != old_errors_diff:

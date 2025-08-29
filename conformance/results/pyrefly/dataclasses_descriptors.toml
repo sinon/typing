@@ -1,8 +1,3 @@
-conformant = "Partial"
-notes = """
-* Assumes descriptor behavior only when field is assigned in class body
-* Doesn't allow non-data descriptors or data descriptors with differing `__get__` and `__set__` types
-"""
 conformance_automated = "Fail"
 errors_diff = """
 Line 32: Unexpected errors ['Cannot set field `y` to data descriptor `Desc1` with inconsistent types [bad-class-definition]']

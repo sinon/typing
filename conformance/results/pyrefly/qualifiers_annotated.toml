@@ -1,7 +1,3 @@
-conformant = "Partial"
-notes = """
-Allows Annotated in some contexts where it should not be allowed
-"""
 conformance_automated = "Fail"
 errors_diff = """
 Line 71: Expected 1 errors

@@ -1,0 +1,9 @@
+conformance_automated = "Fail"
+errors_diff = """
+Line 66: Unexpected errors ['dataclasses_descriptors.py:66:1: error[type-assertion-failure] Type `int | Desc2[int]` does not match asserted type `int`']
+Line 67: Unexpected errors ['dataclasses_descriptors.py:67:1: error[type-assertion-failure] Type `str | Desc2[str]` does not match asserted type `str`']
+"""
+output = """
+dataclasses_descriptors.py:66:1: error[type-assertion-failure] Type `int | Desc2[int]` does not match asserted type `int`
+dataclasses_descriptors.py:67:1: error[type-assertion-failure] Type `str | Desc2[str]` does not match asserted type `str`
+"""

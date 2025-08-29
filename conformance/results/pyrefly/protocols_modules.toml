@@ -1,7 +1,3 @@
-conformant = "Partial"
-notes = """
-Fails one subtyping example of protocol modules
-"""
 conformance_automated = "Fail"
 errors_diff = """
 Line 25: Unexpected errors ['`Module[_protocols_modules1]` is not assignable to `Options1` [bad-assignment]']

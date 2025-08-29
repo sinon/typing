@@ -6,9 +6,8 @@ Tests the typing.TYPE_CHECKING constant.
 
 from typing import TYPE_CHECKING, assert_type
 
-
 if not TYPE_CHECKING:
-    a: int = "" # This should not generate an error
+    a: int = ""  # This should not generate an error
 
 if TYPE_CHECKING:
     b: list[int] = [1, 2, 3]

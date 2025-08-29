@@ -1,0 +1,7 @@
+conformance_automated = "Fail"
+errors_diff = """
+Line 55: Expected 1 errors
+"""
+output = """
+generics_defaults_specialization.py:30:15: error[invalid-type-arguments] Too many type arguments: expected between 0 and 1, got 2
+"""

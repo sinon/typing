@@ -1,0 +1,7 @@
+conformance_automated = "Fail"
+errors_diff = """
+Line 81: Unexpected errors ['protocols_recursive.py:81:1: error[type-assertion-failure] Type `Unknown` does not match asserted type `list[int]`']
+"""
+output = """
+protocols_recursive.py:81:1: error[type-assertion-failure] Type `Unknown` does not match asserted type `list[int]`
+"""
