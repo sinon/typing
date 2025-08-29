@@ -34,10 +34,9 @@ def generate_summary_html(root_dir: Path) -> str:
     for type_checker in TYPE_CHECKERS:
         summary_stats[type_checker.name] = {
             'passes': 0,
-            'fails': 0,
+            'partial': 0,
             'false_positives': 0,
             'false_negatives': 0,
-            'unknown': 0
         }
 
     summary_html = ['<div class="table_container"><table><tbody>']
@@ -113,12 +112,8 @@ def generate_summary_html(root_dir: Path) -> str:
 
                     if conformance == "Pass":
                         summary_stats[type_checker.name]['passes'] += 1
-                    elif conformance == "Partial":
-                        summary_stats[type_checker.name]['fails'] += 1  # Partial is considered a fail for summary
-                    elif conformance == "Unknown":
-                        summary_stats[type_checker.name]['unknown'] += 1
-                    else:
-                        summary_stats[type_checker.name]['fails'] += 1
+                    elif conformance in ["Partial", "Unknown"]:
+                        summary_stats[type_checker.name]['partial'] += 1
                     
                     summary_stats[type_checker.name]['false_negatives'] += false_negative_count
                     summary_stats[type_checker.name]['false_positives'] += false_positive_count
@@ -162,11 +157,10 @@ def generate_summary_html(root_dir: Path) -> str:
     
     # Header row for summary table
     summary_html.append('<tr><th class="col1">Type Checker</th>')
-    summary_html.append('<th class="column">Test Case Passes</th>')
-    summary_html.append('<th class="column">Test Case Fails</th>')
-    summary_html.append('<th class="column">Test Case Unknown status</th>')
-    summary_html.append('<th class="column">False Positives</th>')
-    summary_html.append('<th class="column">False Negatives</th>')
+    summary_html.append('<th class="column">Total Test Case Passes</th>')
+    summary_html.append('<th class="column">Total Test Case Partial</th>')
+    summary_html.append('<th class="column">Total False Positives</th>')
+    summary_html.append('<th class="column">Total False Negatives</th>')
     summary_html.append('</tr>')
     
     # Data rows for each type checker
@@ -187,8 +181,7 @@ def generate_summary_html(root_dir: Path) -> str:
         
         summary_html.append(f'<tr><th class="col1">{version}</th>')
         summary_html.append(f'<td class="column conformant">{stats["passes"]}</td>')
-        summary_html.append(f'<td class="column not-conformant">{stats["fails"]}</td>')
-        summary_html.append(f'<td class="column">{stats["unknown"]}</td>')
+        summary_html.append(f'<td class="column partially-conformant">{stats["partial"]}</td>')
         summary_html.append(f'<td class="column">{stats["false_positives"]}</td>')
         summary_html.append(f'<td class="column">{stats["false_negatives"]}</td>')
         summary_html.append('</tr>')
