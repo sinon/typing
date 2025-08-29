@@ -334,11 +334,131 @@ class ZubanLSTypeChecker(MypyTypeChecker):
             line_to_errors.setdefault(int(lineno), []).append(line)
         return line_to_errors
 
+class TyTypeChecker(TypeChecker):
+    @property
+    def name(self) -> str:
+        return "ty"
+
+    def install(self) -> bool:
+        try:
+            # Uninstall any existing version if present.
+            run(
+                [sys.executable, "-m", "pip", "uninstall", "ty", "-y"],
+                check=True,
+            )
+
+            # Install the latest version.
+            run(
+                [sys.executable, "-m", "pip", "install", "ty"],
+                check=True,
+            )
+            return True
+        except CalledProcessError:
+            print("Unable to install ty")
+            return False
+
+    def get_version(self) -> str:
+        proc = run(["ty", "--version"], stdout=PIPE, text=True)
+        return proc.stdout.strip()
+
+    def run_tests(self, test_files: Sequence[str]) -> dict[str, str]:
+        results_dict: dict[str, str] = {}
+        proc = run(
+                ["ty", "check", "--output-format", "concise"],
+                stdout=PIPE,
+                text=True,
+                encoding="utf-8",
+            )
+        lines = proc.stdout.split("\n")
+        for line in lines:
+            file_name = line.split(":")[0].strip()
+            results_dict[file_name] = results_dict.get(file_name, "") + line + "\n"
+        return results_dict
+
+    def parse_errors(self, output: Sequence[str]) -> dict[int, list[str]]:
+        # Example error: options.py:22:11: error[missing-argument] No argument provided for required parameter `report_only`
+        line_to_errors: dict[int, list[str]] = {}
+        for line in output:
+            if line.count(":") < 2:
+                continue
+            parts = line.split(":", maxsplit=2)
+            if len(parts) < 3:
+                continue
+            _, lineno, rest = parts
+            if "error" not in rest:
+                continue
+            try:
+                line_to_errors.setdefault(int(lineno), []).append(line)
+            except ValueError:
+                continue
+        return line_to_errors
+
+class PyreFlyTypeChecker(TypeChecker):
+    @property
+    def name(self) -> str:
+        return "pyrefly"
+
+    def install(self) -> bool:
+        try:
+            # Uninstall any existing version if present.
+            run(
+                [sys.executable, "-m", "pip", "uninstall", "pyrefly", "-y"],
+                check=True,
+            )
+
+            # Install the latest version.
+            run(
+                [sys.executable, "-m", "pip", "install", "pyrefly"],
+                check=True,
+            )
+            return True
+        except CalledProcessError:
+            print("Unable to install pyrefly")
+            return False
+
+    def get_version(self) -> str:
+        proc = run(["pyrefly", "--version"], stdout=PIPE, text=True)
+        return proc.stdout.strip()
+
+    def run_tests(self, test_files: Sequence[str]) -> dict[str, str]:
+        results_dict: dict[str, str] = {}
+        proc = run(
+                ["pyrefly", "check"],
+                stdout=PIPE,
+                text=True,
+                encoding="utf-8",
+            )
+        lines = proc.stdout.split("\n")
+        for line in lines:
+            file_name = line.split(":")[0].strip()
+            results_dict[file_name] = results_dict.get(file_name, "") + line + "\n"
+        return results_dict
+
+    def parse_errors(self, output: Sequence[str]) -> dict[int, list[str]]:
+        # Example error: some_file.py:12: error: Some error message
+        line_to_errors: dict[int, list[str]] = {}
+        for line in output:
+            if line.count(":") < 2:
+                continue
+            parts = line.split(":", maxsplit=2)
+            if len(parts) < 3:
+                continue
+            _, lineno, rest = parts
+            if "error" not in rest:
+                continue
+            try:
+                line_to_errors.setdefault(int(lineno), []).append(line)
+            except ValueError:
+                continue
+        return line_to_errors
+
 
 
 TYPE_CHECKERS: Sequence[TypeChecker] = (
-    MypyTypeChecker(),
-    PyrightTypeChecker(),
-    *([] if os.name == "nt" else [PyreTypeChecker()]),
+    # MypyTypeChecker(),
+    # PyrightTypeChecker(),
+    # *([] if os.name == "nt" else [PyreTypeChecker()]),
     ZubanLSTypeChecker(),
+    TyTypeChecker(),
+    PyreFlyTypeChecker(),
 )

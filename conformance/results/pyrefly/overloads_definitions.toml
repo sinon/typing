@@ -1,0 +1,15 @@
+conformance_automated = "Fail"
+errors_diff = """
+Lines 15, 16: Expected error (tag 'func1')
+Lines 27, 28: Expected error (tag 'func2')
+Lines 58, 59: Expected error (tag 'not_abstract')
+Lines 71, 73, 78, 81: Expected error (tag 'func5')
+Lines 84, 86, 90, 94: Expected error (tag 'func6')
+Lines 121, 122, 123, 127: Expected error (tag 'invalid_final')
+Lines 135, 136, 137, 141, 142: Expected error (tag 'invalid_final_2')
+Lines 170, 175, 181, 183: Expected error (tag 'override-final')
+Lines 190, 191, 197, 198: Expected error (tag 'bad_override')
+Lines 220, 221, 222, 225, 226: Expected error (tag 'override_impl')
+"""
+output = """
+"""

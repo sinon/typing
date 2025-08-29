@@ -1,9 +1,3 @@
-conformant = "Partial"
-notes = """
-Does not report error for a forward reference that is not enclosed in quotes.
-Incorrectly generates error for quoted type defined in class scope.
-Does not ignore newlines in multi-line unions
-"""
 conformance_automated = "Fail"
 errors_diff = """
 Line 22: Expected 1 errors

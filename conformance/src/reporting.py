@@ -86,6 +86,7 @@ def generate_summary_html(root_dir: Path) -> str:
                         results = {}
 
                     raw_notes = results.get("notes", "").strip()
+                    raw_errors_diff = results.get("errors_diff", "").strip()
                     conformance = results.get("conformant", "Unknown")
                     if conformance == "Unknown":
                         # Try to look up the automated test results and use
@@ -96,6 +97,7 @@ def generate_summary_html(root_dir: Path) -> str:
                     notes = "".join(
                         [f"<p>{note}</p>" for note in raw_notes.split("\n")]
                     )
+                    errors_diff_count = len(raw_errors_diff.split("\n")) if raw_errors_diff else 0
 
                     conformance_class = (
                         "conformant"
@@ -108,10 +110,22 @@ def generate_summary_html(root_dir: Path) -> str:
                     # Add an asterisk if there are notes to display for a "Pass".
                     if raw_notes != "" and conformance == "Pass":
                         conformance = "Pass*"
+                    
+                    if conformance == "Unknown":
+                        conformance = f"Unknown ({errors_diff_count})"
 
                     conformance_cell = f"{conformance}"
+                    
+                    # Create expander content if there are notes or errors_diff
+                    expander_content = ""
                     if raw_notes != "":
-                        conformance_cell = f'<div class="hover-text">{conformance_cell}<span class="tooltip-text" id="bottom">{notes}</span></div>'
+                        expander_content += f"<div style='margin-bottom: 10px;'><strong>Notes:</strong>{notes}</div>"
+                    if raw_errors_diff != "":
+                        errors_diff_html = raw_errors_diff.replace("\n", "<br>")
+                        expander_content += f"<div><strong>Errors Diff:</strong><br><pre style='margin: 5px 0; font-size: 0.9em; white-space: pre-wrap; word-wrap: break-word; overflow-wrap: break-word;'>{errors_diff_html}</pre></div>"
+                    
+                    if expander_content != "":
+                        conformance_cell = f'<div class="hover-text">{conformance_cell}<span class="tooltip-text" id="bottom" style="max-width: 400px; width: max-content; white-space: normal; word-wrap: break-word; overflow-wrap: break-word; text-align: left;">{expander_content}</span></div>'
 
                     summary_html.append(f'<th class="column col2 {conformance_class}">{conformance_cell}</th>')
 

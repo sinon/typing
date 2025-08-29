@@ -1,8 +1,4 @@
-conformant = "Pass"
 conformance_automated = "Fail"
-notes = """
-Does not report unimplemented attributes for class that explicitly derives from protocol until it is instantiated.
-"""
 errors_diff = """
 Line 90: Expected 1 errors
 Line 110: Expected 1 errors

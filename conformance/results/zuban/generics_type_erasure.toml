@@ -1,7 +1,3 @@
-conformant = "Pass"
-notes = """
-True positive: Undefined type vars should be inferred as Never not Any (avoiding to introduce Any)
-"""
 conformance_automated = "Fail"
 errors_diff = """
 Line 19: Unexpected errors ['generics_type_erasure.py:19: error: Expression is of type "Node[Never]", not "Node[Any]"  [misc]']
