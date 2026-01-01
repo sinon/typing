@@ -7,6 +7,7 @@ Line 159: Expected 1 errors
 Line 172: Expected 1 errors
 Line 187: Expected 1 errors
 Line 189: Expected 1 errors
+Line 157: Unexpected errors ['callables_annotation.py:157:20: error[invalid-assignment] Object of type `Proto7` is not assignable to `Proto6`']
 """
 output = """
 callables_annotation.py:25:5: error[missing-argument] No argument provided for required parameter 2
@@ -22,4 +23,5 @@ callables_annotation.py:56:14: error[invalid-type-form] The first argument to `C
 callables_annotation.py:57:18: error[invalid-type-form] List literals are not allowed in this context in a type expression: Did you mean `list[int]`?
 callables_annotation.py:58:5: error[invalid-type-form] Special form `typing.Callable` expected exactly two arguments (parameter types and return type)
 callables_annotation.py:58:14: error[invalid-type-form] The first argument to `Callable` must be either a list of types, ParamSpec, Concatenate, or `...`
+callables_annotation.py:157:20: error[invalid-assignment] Object of type `Proto7` is not assignable to `Proto6`
 """

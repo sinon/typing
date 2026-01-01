@@ -1,26 +1,8 @@
-conformance_automated = "Fail"
+conformance_automated = "Pass"
 errors_diff = """
-Line 14: Unexpected errors ['generics_self_basic.py:14:9: error[type-assertion-failure] Argument does not have asserted type `Self@set_scale`']
-Line 51: Unexpected errors ['generics_self_basic.py:51:1: error[type-assertion-failure] Argument does not have asserted type `Shape`']
-Line 52: Unexpected errors ['generics_self_basic.py:52:1: error[type-assertion-failure] Argument does not have asserted type `Circle`']
-Line 54: Unexpected errors ['generics_self_basic.py:54:1: error[type-assertion-failure] Argument does not have asserted type `Shape`']
-Line 55: Unexpected errors ['generics_self_basic.py:55:1: error[type-assertion-failure] Argument does not have asserted type `Circle`']
-Line 64: Unexpected errors ['generics_self_basic.py:64:38: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `Self@set_value`']
-Line 74: Unexpected errors ['generics_self_basic.py:74:5: error[type-assertion-failure] Argument does not have asserted type `Container[int]`']
-Line 75: Unexpected errors ['generics_self_basic.py:75:5: error[type-assertion-failure] Argument does not have asserted type `Container[str]`']
-Line 83: Unexpected errors ['generics_self_basic.py:83:5: error[type-assertion-failure] Argument does not have asserted type `Container[T@object_with_generic_type]`']
 """
 output = """
-generics_self_basic.py:14:9: error[type-assertion-failure] Argument does not have asserted type `Self@set_scale`
 generics_self_basic.py:20:16: error[invalid-return-type] Return type does not match returned value: expected `Self@method2`, found `Shape`
 generics_self_basic.py:33:16: error[invalid-return-type] Return type does not match returned value: expected `Self@cls_method2`, found `Shape`
-generics_self_basic.py:51:1: error[type-assertion-failure] Argument does not have asserted type `Shape`
-generics_self_basic.py:52:1: error[type-assertion-failure] Argument does not have asserted type `Circle`
-generics_self_basic.py:54:1: error[type-assertion-failure] Argument does not have asserted type `Shape`
-generics_self_basic.py:55:1: error[type-assertion-failure] Argument does not have asserted type `Circle`
-generics_self_basic.py:64:38: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `Self@set_value`
-generics_self_basic.py:67:26: error[invalid-type-form] Special form `typing.Self` expected no type parameter
-generics_self_basic.py:74:5: error[type-assertion-failure] Argument does not have asserted type `Container[int]`
-generics_self_basic.py:75:5: error[type-assertion-failure] Argument does not have asserted type `Container[str]`
-generics_self_basic.py:83:5: error[type-assertion-failure] Argument does not have asserted type `Container[T@object_with_generic_type]`
+generics_self_basic.py:68:26: error[invalid-type-form] Special form `typing.Self` expected no type parameter
 """

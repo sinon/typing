@@ -1,40 +1,17 @@
-conformance_automated = "Fail"
+conformance_automated = "Pass"
 errors_diff = """
-Lines 15, 16: Expected error (tag 'func1')
-Lines 27, 28: Expected error (tag 'func2')
-Lines 58, 59: Expected error (tag 'not_abstract')
-Lines 121, 122, 123, 127: Expected error (tag 'invalid_final')
-Lines 135, 136, 137, 141, 142: Expected error (tag 'invalid_final_2')
-Lines 220, 221, 222, 225, 226: Expected error (tag 'override_impl')
-Line 20: Unexpected errors ['overloads_definitions.py:20:5: error[invalid-overload] Overloaded function `func1` requires at least two overloads']
-Line 33: Unexpected errors ['overloads_definitions.py:33:5: error[invalid-overload] Overloaded non-stub function `func2` must have an implementation']
-Line 63: Unexpected errors ['overloads_definitions.py:63:9: error[invalid-overload] Overloaded non-stub function `not_abstract` must have an implementation']
-Line 117: Unexpected errors ['overloads_definitions.py:117:45: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `int | str`']
-Line 130: Unexpected errors ['overloads_definitions.py:130:9: error[invalid-overload] `@final` decorator should be applied only to the overload implementation', 'overloads_definitions.py:130:46: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `int | str`']
-Line 146: Unexpected errors ['overloads_definitions.py:146:9: error[invalid-overload] `@final` decorator should be applied only to the overload implementation', 'overloads_definitions.py:146:9: error[invalid-overload] `@final` decorator should be applied only to the overload implementation', 'overloads_definitions.py:146:48: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `int | str`']
-Line 159: Unexpected errors ['overloads_definitions.py:159:46: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `int | str`']
-Line 167: Unexpected errors ['overloads_definitions.py:167:44: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `int | str`']
-Line 215: Unexpected errors ['overloads_definitions.py:215:46: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `int | str`']
-Line 229: Unexpected errors ['overloads_definitions.py:229:9: error[invalid-overload] `@override` decorator should be applied only to the overload implementation', 'overloads_definitions.py:229:9: error[invalid-overload] `@override` decorator should be applied only to the overload implementation', 'overloads_definitions.py:229:44: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `int | str`']
 """
 output = """
-overloads_definitions.py:20:5: error[invalid-overload] Overloaded function `func1` requires at least two overloads
-overloads_definitions.py:33:5: error[invalid-overload] Overloaded non-stub function `func2` must have an implementation
-overloads_definitions.py:63:9: error[invalid-overload] Overloaded non-stub function `not_abstract` must have an implementation
+overloads_definitions.py:16:5: error[invalid-overload] Overloaded function `func1` requires at least two overloads: Only one overload defined here
+overloads_definitions.py:28:5: error[invalid-overload] Overloads for function `func2` must be followed by a non-`@overload`-decorated implementation function
+overloads_definitions.py:59:9: error[invalid-overload] Overloads for function `not_abstract` must be followed by a non-`@overload`-decorated implementation function
 overloads_definitions.py:81:9: error[invalid-overload] Overloaded function `func5` does not use the `@staticmethod` decorator consistently
 overloads_definitions.py:94:9: error[invalid-overload] Overloaded function `func6` does not use the `@classmethod` decorator consistently
-overloads_definitions.py:117:45: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `int | str`
-overloads_definitions.py:130:9: error[invalid-overload] `@final` decorator should be applied only to the overload implementation
-overloads_definitions.py:130:46: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `int | str`
-overloads_definitions.py:146:9: error[invalid-overload] `@final` decorator should be applied only to the overload implementation
-overloads_definitions.py:146:9: error[invalid-overload] `@final` decorator should be applied only to the overload implementation
-overloads_definitions.py:146:48: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `int | str`
-overloads_definitions.py:159:46: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `int | str`
-overloads_definitions.py:167:44: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `int | str`
-overloads_definitions.py:183:10: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `int | str`
-overloads_definitions.py:198:45: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `int | str`
-overloads_definitions.py:215:46: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `int | str`
-overloads_definitions.py:229:9: error[invalid-overload] `@override` decorator should be applied only to the overload implementation
-overloads_definitions.py:229:9: error[invalid-overload] `@override` decorator should be applied only to the overload implementation
-overloads_definitions.py:229:44: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `int | str`
+overloads_definitions.py:124:9: error[invalid-overload] `@final` decorator should be applied only to the overload implementation
+overloads_definitions.py:139:9: error[invalid-overload] `@final` decorator should be applied only to the overload implementation
+overloads_definitions.py:144:9: error[invalid-overload] `@final` decorator should be applied only to the overload implementation
+overloads_definitions.py:186:9: error[override-of-final-method] Cannot override final member `final_method` from superclass `Base`
+overloads_definitions.py:203:9: error[invalid-explicit-override] Method `bad_override` is decorated with `@override` but does not override anything
+overloads_definitions.py:228:9: error[invalid-overload] `@override` decorator should be applied only to the overload implementation
+overloads_definitions.py:232:9: error[invalid-overload] `@override` decorator should be applied only to the overload implementation
 """

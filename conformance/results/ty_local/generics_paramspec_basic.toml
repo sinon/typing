@@ -1,12 +1,12 @@
 conformance_automated = "Fail"
 errors_diff = """
-Line 10: Expected 1 errors
 Line 15: Expected 1 errors
-Line 23: Expected 1 errors
+Line 27: Expected 1 errors
 Line 31: Expected 1 errors
 Line 35: Expected 1 errors
 Line 39: Expected 1 errors
 """
 output = """
-generics_paramspec_basic.py:27:38: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `int`
+generics_paramspec_basic.py:10:1: error[invalid-paramspec] The name of a `ParamSpec` (`NotIt`) must match the name of the variable it is assigned to (`WrongName`)
+generics_paramspec_basic.py:23:20: error[empty-body] Function always implicitly returns `None`, which is not assignable to return type `P@func1`
 """

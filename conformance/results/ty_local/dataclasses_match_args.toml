@@ -1,17 +1,8 @@
 conformance_automated = "Fail"
 errors_diff = """
-Line 18: Unexpected errors ['dataclasses_match_args.py:18:1: error[type-assertion-failure] Argument does not have asserted type `tuple[Literal["x"]]`', "dataclasses_match_args.py:18:13: error[unresolved-attribute] Type `<class 'DC1'>` has no attribute `__match_args__`"]
-Line 26: Unexpected errors ['dataclasses_match_args.py:26:1: error[type-assertion-failure] Argument does not have asserted type `tuple[Literal["x"]]`', "dataclasses_match_args.py:26:13: error[unresolved-attribute] Type `<class 'DC2'>` has no attribute `__match_args__`"]
-Line 34: Unexpected errors ['dataclasses_match_args.py:34:1: error[type-assertion-failure] Argument does not have asserted type `tuple[Literal["x"]]`', "dataclasses_match_args.py:34:13: error[unresolved-attribute] Type `<class 'DC3'>` has no attribute `__match_args__`"]
-Line 49: Unexpected errors ['dataclasses_match_args.py:49:1: error[type-assertion-failure] Argument does not have asserted type `tuple[()]`']
+Line 49: Unexpected errors ['dataclasses_match_args.py:49:1: error[type-assertion-failure] Type `tuple[()]` does not match asserted type `Unknown | tuple[()]`']
 """
 output = """
-dataclasses_match_args.py:18:1: error[type-assertion-failure] Argument does not have asserted type `tuple[Literal["x"]]`
-dataclasses_match_args.py:18:13: error[unresolved-attribute] Type `<class 'DC1'>` has no attribute `__match_args__`
-dataclasses_match_args.py:26:1: error[type-assertion-failure] Argument does not have asserted type `tuple[Literal["x"]]`
-dataclasses_match_args.py:26:13: error[unresolved-attribute] Type `<class 'DC2'>` has no attribute `__match_args__`
-dataclasses_match_args.py:34:1: error[type-assertion-failure] Argument does not have asserted type `tuple[Literal["x"]]`
-dataclasses_match_args.py:34:13: error[unresolved-attribute] Type `<class 'DC3'>` has no attribute `__match_args__`
-dataclasses_match_args.py:42:1: error[unresolved-attribute] Type `<class 'DC4'>` has no attribute `__match_args__`
-dataclasses_match_args.py:49:1: error[type-assertion-failure] Argument does not have asserted type `tuple[()]`
+dataclasses_match_args.py:42:1: error[unresolved-attribute] Class `DC4` has no attribute `__match_args__`
+dataclasses_match_args.py:49:1: error[type-assertion-failure] Type `tuple[()]` does not match asserted type `Unknown | tuple[()]`
 """

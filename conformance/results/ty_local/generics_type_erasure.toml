@@ -5,16 +5,8 @@ Line 43: Expected 1 errors
 Line 44: Expected 1 errors
 Line 45: Expected 1 errors
 Line 46: Expected 1 errors
-Line 28: Unexpected errors ['generics_type_erasure.py:28:1: error[type-assertion-failure] Argument does not have asserted type `Node[int]`']
-Line 30: Unexpected errors ['generics_type_erasure.py:30:1: error[type-assertion-failure] Argument does not have asserted type `Node[str]`']
-Line 47: Unexpected errors ['generics_type_erasure.py:47:1: error[type-assertion-failure] Argument does not have asserted type `int`']
-Line 56: Unexpected errors ['generics_type_erasure.py:56:1: error[type-assertion-failure] Argument does not have asserted type `bytes`']
 """
 output = """
-generics_type_erasure.py:28:1: error[type-assertion-failure] Argument does not have asserted type `Node[int]`
-generics_type_erasure.py:30:1: error[type-assertion-failure] Argument does not have asserted type `Node[str]`
 generics_type_erasure.py:38:16: error[invalid-argument-type] Argument to bound method `__init__` is incorrect: Expected `int | None`, found `Literal[""]`
 generics_type_erasure.py:40:16: error[invalid-argument-type] Argument to bound method `__init__` is incorrect: Expected `str | None`, found `Literal[0]`
-generics_type_erasure.py:47:1: error[type-assertion-failure] Argument does not have asserted type `int`
-generics_type_erasure.py:56:1: error[type-assertion-failure] Argument does not have asserted type `bytes`
 """

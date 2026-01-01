@@ -1,27 +1,9 @@
-conformance_automated = "Fail"
+conformance_automated = "Pass"
 errors_diff = """
-Line 102: Expected 1 errors
-Line 107: Expected 1 errors
-Line 128: Expected 1 errors
-Line 148: Expected 1 errors
-Line 17: Unexpected errors ['narrowing_typeguard.py:17:9: error[type-assertion-failure] Argument does not have asserted type `tuple[str, str]`']
-Line 32: Unexpected errors ['narrowing_typeguard.py:32:9: error[type-assertion-failure] Argument does not have asserted type `set[int]`']
-Line 69: Unexpected errors ['narrowing_typeguard.py:69:9: error[type-assertion-failure] Argument does not have asserted type `int`']
-Line 73: Unexpected errors ['narrowing_typeguard.py:73:9: error[type-assertion-failure] Argument does not have asserted type `int`']
-Line 77: Unexpected errors ['narrowing_typeguard.py:77:9: error[type-assertion-failure] Argument does not have asserted type `int`']
-Line 81: Unexpected errors ['narrowing_typeguard.py:81:9: error[type-assertion-failure] Argument does not have asserted type `int`']
-Line 85: Unexpected errors ['narrowing_typeguard.py:85:9: error[type-assertion-failure] Argument does not have asserted type `int`']
-Line 89: Unexpected errors ['narrowing_typeguard.py:89:9: error[type-assertion-failure] Argument does not have asserted type `B`']
-Line 93: Unexpected errors ['narrowing_typeguard.py:93:9: error[type-assertion-failure] Argument does not have asserted type `B`']
 """
 output = """
-narrowing_typeguard.py:17:9: error[type-assertion-failure] Argument does not have asserted type `tuple[str, str]`
-narrowing_typeguard.py:32:9: error[type-assertion-failure] Argument does not have asserted type `set[int]`
-narrowing_typeguard.py:69:9: error[type-assertion-failure] Argument does not have asserted type `int`
-narrowing_typeguard.py:73:9: error[type-assertion-failure] Argument does not have asserted type `int`
-narrowing_typeguard.py:77:9: error[type-assertion-failure] Argument does not have asserted type `int`
-narrowing_typeguard.py:81:9: error[type-assertion-failure] Argument does not have asserted type `int`
-narrowing_typeguard.py:85:9: error[type-assertion-failure] Argument does not have asserted type `int`
-narrowing_typeguard.py:89:9: error[type-assertion-failure] Argument does not have asserted type `B`
-narrowing_typeguard.py:93:9: error[type-assertion-failure] Argument does not have asserted type `B`
+narrowing_typeguard.py:102:23: error[invalid-type-guard-definition] `TypeGuard` function must have a parameter to narrow
+narrowing_typeguard.py:107:22: error[invalid-type-guard-definition] `TypeGuard` function must have a parameter to narrow
+narrowing_typeguard.py:128:20: error[invalid-argument-type] Argument to function `takes_callable_str` is incorrect: Expected `(object, /) -> str`, found `def simple_typeguard(val: object) -> TypeGuard[int]`
+narrowing_typeguard.py:148:26: error[invalid-argument-type] Argument to function `takes_callable_str_proto` is incorrect: Expected `CallableStrProto`, found `def simple_typeguard(val: object) -> TypeGuard[int]`
 """

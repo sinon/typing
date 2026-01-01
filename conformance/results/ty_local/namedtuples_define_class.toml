@@ -1,9 +1,6 @@
 conformance_automated = "Fail"
 errors_diff = """
-Line 79: Expected 1 errors
-Line 94: Unexpected errors ['namedtuples_define_class.py:94:1: error[type-assertion-failure] Argument does not have asserted type `Property[int | float]`']
-Line 95: Unexpected errors ['namedtuples_define_class.py:95:1: error[type-assertion-failure] Argument does not have asserted type `int | float`']
-Line 96: Unexpected errors ['namedtuples_define_class.py:96:1: error[type-assertion-failure] Argument does not have asserted type `int | float`']
+Line 106: Expected 1 errors
 """
 output = """
 namedtuples_define_class.py:32:7: error[index-out-of-bounds] Index 3 is out of bounds for tuple `Point` with length 3
@@ -14,10 +11,9 @@ namedtuples_define_class.py:46:15: error[invalid-argument-type] Argument is inco
 namedtuples_define_class.py:47:18: error[invalid-argument-type] Argument is incorrect: Expected `str`, found `Literal[3]`
 namedtuples_define_class.py:48:22: error[too-many-positional-arguments] Too many positional arguments: expected 4, got 5
 namedtuples_define_class.py:49:23: error[unknown-argument] Argument `other` does not match any known parameter
-namedtuples_define_class.py:59:5: error[invalid-named-tuple] NamedTuple field without default value cannot follow field(s) with default value(s): Field `latitude` defined here without a default value
-namedtuples_define_class.py:94:1: error[type-assertion-failure] Argument does not have asserted type `Property[int | float]`
-namedtuples_define_class.py:95:1: error[type-assertion-failure] Argument does not have asserted type `int | float`
-namedtuples_define_class.py:96:1: error[type-assertion-failure] Argument does not have asserted type `int | float`
-namedtuples_define_class.py:98:19: error[invalid-argument-type] Argument is incorrect: Expected `str`, found `float`
-namedtuples_define_class.py:105:24: error[invalid-named-tuple] NamedTuple class `Unit` cannot use multiple inheritance except with `Generic[]`
+namedtuples_define_class.py:69:20: error[too-many-positional-arguments] Too many positional arguments: expected 3, got 4
+namedtuples_define_class.py:76:5: error[invalid-named-tuple] NamedTuple field `_y` cannot start with an underscore
+namedtuples_define_class.py:86:5: error[invalid-named-tuple] NamedTuple field without default value cannot follow field(s) with default value(s): Field `latitude` defined here without a default value
+namedtuples_define_class.py:125:19: error[invalid-argument-type] Argument is incorrect: Expected `str`, found `float`
+namedtuples_define_class.py:132:24: error[invalid-named-tuple] NamedTuple class `Unit` cannot use multiple inheritance except with `Generic[]`
 """

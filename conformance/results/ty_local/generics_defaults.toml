@@ -1,50 +1,41 @@
 conformance_automated = "Fail"
 errors_diff = """
-Line 24: Expected 1 errors
-Line 107: Expected 1 errors
-Line 114: Expected 1 errors
-Line 30: Unexpected errors ['generics_defaults.py:30:1: error[type-assertion-failure] Argument does not have asserted type `@Todo(unsupported nested subscript in type[X])`']
-Line 31: Unexpected errors ['generics_defaults.py:31:1: error[type-assertion-failure] Argument does not have asserted type `@Todo(unsupported nested subscript in type[X])`']
-Line 32: Unexpected errors ['generics_defaults.py:32:1: error[type-assertion-failure] Argument does not have asserted type `@Todo(unsupported nested subscript in type[X])`']
-Line 38: Unexpected errors ['generics_defaults.py:38:1: error[type-assertion-failure] Argument does not have asserted type `@Todo(unsupported nested subscript in type[X])`']
-Line 45: Unexpected errors ['generics_defaults.py:45:1: error[type-assertion-failure] Argument does not have asserted type `@Todo(unsupported nested subscript in type[X])`']
-Line 46: Unexpected errors ['generics_defaults.py:46:1: error[type-assertion-failure] Argument does not have asserted type `@Todo(unsupported nested subscript in type[X])`']
-Line 52: Unexpected errors ['generics_defaults.py:52:1: error[type-assertion-failure] Argument does not have asserted type `@Todo(unsupported nested subscript in type[X])`']
-Line 55: Unexpected errors ['generics_defaults.py:55:1: error[type-assertion-failure] Argument does not have asserted type `@Todo(unsupported nested subscript in type[X])`']
-Line 59: Unexpected errors ['generics_defaults.py:59:1: error[type-assertion-failure] Argument does not have asserted type `@Todo(unsupported nested subscript in type[X])`']
-Line 63: Unexpected errors ['generics_defaults.py:63:1: error[type-assertion-failure] Argument does not have asserted type `@Todo(unsupported nested subscript in type[X])`']
-Line 79: Unexpected errors ['generics_defaults.py:79:1: error[type-assertion-failure] Argument does not have asserted type `@Todo(unsupported nested subscript in type[X])`']
-Line 80: Unexpected errors ['generics_defaults.py:80:1: error[type-assertion-failure] Argument does not have asserted type `@Todo(specialized non-generic class)`']
-Line 91: Unexpected errors ['generics_defaults.py:91:26: error[invalid-argument-type] `@Todo(starred expression)` is not a valid argument to `Generic`']
-Line 94: Unexpected errors ['generics_defaults.py:94:1: error[type-assertion-failure] Argument does not have asserted type `@Todo(unsupported nested subscript in type[X])`']
-Line 95: Unexpected errors ['generics_defaults.py:95:1: error[type-assertion-failure] Argument does not have asserted type `@Todo(specialized non-generic class)`']
-Line 127: Unexpected errors ['generics_defaults.py:127:32: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `T4@func1`']
-Line 151: Unexpected errors ['generics_defaults.py:151:12: error[invalid-argument-type] `@Todo(starred expression)` is not a valid argument to `Generic`']
-Line 154: Unexpected errors ['generics_defaults.py:154:49: error[invalid-type-form] List literals are not allowed in this context in a type expression: Did you mean `tuple[int | float, bool]`?']
-Line 155: Unexpected errors ['generics_defaults.py:155:58: error[invalid-type-form] List literals are not allowed in this context in a type expression: Did you mean `list[bytes]`?']
-Line 169: Unexpected errors ['generics_defaults.py:169:1: error[type-assertion-failure] Argument does not have asserted type `(Foo7[int], /) -> Foo7[int]`']
+Line 143: Expected 1 errors
+Line 30: Unexpected errors ["generics_defaults.py:30:1: error[assert-type-unspellable-subtype] Type `type[NoNonDefaults[str, int]]` does not match asserted type `<class 'NoNonDefaults'>`"]
+Line 31: Unexpected errors ["generics_defaults.py:31:1: error[assert-type-unspellable-subtype] Type `type[NoNonDefaults[str, int]]` does not match asserted type `<class 'NoNonDefaults[str, int]'>`"]
+Line 32: Unexpected errors ["generics_defaults.py:32:1: error[assert-type-unspellable-subtype] Type `type[NoNonDefaults[str, int]]` does not match asserted type `<class 'NoNonDefaults[str, int]'>`"]
+Line 38: Unexpected errors ["generics_defaults.py:38:1: error[assert-type-unspellable-subtype] Type `type[OneDefault[int | float, bool]]` does not match asserted type `<class 'OneDefault[int | float, bool]'>`"]
+Line 45: Unexpected errors ["generics_defaults.py:45:1: error[type-assertion-failure] Type `type[AllTheDefaults[Any, Any, str, int, bool]]` does not match asserted type `<class 'AllTheDefaults'>`"]
+Line 46: Unexpected errors ["generics_defaults.py:46:1: error[assert-type-unspellable-subtype] Type `type[AllTheDefaults[int, int | float | complex, str, int, bool]]` does not match asserted type `<class 'AllTheDefaults[int, int | float | complex, str, int, bool]'>`"]
+Line 52: Unexpected errors ["generics_defaults.py:52:1: error[assert-type-unspellable-subtype] Type `type[AllTheDefaults[int, int | float | complex, str, int, bool]]` does not match asserted type `<class 'AllTheDefaults[int, int | float | complex, str, int, bool]'>`"]
+Line 55: Unexpected errors ["generics_defaults.py:55:1: error[assert-type-unspellable-subtype] Type `type[AllTheDefaults[int, int | float | complex, str, int, bool]]` does not match asserted type `<class 'AllTheDefaults[int, int | float | complex, str, int, bool]'>`"]
+Line 59: Unexpected errors ["generics_defaults.py:59:1: error[assert-type-unspellable-subtype] Type `type[AllTheDefaults[int, int | float | complex, str, int, bool]]` does not match asserted type `<class 'AllTheDefaults[int, int | float | complex, str, int, bool]'>`"]
+Line 63: Unexpected errors ["generics_defaults.py:63:1: error[assert-type-unspellable-subtype] Type `type[AllTheDefaults[int, int | float | complex, str, int, bool]]` does not match asserted type `<class 'AllTheDefaults[int, int | float | complex, str, int, bool]'>`"]
+Line 79: Unexpected errors ["generics_defaults.py:79:1: error[assert-type-unspellable-subtype] Type `type[Class_ParamSpec[(str, int, /)]]` does not match asserted type `<class 'Class_ParamSpec'>`"]
+Line 94: Unexpected errors ["generics_defaults.py:94:1: error[type-assertion-failure] Type `@Todo(specialized non-generic class)` does not match asserted type `<class 'Class_TypeVarTuple'>`"]
+Line 95: Unexpected errors ['generics_defaults.py:95:1: error[type-assertion-failure] Type `@Todo(specialized non-generic class)` does not match asserted type `Class_TypeVarTuple`']
+Line 156: Unexpected errors ['generics_defaults.py:156:49: error[invalid-type-form] List literals are not allowed in this context in a type expression: Did you mean `tuple[int | float, bool]`?']
+Line 157: Unexpected errors ['generics_defaults.py:157:58: error[invalid-type-form] List literals are not allowed in this context in a type expression: Did you mean `list[bytes]`?']
 """
 output = """
-generics_defaults.py:30:1: error[type-assertion-failure] Argument does not have asserted type `@Todo(unsupported nested subscript in type[X])`
-generics_defaults.py:31:1: error[type-assertion-failure] Argument does not have asserted type `@Todo(unsupported nested subscript in type[X])`
-generics_defaults.py:32:1: error[type-assertion-failure] Argument does not have asserted type `@Todo(unsupported nested subscript in type[X])`
-generics_defaults.py:38:1: error[type-assertion-failure] Argument does not have asserted type `@Todo(unsupported nested subscript in type[X])`
-generics_defaults.py:45:1: error[type-assertion-failure] Argument does not have asserted type `@Todo(unsupported nested subscript in type[X])`
-generics_defaults.py:46:1: error[type-assertion-failure] Argument does not have asserted type `@Todo(unsupported nested subscript in type[X])`
-generics_defaults.py:50:1: error[missing-argument] No argument provided for required parameter `T2` of class `AllTheDefaults`
-generics_defaults.py:52:1: error[type-assertion-failure] Argument does not have asserted type `@Todo(unsupported nested subscript in type[X])`
-generics_defaults.py:55:1: error[type-assertion-failure] Argument does not have asserted type `@Todo(unsupported nested subscript in type[X])`
-generics_defaults.py:59:1: error[type-assertion-failure] Argument does not have asserted type `@Todo(unsupported nested subscript in type[X])`
-generics_defaults.py:63:1: error[type-assertion-failure] Argument does not have asserted type `@Todo(unsupported nested subscript in type[X])`
-generics_defaults.py:79:1: error[type-assertion-failure] Argument does not have asserted type `@Todo(unsupported nested subscript in type[X])`
-generics_defaults.py:80:1: error[type-assertion-failure] Argument does not have asserted type `@Todo(specialized non-generic class)`
-generics_defaults.py:91:26: error[invalid-argument-type] `@Todo(starred expression)` is not a valid argument to `Generic`
-generics_defaults.py:94:1: error[type-assertion-failure] Argument does not have asserted type `@Todo(unsupported nested subscript in type[X])`
-generics_defaults.py:95:1: error[type-assertion-failure] Argument does not have asserted type `@Todo(specialized non-generic class)`
-generics_defaults.py:127:32: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `T4@func1`
-generics_defaults.py:141:12: error[invalid-argument-type] `@Todo(starred expression)` is not a valid argument to `Generic`
-generics_defaults.py:151:12: error[invalid-argument-type] `@Todo(starred expression)` is not a valid argument to `Generic`
-generics_defaults.py:154:49: error[invalid-type-form] List literals are not allowed in this context in a type expression: Did you mean `tuple[int | float, bool]`?
-generics_defaults.py:155:58: error[invalid-type-form] List literals are not allowed in this context in a type expression: Did you mean `list[bytes]`?
-generics_defaults.py:169:1: error[type-assertion-failure] Argument does not have asserted type `(Foo7[int], /) -> Foo7[int]`
+generics_defaults.py:24:40: error[invalid-generic-class] Type parameter `T` without a default cannot follow earlier parameter `DefaultStrT` with a default
+generics_defaults.py:30:1: error[assert-type-unspellable-subtype] Type `type[NoNonDefaults[str, int]]` does not match asserted type `<class 'NoNonDefaults'>`
+generics_defaults.py:31:1: error[assert-type-unspellable-subtype] Type `type[NoNonDefaults[str, int]]` does not match asserted type `<class 'NoNonDefaults[str, int]'>`
+generics_defaults.py:32:1: error[assert-type-unspellable-subtype] Type `type[NoNonDefaults[str, int]]` does not match asserted type `<class 'NoNonDefaults[str, int]'>`
+generics_defaults.py:38:1: error[assert-type-unspellable-subtype] Type `type[OneDefault[int | float, bool]]` does not match asserted type `<class 'OneDefault[int | float, bool]'>`
+generics_defaults.py:45:1: error[type-assertion-failure] Type `type[AllTheDefaults[Any, Any, str, int, bool]]` does not match asserted type `<class 'AllTheDefaults'>`
+generics_defaults.py:46:1: error[assert-type-unspellable-subtype] Type `type[AllTheDefaults[int, int | float | complex, str, int, bool]]` does not match asserted type `<class 'AllTheDefaults[int, int | float | complex, str, int, bool]'>`
+generics_defaults.py:50:1: error[invalid-type-arguments] No type argument provided for required type variable `T2` of class `AllTheDefaults`
+generics_defaults.py:52:1: error[assert-type-unspellable-subtype] Type `type[AllTheDefaults[int, int | float | complex, str, int, bool]]` does not match asserted type `<class 'AllTheDefaults[int, int | float | complex, str, int, bool]'>`
+generics_defaults.py:55:1: error[assert-type-unspellable-subtype] Type `type[AllTheDefaults[int, int | float | complex, str, int, bool]]` does not match asserted type `<class 'AllTheDefaults[int, int | float | complex, str, int, bool]'>`
+generics_defaults.py:59:1: error[assert-type-unspellable-subtype] Type `type[AllTheDefaults[int, int | float | complex, str, int, bool]]` does not match asserted type `<class 'AllTheDefaults[int, int | float | complex, str, int, bool]'>`
+generics_defaults.py:63:1: error[assert-type-unspellable-subtype] Type `type[AllTheDefaults[int, int | float | complex, str, int, bool]]` does not match asserted type `<class 'AllTheDefaults[int, int | float | complex, str, int, bool]'>`
+generics_defaults.py:79:1: error[assert-type-unspellable-subtype] Type `type[Class_ParamSpec[(str, int, /)]]` does not match asserted type `<class 'Class_ParamSpec'>`
+generics_defaults.py:94:1: error[type-assertion-failure] Type `@Todo(specialized non-generic class)` does not match asserted type `<class 'Class_TypeVarTuple'>`
+generics_defaults.py:95:1: error[type-assertion-failure] Type `@Todo(specialized non-generic class)` does not match asserted type `Class_TypeVarTuple`
+generics_defaults.py:107:51: error[invalid-type-variable-default] TypeVar default is not assignable to the TypeVar's upper bound
+generics_defaults.py:114:52: error[invalid-type-variable-default] TypeVar default is inconsistent with the TypeVar's constraints: `int` is not one of the constraints of `Invalid2`
+generics_defaults.py:132:1: error[type-assertion-failure] Type `Any` does not match asserted type `int`
+generics_defaults.py:156:49: error[invalid-type-form] List literals are not allowed in this context in a type expression: Did you mean `tuple[int | float, bool]`?
+generics_defaults.py:157:58: error[invalid-type-form] List literals are not allowed in this context in a type expression: Did you mean `list[bytes]`?
 """

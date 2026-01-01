@@ -1,7 +1,6 @@
-conformance_automated = "Fail"
+conformance_automated = "Pass"
 errors_diff = """
-Line 13: Expected 1 errors
 """
 output = """
-specialtypes_promotions.py:13:5: warning[possibly-unbound-attribute] Attribute `numerator` on type `int | float` is possibly unbound
+specialtypes_promotions.py:13:5: error[unresolved-attribute] Attribute `numerator` is not defined on `float` in union `int | float`
 """

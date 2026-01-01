@@ -1,27 +1,5 @@
-conformance_automated = "Fail"
+conformance_automated = "Pass"
 errors_diff = """
-Line 11: Unexpected errors ['generics_self_advanced.py:11:24: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `Self@prop1`']
-Line 18: Unexpected errors ['generics_self_advanced.py:18:1: error[type-assertion-failure] Argument does not have asserted type `ParentA`']
-Line 19: Unexpected errors ['generics_self_advanced.py:19:1: error[type-assertion-failure] Argument does not have asserted type `ChildA`']
-Line 28: Unexpected errors ['generics_self_advanced.py:28:25: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `Self@method1`']
-Line 35: Unexpected errors ['generics_self_advanced.py:35:9: error[type-assertion-failure] Argument does not have asserted type `typing.Self`']
-Line 36: Unexpected errors ['generics_self_advanced.py:36:9: error[type-assertion-failure] Argument does not have asserted type `list[typing.Self]`']
-Line 37: Unexpected errors ['generics_self_advanced.py:37:9: error[type-assertion-failure] Argument does not have asserted type `typing.Self`']
-Line 38: Unexpected errors ['generics_self_advanced.py:38:9: error[type-assertion-failure] Argument does not have asserted type `typing.Self`']
-Line 43: Unexpected errors ['generics_self_advanced.py:43:9: error[type-assertion-failure] Argument does not have asserted type `list[typing.Self]`']
-Line 44: Unexpected errors ['generics_self_advanced.py:44:9: error[type-assertion-failure] Argument does not have asserted type `typing.Self`']
-Line 45: Unexpected errors ['generics_self_advanced.py:45:9: error[type-assertion-failure] Argument does not have asserted type `typing.Self`']
 """
 output = """
-generics_self_advanced.py:11:24: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `Self@prop1`
-generics_self_advanced.py:18:1: error[type-assertion-failure] Argument does not have asserted type `ParentA`
-generics_self_advanced.py:19:1: error[type-assertion-failure] Argument does not have asserted type `ChildA`
-generics_self_advanced.py:28:25: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `Self@method1`
-generics_self_advanced.py:35:9: error[type-assertion-failure] Argument does not have asserted type `typing.Self`
-generics_self_advanced.py:36:9: error[type-assertion-failure] Argument does not have asserted type `list[typing.Self]`
-generics_self_advanced.py:37:9: error[type-assertion-failure] Argument does not have asserted type `typing.Self`
-generics_self_advanced.py:38:9: error[type-assertion-failure] Argument does not have asserted type `typing.Self`
-generics_self_advanced.py:43:9: error[type-assertion-failure] Argument does not have asserted type `list[typing.Self]`
-generics_self_advanced.py:44:9: error[type-assertion-failure] Argument does not have asserted type `typing.Self`
-generics_self_advanced.py:45:9: error[type-assertion-failure] Argument does not have asserted type `typing.Self`
 """

@@ -1,28 +1,23 @@
 conformance_automated = "Fail"
 errors_diff = """
-Line 23: Unexpected errors ['literals_literalstring.py:23:51: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `LiteralString`']
-Line 53: Unexpected errors ['literals_literalstring.py:53:5: error[type-assertion-failure] Argument does not have asserted type `str`']
-Line 63: Unexpected errors ['literals_literalstring.py:63:5: error[type-assertion-failure] Argument does not have asserted type `LiteralString`']
-Line 68: Unexpected errors ['literals_literalstring.py:68:5: error[type-assertion-failure] Argument does not have asserted type `str`']
-Line 79: Unexpected errors ['literals_literalstring.py:79:21: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `bool`']
-Line 130: Unexpected errors ['literals_literalstring.py:130:5: error[invalid-assignment] Object of type `Container[str]` is not assignable to `Container[LiteralString]`']
-Line 167: Unexpected errors ['literals_literalstring.py:167:1: error[type-assertion-failure] Argument does not have asserted type `A`']
+Line 53: Unexpected errors ['literals_literalstring.py:53:5: error[type-assertion-failure] Type `str` does not match asserted type `LiteralString`']
+Line 63: Unexpected errors ['literals_literalstring.py:63:5: error[type-assertion-failure] Type `LiteralString` does not match asserted type `str`']
+Line 68: Unexpected errors ['literals_literalstring.py:68:5: error[type-assertion-failure] Type `str` does not match asserted type `LiteralString`']
+Line 167: Unexpected errors ['literals_literalstring.py:167:1: error[type-assertion-failure] Type `A` does not match asserted type `B`']
 """
 output = """
-literals_literalstring.py:23:51: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `LiteralString`
 literals_literalstring.py:36:29: error[invalid-type-form] Type arguments for `Literal` must be `None`, a literal value (int, bool, str, or bytes), or an enum member
 literals_literalstring.py:37:22: error[invalid-type-form] Type arguments for `Literal` must be `None`, a literal value (int, bool, str, or bytes), or an enum member
-literals_literalstring.py:43:5: error[invalid-assignment] Object of type `Literal["two"]` is not assignable to `Literal[""]`
-literals_literalstring.py:53:5: error[type-assertion-failure] Argument does not have asserted type `str`
-literals_literalstring.py:63:5: error[type-assertion-failure] Argument does not have asserted type `LiteralString`
-literals_literalstring.py:66:5: error[invalid-assignment] Object of type `str` is not assignable to `LiteralString`
-literals_literalstring.py:68:5: error[type-assertion-failure] Argument does not have asserted type `str`
-literals_literalstring.py:74:5: error[invalid-assignment] Object of type `Literal[3]` is not assignable to `LiteralString`
-literals_literalstring.py:75:5: error[invalid-assignment] Object of type `Literal[b"test"]` is not assignable to `LiteralString`
-literals_literalstring.py:79:21: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `bool`
-literals_literalstring.py:120:22: error[invalid-argument-type] Argument to function `literal_identity` is incorrect: Argument type `str` does not satisfy upper bound of type variable `TLiteral`
-literals_literalstring.py:130:5: error[invalid-assignment] Object of type `Container[str]` is not assignable to `Container[LiteralString]`
-literals_literalstring.py:134:51: error[invalid-argument-type] Argument to bound method `__init__` is incorrect: Argument type `str` does not satisfy upper bound of type variable `T`
-literals_literalstring.py:167:1: error[type-assertion-failure] Argument does not have asserted type `A`
-literals_literalstring.py:171:5: error[invalid-assignment] Object of type `list[LiteralString]` is not assignable to `list[str]`
+literals_literalstring.py:43:23: error[invalid-assignment] Object of type `Literal["two"]` is not assignable to `Literal[""]`
+literals_literalstring.py:53:5: error[type-assertion-failure] Type `str` does not match asserted type `LiteralString`
+literals_literalstring.py:63:5: error[type-assertion-failure] Type `LiteralString` does not match asserted type `str`
+literals_literalstring.py:66:25: error[invalid-assignment] Object of type `str` is not assignable to `LiteralString`
+literals_literalstring.py:68:5: error[type-assertion-failure] Type `str` does not match asserted type `LiteralString`
+literals_literalstring.py:74:25: error[invalid-assignment] Object of type `Literal[3]` is not assignable to `LiteralString`
+literals_literalstring.py:75:25: error[invalid-assignment] Object of type `Literal[b"test"]` is not assignable to `LiteralString`
+literals_literalstring.py:120:22: error[invalid-argument-type] Argument to function `literal_identity` is incorrect: Argument type `str` does not satisfy upper bound `LiteralString` of type variable `TLiteral`
+literals_literalstring.py:134:51: error[invalid-argument-type] Argument to bound method `__init__` is incorrect: Argument type `str` does not satisfy upper bound `LiteralString` of type variable `T`
+literals_literalstring.py:134:51: error[invalid-argument-type] Argument to bound method `__init__` is incorrect: Expected `LiteralString`, found `str`
+literals_literalstring.py:167:1: error[type-assertion-failure] Type `A` does not match asserted type `B`
+literals_literalstring.py:171:21: error[invalid-assignment] Object of type `list[LiteralString]` is not assignable to `list[str]`
 """

@@ -1,36 +1,13 @@
 conformance_automated = "Fail"
 errors_diff = """
 Line 51: Expected 1 errors
-Line 63: Expected 1 errors
-Line 122: Expected 1 errors
-Line 60: Unexpected errors ['dataclasses_transform_class.py:60:8: error[missing-argument] No argument provided for required parameter `not_a_field` of bound method `__init__`', 'dataclasses_transform_class.py:60:18: error[unknown-argument] Argument `id` does not match any known parameter of bound method `__init__`', 'dataclasses_transform_class.py:60:24: error[unknown-argument] Argument `name` does not match any known parameter of bound method `__init__`', 'dataclasses_transform_class.py:60:36: error[unknown-argument] Argument `other_name` does not match any known parameter of bound method `__init__`']
-Line 68: Unexpected errors ['dataclasses_transform_class.py:68:8: error[missing-argument] No argument provided for required parameter `not_a_field` of bound method `__init__`', 'dataclasses_transform_class.py:68:18: error[unknown-argument] Argument `id` does not match any known parameter of bound method `__init__`', 'dataclasses_transform_class.py:68:24: error[unknown-argument] Argument `name` does not match any known parameter of bound method `__init__`']
-Line 74: Unexpected errors ['dataclasses_transform_class.py:74:8: error[missing-argument] No argument provided for required parameter `not_a_field` of bound method `__init__`', 'dataclasses_transform_class.py:74:18: error[unknown-argument] Argument `id` does not match any known parameter of bound method `__init__`', 'dataclasses_transform_class.py:74:24: error[unknown-argument] Argument `name` does not match any known parameter of bound method `__init__`']
-Line 76: Unexpected errors ['dataclasses_transform_class.py:76:8: error[missing-argument] No argument provided for required parameter `not_a_field` of bound method `__init__`', 'dataclasses_transform_class.py:76:18: error[unknown-argument] Argument `id` does not match any known parameter of bound method `__init__`']
-Line 78: Unexpected errors ['dataclasses_transform_class.py:78:6: error[unsupported-operator] Operator `<` is not supported for types `Customer2` and `Customer2`']
-Line 106: Unexpected errors ['dataclasses_transform_class.py:106:24: error[unknown-argument] Argument `id` does not match any known parameter of bound method `__init__`']
-Line 119: Unexpected errors ['dataclasses_transform_class.py:119:18: error[unknown-argument] Argument `id` does not match any known parameter of bound method `__init__`', 'dataclasses_transform_class.py:119:24: error[unknown-argument] Argument `name` does not match any known parameter of bound method `__init__`']
 """
 output = """
-dataclasses_transform_class.py:60:8: error[missing-argument] No argument provided for required parameter `not_a_field` of bound method `__init__`
-dataclasses_transform_class.py:60:18: error[unknown-argument] Argument `id` does not match any known parameter of bound method `__init__`
-dataclasses_transform_class.py:60:24: error[unknown-argument] Argument `name` does not match any known parameter of bound method `__init__`
-dataclasses_transform_class.py:60:36: error[unknown-argument] Argument `other_name` does not match any known parameter of bound method `__init__`
-dataclasses_transform_class.py:66:18: error[invalid-argument-type] Argument to bound method `__init__` is incorrect: Expected `str`, found `Literal[3]`
-dataclasses_transform_class.py:66:21: error[too-many-positional-arguments] Too many positional arguments to bound method `__init__`: expected 2, got 3
-dataclasses_transform_class.py:68:8: error[missing-argument] No argument provided for required parameter `not_a_field` of bound method `__init__`
-dataclasses_transform_class.py:68:18: error[unknown-argument] Argument `id` does not match any known parameter of bound method `__init__`
-dataclasses_transform_class.py:68:24: error[unknown-argument] Argument `name` does not match any known parameter of bound method `__init__`
-dataclasses_transform_class.py:72:6: error[unsupported-operator] Operator `<` is not supported for types `Customer1` and `Customer1`
-dataclasses_transform_class.py:74:8: error[missing-argument] No argument provided for required parameter `not_a_field` of bound method `__init__`
-dataclasses_transform_class.py:74:18: error[unknown-argument] Argument `id` does not match any known parameter of bound method `__init__`
-dataclasses_transform_class.py:74:24: error[unknown-argument] Argument `name` does not match any known parameter of bound method `__init__`
-dataclasses_transform_class.py:76:8: error[missing-argument] No argument provided for required parameter `not_a_field` of bound method `__init__`
-dataclasses_transform_class.py:76:18: error[unknown-argument] Argument `id` does not match any known parameter of bound method `__init__`
-dataclasses_transform_class.py:78:6: error[unsupported-operator] Operator `<` is not supported for types `Customer2` and `Customer2`
-dataclasses_transform_class.py:82:18: error[invalid-argument-type] Argument to bound method `__init__` is incorrect: Expected `str`, found `Literal[0]`
-dataclasses_transform_class.py:82:21: error[too-many-positional-arguments] Too many positional arguments to bound method `__init__`: expected 2, got 3
-dataclasses_transform_class.py:106:24: error[unknown-argument] Argument `id` does not match any known parameter of bound method `__init__`
-dataclasses_transform_class.py:119:18: error[unknown-argument] Argument `id` does not match any known parameter of bound method `__init__`
-dataclasses_transform_class.py:119:24: error[unknown-argument] Argument `name` does not match any known parameter of bound method `__init__`
+dataclasses_transform_class.py:63:1: error[invalid-assignment] Property `id` defined in `Customer1` is read-only
+dataclasses_transform_class.py:66:8: error[missing-argument] No arguments provided for required parameters `id`, `name`
+dataclasses_transform_class.py:66:18: error[too-many-positional-arguments] Too many positional arguments: expected 0, got 2
+dataclasses_transform_class.py:72:6: error[unsupported-operator] Operator `<` is not supported between two objects of type `Customer1`
+dataclasses_transform_class.py:82:8: error[missing-argument] No argument provided for required parameter `id`
+dataclasses_transform_class.py:82:18: error[too-many-positional-arguments] Too many positional arguments: expected 0, got 2
+dataclasses_transform_class.py:122:1: error[invalid-assignment] Property `id` defined in `Customer3` is read-only
 """

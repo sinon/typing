@@ -402,7 +402,7 @@ class LocalTyTypeChecker(TyTypeChecker):
     @property
     def cmd(self) -> str:
         home = Path().home()
-        return str(home / "dev" / "ruff" / "target" / "debug" / "ty")
+        return str(home / "dev" / "rust" / "ruff" / "target" / "debug" / "ty")
 
     @property
     def name(self) -> str:
@@ -422,5 +422,5 @@ TYPE_CHECKERS: Sequence[TypeChecker] = (
     ZubanLSTypeChecker(),
     PyreflyTypeChecker(),
     TyTypeChecker(),
-    # LocalTyTypeChecker(),
+    LocalTyTypeChecker(),
 )

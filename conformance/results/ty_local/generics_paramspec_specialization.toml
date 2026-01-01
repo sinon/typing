@@ -1,17 +1,10 @@
-conformance_automated = "Fail"
+conformance_automated = "Pass"
 errors_diff = """
-Line 44: Expected 1 errors
-Line 54: Expected 1 errors
-Line 55: Expected 1 errors
-Line 60: Expected 1 errors
-Line 61: Expected 1 errors
-Line 32: Unexpected errors ['generics_paramspec_specialization.py:32:27: error[invalid-type-form] List literals are not allowed in this context in a type expression: Did you mean `tuple[int, bool]`?']
-Line 40: Unexpected errors ['generics_paramspec_specialization.py:40:27: error[invalid-type-form] List literals are not allowed in this context in a type expression: Did you mean `tuple[()]`?', 'generics_paramspec_specialization.py:40:31: error[invalid-type-form] List literals are not allowed in this context in a type expression: Did you mean `tuple[()]`?']
-Line 52: Unexpected errors ['generics_paramspec_specialization.py:52:22: error[invalid-type-form] List literals are not allowed in this context in a type expression: Did you mean `tuple[int, str, bool]`?']
 """
 output = """
-generics_paramspec_specialization.py:32:27: error[invalid-type-form] List literals are not allowed in this context in a type expression: Did you mean `tuple[int, bool]`?
-generics_paramspec_specialization.py:40:27: error[invalid-type-form] List literals are not allowed in this context in a type expression: Did you mean `tuple[()]`?
-generics_paramspec_specialization.py:40:31: error[invalid-type-form] List literals are not allowed in this context in a type expression: Did you mean `tuple[()]`?
-generics_paramspec_specialization.py:52:22: error[invalid-type-form] List literals are not allowed in this context in a type expression: Did you mean `tuple[int, str, bool]`?
+generics_paramspec_specialization.py:44:27: error[invalid-type-arguments] Type argument for `ParamSpec` must be either a list of types, `ParamSpec`, `Concatenate`, or `...`
+generics_paramspec_specialization.py:54:9: error[invalid-argument-type] Argument is incorrect: Expected `int`, found `Literal[""]`
+generics_paramspec_specialization.py:55:16: error[invalid-argument-type] Argument is incorrect: Expected `bool`, found `Literal[""]`
+generics_paramspec_specialization.py:60:9: error[invalid-argument-type] Argument is incorrect: Expected `int`, found `Literal[""]`
+generics_paramspec_specialization.py:61:16: error[invalid-argument-type] Argument is incorrect: Expected `bool`, found `Literal[""]`
 """

@@ -1,7 +1,5 @@
-conformance_automated = "Fail"
+conformance_automated = "Pass"
 errors_diff = """
-Line 86: Unexpected errors ['specialtypes_any.py:86:1: error[type-assertion-failure] Argument does not have asserted type `int`']
 """
 output = """
-specialtypes_any.py:86:1: error[type-assertion-failure] Argument does not have asserted type `int`
 """

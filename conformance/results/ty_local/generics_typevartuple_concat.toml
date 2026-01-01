@@ -1,11 +1,7 @@
 conformance_automated = "Fail"
 errors_diff = """
-Line 22: Unexpected errors ['generics_typevartuple_concat.py:22:13: error[invalid-argument-type] `@Todo(starred expression)` is not a valid argument to `Generic`']
-Line 47: Unexpected errors ['generics_typevartuple_concat.py:47:42: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `tuple[@Todo(PEP 646), ...]`']
-Line 52: Unexpected errors ['generics_typevartuple_concat.py:52:1: error[type-assertion-failure] Argument does not have asserted type `tuple[int, bool, str]`']
+Line 52: Unexpected errors ['generics_typevartuple_concat.py:52:1: error[type-assertion-failure] Type `tuple[int, bool, str]` does not match asserted type `tuple[@Todo(TypeVarTuple), ...]`']
 """
 output = """
-generics_typevartuple_concat.py:22:13: error[invalid-argument-type] `@Todo(starred expression)` is not a valid argument to `Generic`
-generics_typevartuple_concat.py:47:42: error[invalid-return-type] Function always implicitly returns `None`, which is not assignable to return type `tuple[@Todo(PEP 646), ...]`
-generics_typevartuple_concat.py:52:1: error[type-assertion-failure] Argument does not have asserted type `tuple[int, bool, str]`
+generics_typevartuple_concat.py:52:1: error[type-assertion-failure] Type `tuple[int, bool, str]` does not match asserted type `tuple[@Todo(TypeVarTuple), ...]`
 """
