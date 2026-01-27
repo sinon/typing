@@ -1,7 +1,5 @@
-conformance_automated = "Fail"
+conformance_automated = "Pass"
 errors_diff = """
-Line 26: Expected 1 errors
-Line 54: Expected 1 errors
 """
 output = """
 historical_positional.py:18:4: error[positional-only-parameter-as-kwarg] Positional-only parameter 1 (`__x`) passed as keyword argument of function `f1`

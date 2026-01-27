@@ -371,7 +371,14 @@ class TyTypeChecker(TypeChecker):
     def run_tests(self, test_files: Sequence[str]) -> dict[str, str]:
         results_dict: dict[str, str] = {}
         proc = run(
-            [self.cmd, "check", "--output-format", "concise"],
+            [
+                self.cmd,
+                "check",
+                "--output-format",
+                "concise",
+                "--exit-zero",
+                "--ignore=assert-type-unspellable-subtype",
+            ],
             stdout=PIPE,
             text=True,
             encoding="utf-8",
@@ -392,7 +399,7 @@ class TyTypeChecker(TypeChecker):
             if len(parts) < 3:
                 continue
             _, lineno, rest = parts
-            if "error" not in rest:
+            if "error" not in rest and "warning" not in rest:
                 continue
             line_to_errors[int(lineno)].append(line)
         return line_to_errors

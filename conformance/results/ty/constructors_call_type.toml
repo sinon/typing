@@ -3,6 +3,7 @@ errors_diff = """
 Line 30: Expected 1 errors
 Line 64: Expected 1 errors
 Line 72: Expected 1 errors
+Line 19: Unexpected errors ['constructors_call_type.py:19:55: warning[unused-type-ignore-comment] Unused blanket `type: ignore` directive']
 """
 output = """
 constructors_call_type.py:19:55: warning[unused-type-ignore-comment] Unused blanket `type: ignore` directive
