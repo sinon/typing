@@ -4,16 +4,14 @@ Line 40: Expected 1 errors
 Line 41: Expected 1 errors
 Line 55: Expected 1 errors
 Line 69: Expected 1 errors
-Line 121: Expected 1 errors
 Line 208: Expected 1 errors
-Line 34: Unexpected errors ['generics_basic.py:34:12: error[unsupported-operator] Operator `+` is not supported between two objects of type `AnyStr@concat`']
 Line 139: Unexpected errors ['generics_basic.py:139:5: error[type-assertion-failure] Type `int` does not match asserted type `Unknown`']
 Line 140: Unexpected errors ['generics_basic.py:140:5: error[type-assertion-failure] Type `int` does not match asserted type `Unknown`']
 Line 199: Unexpected errors ['generics_basic.py:199:5: error[type-assertion-failure] Type `Iterator[Any]` does not match asserted type `Unknown`']
 """
 output = """
-generics_basic.py:34:12: error[unsupported-operator] Operator `+` is not supported between two objects of type `AnyStr@concat`
 generics_basic.py:49:44: error[invalid-legacy-type-variable] A `TypeVar` cannot have exactly one constraint
+generics_basic.py:121:13: error[invalid-generic-class] Type parameter `T` cannot appear multiple times in `Generic` subscription
 generics_basic.py:139:5: error[type-assertion-failure] Type `int` does not match asserted type `Unknown`
 generics_basic.py:140:5: error[type-assertion-failure] Type `int` does not match asserted type `Unknown`
 generics_basic.py:157:5: error[invalid-argument-type] Method `__getitem__` of type `bound method MyMap1[str, int].__getitem__(key: str, /) -> int` cannot be called with key of type `Literal[0]` on object of type `MyMap1[str, int]`

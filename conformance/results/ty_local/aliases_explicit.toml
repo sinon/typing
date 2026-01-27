@@ -1,58 +1,28 @@
 conformance_automated = "Fail"
 errors_diff = """
-Line 67: Expected 1 errors
-Line 68: Expected 1 errors
-Line 69: Expected 1 errors
-Line 70: Expected 1 errors
-Line 71: Expected 1 errors
-Line 79: Expected 1 errors
-Line 80: Expected 1 errors
-Line 81: Expected 1 errors
-Line 82: Expected 1 errors
-Line 83: Expected 1 errors
-Line 84: Expected 1 errors
-Line 85: Expected 1 errors
-Line 86: Expected 1 errors
 Line 87: Expected 1 errors
-Line 88: Expected 1 errors
-Line 89: Expected 1 errors
-Line 90: Expected 1 errors
-Line 91: Expected 1 errors
 Line 100: Expected 1 errors
-Line 102: Expected 1 errors
-Line 41: Unexpected errors ['aliases_explicit.py:41:24: error[invalid-type-form] List literals are not allowed in this context in a type expression: Did you mean `tuple[str, str]`?']
-Line 45: Unexpected errors ['aliases_explicit.py:45:10: error[invalid-type-form] Variable of type `Literal["int | str"]` is not allowed in a type expression']
-Line 49: Unexpected errors ['aliases_explicit.py:49:5: error[type-assertion-failure] Argument does not have asserted type `int | str`']
-Line 50: Unexpected errors ['aliases_explicit.py:50:5: error[type-assertion-failure] Argument does not have asserted type `int | None`']
-Line 51: Unexpected errors ['aliases_explicit.py:51:5: error[type-assertion-failure] Argument does not have asserted type `list[int | None]`']
-Line 52: Unexpected errors ['aliases_explicit.py:52:5: error[type-assertion-failure] Argument does not have asserted type `list[int]`']
-Line 53: Unexpected errors ['aliases_explicit.py:53:5: error[type-assertion-failure] Argument does not have asserted type `tuple[str, ...] | list[str]`']
-Line 54: Unexpected errors ['aliases_explicit.py:54:5: error[type-assertion-failure] Argument does not have asserted type `tuple[int, int, int, str]`']
-Line 55: Unexpected errors ['aliases_explicit.py:55:5: error[type-assertion-failure] Argument does not have asserted type `(...) -> int`']
-Line 56: Unexpected errors ['aliases_explicit.py:56:5: error[type-assertion-failure] Argument does not have asserted type `(int, str, /) -> str`']
-Line 57: Unexpected errors ['aliases_explicit.py:57:5: error[type-assertion-failure] Argument does not have asserted type `(int, str, str, /) -> None`']
-Line 59: Unexpected errors ['aliases_explicit.py:59:5: error[type-assertion-failure] Argument does not have asserted type `int | str | None | list[list[int]]`']
-Line 60: Unexpected errors ['aliases_explicit.py:60:5: error[type-assertion-failure] Argument does not have asserted type `(...) -> None`']
-Line 61: Unexpected errors ['aliases_explicit.py:61:5: error[type-assertion-failure] Argument does not have asserted type `int | str`']
-Line 63: Unexpected errors ['aliases_explicit.py:63:5: error[type-assertion-failure] Argument does not have asserted type `Literal[3, 4, 5] | None`']
-Line 98: Unexpected errors ['aliases_explicit.py:98:1: error[type-assertion-failure] Argument does not have asserted type `list[str]`']
+Line 57: Unexpected errors ['aliases_explicit.py:57:5: error[type-assertion-failure] Type `(int, str, str, /) -> None` does not match asserted type `Unknown`']
 """
 output = """
-aliases_explicit.py:41:24: error[invalid-type-form] List literals are not allowed in this context in a type expression: Did you mean `tuple[str, str]`?
-aliases_explicit.py:45:10: error[invalid-type-form] Variable of type `Literal["int | str"]` is not allowed in a type expression
-aliases_explicit.py:49:5: error[type-assertion-failure] Argument does not have asserted type `int | str`
-aliases_explicit.py:50:5: error[type-assertion-failure] Argument does not have asserted type `int | None`
-aliases_explicit.py:51:5: error[type-assertion-failure] Argument does not have asserted type `list[int | None]`
-aliases_explicit.py:52:5: error[type-assertion-failure] Argument does not have asserted type `list[int]`
-aliases_explicit.py:53:5: error[type-assertion-failure] Argument does not have asserted type `tuple[str, ...] | list[str]`
-aliases_explicit.py:54:5: error[type-assertion-failure] Argument does not have asserted type `tuple[int, int, int, str]`
-aliases_explicit.py:55:5: error[type-assertion-failure] Argument does not have asserted type `(...) -> int`
-aliases_explicit.py:56:5: error[type-assertion-failure] Argument does not have asserted type `(int, str, /) -> str`
-aliases_explicit.py:57:5: error[type-assertion-failure] Argument does not have asserted type `(int, str, str, /) -> None`
-aliases_explicit.py:59:5: error[type-assertion-failure] Argument does not have asserted type `int | str | None | list[list[int]]`
-aliases_explicit.py:60:5: error[type-assertion-failure] Argument does not have asserted type `(...) -> None`
-aliases_explicit.py:61:5: error[type-assertion-failure] Argument does not have asserted type `int | str`
-aliases_explicit.py:63:5: error[type-assertion-failure] Argument does not have asserted type `Literal[3, 4, 5] | None`
-aliases_explicit.py:98:1: error[type-assertion-failure] Argument does not have asserted type `list[str]`
+aliases_explicit.py:57:5: error[type-assertion-failure] Type `(int, str, str, /) -> None` does not match asserted type `Unknown`
+aliases_explicit.py:67:9: error[not-subscriptable] Cannot subscript non-generic type
+aliases_explicit.py:68:9: error[not-subscriptable] Cannot subscript non-generic type: `<class 'list[int | None]'>` is already specialized
+aliases_explicit.py:69:29: error[invalid-type-arguments] Too many type arguments: expected 1, got 2
+aliases_explicit.py:70:29: error[invalid-type-arguments] Too many type arguments: expected 1, got 2
+aliases_explicit.py:71:24: error[invalid-type-arguments] Type argument for `ParamSpec` must be either a list of types, `ParamSpec`, `Concatenate`, or `...`
+aliases_explicit.py:79:1: error[invalid-type-form] Invalid right-hand side for `typing.TypeAlias` assignment
+aliases_explicit.py:80:1: error[invalid-type-form] Invalid right-hand side for `typing.TypeAlias` assignment
+aliases_explicit.py:81:1: error[invalid-type-form] Invalid right-hand side for `typing.TypeAlias` assignment
+aliases_explicit.py:82:1: error[invalid-type-form] Invalid right-hand side for `typing.TypeAlias` assignment
+aliases_explicit.py:83:1: error[invalid-type-form] Invalid right-hand side for `typing.TypeAlias` assignment
+aliases_explicit.py:84:1: error[invalid-type-form] Invalid right-hand side for `typing.TypeAlias` assignment
+aliases_explicit.py:85:1: error[invalid-type-form] Invalid right-hand side for `typing.TypeAlias` assignment
+aliases_explicit.py:86:1: error[invalid-type-form] Invalid right-hand side for `typing.TypeAlias` assignment
+aliases_explicit.py:88:1: error[invalid-type-form] Invalid right-hand side for `typing.TypeAlias` assignment
+aliases_explicit.py:89:1: error[invalid-type-form] Invalid right-hand side for `typing.TypeAlias` assignment
+aliases_explicit.py:90:1: error[invalid-type-form] Invalid right-hand side for `typing.TypeAlias` assignment
+aliases_explicit.py:91:1: error[invalid-type-form] Invalid right-hand side for `typing.TypeAlias` assignment
 aliases_explicit.py:101:6: error[call-non-callable] Object of type `UnionType` is not callable
+aliases_explicit.py:102:5: error[not-subscriptable] Cannot subscript non-generic type
 """

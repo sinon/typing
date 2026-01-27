@@ -1,7 +1,7 @@
 conformance_automated = "Fail"
 errors_diff = """
-Line 86: Unexpected errors ['specialtypes_any.py:86:1: error[type-assertion-failure] Argument does not have asserted type `int`']
+Line 86: Unexpected errors ['specialtypes_any.py:86:1: error[type-assertion-failure] Type `int` does not match asserted type `int | @Todo(instance attribute on class with dynamic base)`']
 """
 output = """
-specialtypes_any.py:86:1: error[type-assertion-failure] Argument does not have asserted type `int`
+specialtypes_any.py:86:1: error[type-assertion-failure] Type `int` does not match asserted type `int | @Todo(instance attribute on class with dynamic base)`
 """

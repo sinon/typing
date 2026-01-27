@@ -2,17 +2,13 @@ conformance_automated = "Fail"
 errors_diff = """
 Line 42: Expected 1 errors
 Line 107: Expected 1 errors
-Line 25: Unexpected errors ['constructors_call_init.py:25:1: error[type-assertion-failure] Argument does not have asserted type `Class1[int | float]`']
-Line 75: Unexpected errors ['constructors_call_init.py:75:1: error[type-assertion-failure] Argument does not have asserted type `Class5[int | float]`']
-Line 91: Unexpected errors ['constructors_call_init.py:91:1: error[type-assertion-failure] Argument does not have asserted type `Class6[int, str]`']
-Line 99: Unexpected errors ['constructors_call_init.py:99:1: error[type-assertion-failure] Argument does not have asserted type `Class7[str, int]`']
+Line 91: Unexpected errors ['constructors_call_init.py:91:1: error[type-assertion-failure] Type `Class6[int, str]` does not match asserted type `Class6[Unknown, Unknown]`']
+Line 99: Unexpected errors ['constructors_call_init.py:99:1: error[type-assertion-failure] Type `Class7[str, int]` does not match asserted type `Class7[Unknown, Unknown]`']
 """
 output = """
 constructors_call_init.py:21:13: error[invalid-argument-type] Argument to bound method `__init__` is incorrect: Expected `int`, found `float`
-constructors_call_init.py:25:1: error[type-assertion-failure] Argument does not have asserted type `Class1[int | float]`
 constructors_call_init.py:56:1: error[invalid-argument-type] Argument to bound method `__init__` is incorrect: Expected `Class4[int]`, found `Class4[str]`
-constructors_call_init.py:75:1: error[type-assertion-failure] Argument does not have asserted type `Class5[int | float]`
-constructors_call_init.py:91:1: error[type-assertion-failure] Argument does not have asserted type `Class6[int, str]`
-constructors_call_init.py:99:1: error[type-assertion-failure] Argument does not have asserted type `Class7[str, int]`
+constructors_call_init.py:91:1: error[type-assertion-failure] Type `Class6[int, str]` does not match asserted type `Class6[Unknown, Unknown]`
+constructors_call_init.py:99:1: error[type-assertion-failure] Type `Class7[str, int]` does not match asserted type `Class7[Unknown, Unknown]`
 constructors_call_init.py:130:9: error[too-many-positional-arguments] Too many positional arguments to bound method `__init__`: expected 1, got 2
 """

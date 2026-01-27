@@ -1,6 +1,5 @@
 conformance_automated = "Fail"
 errors_diff = """
-Line 68: Expected 1 errors
 Line 98: Expected 1 errors
 Line 45: Unexpected errors ['generics_base_class.py:45:5: error[type-assertion-failure] Type `Iterator[int]` does not match asserted type `Unknown`']
 """
@@ -11,4 +10,5 @@ generics_base_class.py:30:8: error[invalid-type-form] `typing.Generic` is not al
 generics_base_class.py:45:5: error[type-assertion-failure] Type `Iterator[int]` does not match asserted type `Unknown`
 generics_base_class.py:49:38: error[invalid-type-arguments] Too many type arguments to class `LinkedList`: expected 1, got 2
 generics_base_class.py:61:30: error[invalid-type-arguments] Too many type arguments to class `MyDict`: expected 1, got 2
+generics_base_class.py:68:17: error[invalid-generic-class] Type parameter `T` cannot appear multiple times in `Generic` subscription
 """

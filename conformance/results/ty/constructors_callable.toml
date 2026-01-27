@@ -3,14 +3,15 @@ errors_diff = """
 Line 66: Expected 1 errors
 Line 67: Expected 1 errors
 Line 68: Expected 1 errors
+Line 186: Expected 1 errors
+Line 197: Expected 1 errors
 Line 102: Unexpected errors ['constructors_callable.py:102:5: error[type-assertion-failure] Type `Never` does not match asserted type `Unknown`']
 Line 107: Unexpected errors ['constructors_callable.py:107:5: error[type-assertion-failure] Type `Never` does not match asserted type `Unknown`']
 Line 143: Unexpected errors ["constructors_callable.py:143:27: error[invalid-argument-type] Argument to function `accepts_callable` is incorrect: Expected `() -> Any | Class6Any`, found `<class 'Class6Any'>`"]
 Line 145: Unexpected errors ['constructors_callable.py:145:1: error[type-assertion-failure] Type `Any` does not match asserted type `Any | Class6Any`']
 Line 166: Unexpected errors ['constructors_callable.py:166:1: error[type-assertion-failure] Type `Class7[int]` does not match asserted type `Class7[int] | Class7[str]`']
 Line 167: Unexpected errors ['constructors_callable.py:167:1: error[type-assertion-failure] Type `Class7[str]` does not match asserted type `Class7[int] | Class7[str]`']
-Line 185: Unexpected errors ['constructors_callable.py:185:1: error[type-assertion-failure] Type `Class8[str]` does not match asserted type `Class8[T@Class8]`', 'constructors_callable.py:185:16: error[invalid-argument-type] Argument is incorrect: Expected `list[T@Class8]`, found `list[Unknown | str]`', 'constructors_callable.py:185:22: error[invalid-argument-type] Argument is incorrect: Expected `list[T@Class8]`, found `list[Unknown | str]`']
-Line 196: Unexpected errors ['constructors_callable.py:196:16: error[invalid-argument-type] Argument is incorrect: Expected `list[T@__init__]`, found `list[Unknown | str]`', 'constructors_callable.py:196:22: error[invalid-argument-type] Argument is incorrect: Expected `list[T@__init__]`, found `list[Unknown | str]`']
+Line 185: Unexpected errors ['constructors_callable.py:185:1: error[type-assertion-failure] Type `Class8[str]` does not match asserted type `Class8[Unknown | str]`']
 """
 output = """
 constructors_callable.py:36:13: info[revealed-type] Revealed type: `(x: int) -> Class1`
@@ -33,18 +34,10 @@ constructors_callable.py:143:27: error[invalid-argument-type] Argument to functi
 constructors_callable.py:144:13: info[revealed-type] Revealed type: `() -> Any | Class6Any`
 constructors_callable.py:145:1: error[type-assertion-failure] Type `Any` does not match asserted type `Any | Class6Any`
 constructors_callable.py:146:8: error[too-many-positional-arguments] Too many positional arguments: expected 0, got 1
-constructors_callable.py:164:5: info[revealed-type] Revealed type: `Overload[(x: int) -> Class7[int] | Class7[str], (x: str) -> Class7[int] | Class7[str]]`
+constructors_callable.py:164:5: info[revealed-type] Revealed type: `Overload[[T](x: int) -> Class7[int] | Class7[str], [T](x: str) -> Class7[int] | Class7[str]]`
 constructors_callable.py:166:1: error[type-assertion-failure] Type `Class7[int]` does not match asserted type `Class7[int] | Class7[str]`
 constructors_callable.py:167:1: error[type-assertion-failure] Type `Class7[str]` does not match asserted type `Class7[int] | Class7[str]`
-constructors_callable.py:184:13: info[revealed-type] Revealed type: `(x: list[T@Class8], y: list[T@Class8]) -> Class8[T@Class8]`
-constructors_callable.py:185:1: error[type-assertion-failure] Type `Class8[str]` does not match asserted type `Class8[T@Class8]`
-constructors_callable.py:185:16: error[invalid-argument-type] Argument is incorrect: Expected `list[T@Class8]`, found `list[Unknown | str]`
-constructors_callable.py:185:22: error[invalid-argument-type] Argument is incorrect: Expected `list[T@Class8]`, found `list[Unknown | str]`
-constructors_callable.py:186:4: error[invalid-argument-type] Argument is incorrect: Expected `list[T@Class8]`, found `list[Unknown | int]`
-constructors_callable.py:186:9: error[invalid-argument-type] Argument is incorrect: Expected `list[T@Class8]`, found `list[Unknown | str]`
-constructors_callable.py:195:13: info[revealed-type] Revealed type: `(x: list[T@__init__], y: list[T@__init__]) -> Class9`
-constructors_callable.py:196:16: error[invalid-argument-type] Argument is incorrect: Expected `list[T@__init__]`, found `list[Unknown | str]`
-constructors_callable.py:196:22: error[invalid-argument-type] Argument is incorrect: Expected `list[T@__init__]`, found `list[Unknown | str]`
-constructors_callable.py:197:4: error[invalid-argument-type] Argument is incorrect: Expected `list[T@__init__]`, found `list[Unknown | int]`
-constructors_callable.py:197:9: error[invalid-argument-type] Argument is incorrect: Expected `list[T@__init__]`, found `list[Unknown | str]`
+constructors_callable.py:184:13: info[revealed-type] Revealed type: `[T](x: list[T], y: list[T]) -> Class8[T]`
+constructors_callable.py:185:1: error[type-assertion-failure] Type `Class8[str]` does not match asserted type `Class8[Unknown | str]`
+constructors_callable.py:195:13: info[revealed-type] Revealed type: `[T](x: list[T], y: list[T]) -> Class9`
 """

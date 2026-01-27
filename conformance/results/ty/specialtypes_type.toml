@@ -15,7 +15,7 @@ Line 169: Unexpected errors ['specialtypes_type.py:169:21: error[invalid-assignm
 Line 175: Unexpected errors ['specialtypes_type.py:175:16: error[invalid-return-type] Return type does not match returned value: expected `type[T@ClassA]`, found `type`']
 """
 output = """
-specialtypes_type.py:56:7: error[invalid-argument-type] Argument to function `func4` is incorrect: Expected `type[BasicUser] | type[ProUser]`, found `<class 'TeamUser'>`
+specialtypes_type.py:56:7: error[invalid-argument-type] Argument to function `func4` is incorrect: Expected `type[BasicUser | ProUser]`, found `<class 'TeamUser'>`
 specialtypes_type.py:70:7: error[invalid-argument-type] Argument to function `func5` is incorrect: Expected `type[Unknown]`, found `<special-form 'typing.Callable'>`
 specialtypes_type.py:76:17: error[invalid-type-form] type[...] must have exactly one type argument
 specialtypes_type.py:84:5: error[type-assertion-failure] Type `type[Any]` does not match asserted type `type`

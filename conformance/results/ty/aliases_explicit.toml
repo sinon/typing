@@ -1,18 +1,6 @@
 conformance_automated = "Fail"
 errors_diff = """
-Line 79: Expected 1 errors
-Line 80: Expected 1 errors
-Line 81: Expected 1 errors
-Line 82: Expected 1 errors
-Line 83: Expected 1 errors
-Line 84: Expected 1 errors
-Line 85: Expected 1 errors
-Line 86: Expected 1 errors
 Line 87: Expected 1 errors
-Line 88: Expected 1 errors
-Line 89: Expected 1 errors
-Line 90: Expected 1 errors
-Line 91: Expected 1 errors
 Line 100: Expected 1 errors
 Line 57: Unexpected errors ['aliases_explicit.py:57:5: error[type-assertion-failure] Type `(int, str, str, /) -> None` does not match asserted type `Unknown`']
 """
@@ -23,6 +11,18 @@ aliases_explicit.py:68:9: error[not-subscriptable] Cannot subscript non-generic 
 aliases_explicit.py:69:29: error[invalid-type-arguments] Too many type arguments: expected 1, got 2
 aliases_explicit.py:70:29: error[invalid-type-arguments] Too many type arguments: expected 1, got 2
 aliases_explicit.py:71:24: error[invalid-type-arguments] Type argument for `ParamSpec` must be either a list of types, `ParamSpec`, `Concatenate`, or `...`
+aliases_explicit.py:79:1: error[invalid-type-form] Invalid right-hand side for `typing.TypeAlias` assignment
+aliases_explicit.py:80:1: error[invalid-type-form] Invalid right-hand side for `typing.TypeAlias` assignment
+aliases_explicit.py:81:1: error[invalid-type-form] Invalid right-hand side for `typing.TypeAlias` assignment
+aliases_explicit.py:82:1: error[invalid-type-form] Invalid right-hand side for `typing.TypeAlias` assignment
+aliases_explicit.py:83:1: error[invalid-type-form] Invalid right-hand side for `typing.TypeAlias` assignment
+aliases_explicit.py:84:1: error[invalid-type-form] Invalid right-hand side for `typing.TypeAlias` assignment
+aliases_explicit.py:85:1: error[invalid-type-form] Invalid right-hand side for `typing.TypeAlias` assignment
+aliases_explicit.py:86:1: error[invalid-type-form] Invalid right-hand side for `typing.TypeAlias` assignment
+aliases_explicit.py:88:1: error[invalid-type-form] Invalid right-hand side for `typing.TypeAlias` assignment
+aliases_explicit.py:89:1: error[invalid-type-form] Invalid right-hand side for `typing.TypeAlias` assignment
+aliases_explicit.py:90:1: error[invalid-type-form] Invalid right-hand side for `typing.TypeAlias` assignment
+aliases_explicit.py:91:1: error[invalid-type-form] Invalid right-hand side for `typing.TypeAlias` assignment
 aliases_explicit.py:101:6: error[call-non-callable] Object of type `UnionType` is not callable
 aliases_explicit.py:102:5: error[not-subscriptable] Cannot subscript non-generic type
 """

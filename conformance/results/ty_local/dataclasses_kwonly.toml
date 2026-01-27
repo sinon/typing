@@ -1,12 +1,8 @@
-conformance_automated = "Fail"
+conformance_automated = "Pass"
 errors_diff = """
-Line 61: Unexpected errors ['dataclasses_kwonly.py:61:1: error[missing-argument] No argument provided for required parameter `c`', 'dataclasses_kwonly.py:61:9: error[invalid-argument-type] Argument is incorrect: Expected `int`, found `float`', 'dataclasses_kwonly.py:61:14: error[parameter-already-assigned] Multiple values provided for parameter `b`']
 """
 output = """
 dataclasses_kwonly.py:23:11: error[too-many-positional-arguments] Too many positional arguments: expected 1, got 2
 dataclasses_kwonly.py:38:11: error[too-many-positional-arguments] Too many positional arguments: expected 1, got 2
 dataclasses_kwonly.py:53:11: error[too-many-positional-arguments] Too many positional arguments: expected 1, got 2
-dataclasses_kwonly.py:61:1: error[missing-argument] No argument provided for required parameter `c`
-dataclasses_kwonly.py:61:9: error[invalid-argument-type] Argument is incorrect: Expected `int`, found `float`
-dataclasses_kwonly.py:61:14: error[parameter-already-assigned] Multiple values provided for parameter `b`
 """
