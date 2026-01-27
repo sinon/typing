@@ -1,10 +1,5 @@
-conformant = "Partial"
-notes = """
-Does not detect inconsistent type variable ordering in multi-inheritance.
-"""
 conformance_automated = "Fail"
 errors_diff = """
-Line 98: Expected 1 errors
 Line 38: Unexpected errors ['generics_base_class.py:38: error: Can only assign concrete classes to a variable of type "type[Iterable]"  [misc]']
 """
 output = """
@@ -15,4 +10,5 @@ generics_base_class.py:38: error: Can only assign concrete classes to a variable
 generics_base_class.py:49: error: "LinkedList" expects 1 type argument, but 2 given  [type-arg]
 generics_base_class.py:61: error: "MyDict" expects 1 type argument, but 2 given  [type-arg]
 generics_base_class.py:68: error: Duplicate type variables in Generic[...] or Protocol[...]  [misc]
+generics_base_class.py:98: error: Cannot determine consistent method resolution order (MRO) for "BadChild"  [misc]
 """

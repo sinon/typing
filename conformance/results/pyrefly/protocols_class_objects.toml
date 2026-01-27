@@ -1,7 +1,3 @@
-conformant = "Partial"
-notes = """
-Does not require concrete classes to be passed to type[Proto]
-"""
 conformance_automated = "Fail"
 errors_diff = """
 Line 104: Expected 1 errors

@@ -1,7 +1,3 @@
-conformant = "Partial"
-notes = """
-Does not check TypeVar type constructor using upper bound's __new__
-"""
 conformance_automated = "Fail"
 errors_diff = """
 Line 64: Expected 1 errors

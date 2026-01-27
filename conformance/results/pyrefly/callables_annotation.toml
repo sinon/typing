@@ -1,7 +1,3 @@
-conformant = "Partial"
-notes = """
-Parameter names are lost when resolving ParamSpec
-"""
 conformance_automated = "Fail"
 errors_diff = """
 Line 156: Unexpected errors ['`Proto4[Ellipsis]` is not assignable to `Proto3` [bad-assignment]']
