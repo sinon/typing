@@ -37,7 +37,7 @@ class TypeChecker(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    def run_tests(self, test_files: Sequence[str]) -> dict[str, str]:
+    def run_tests(self) -> dict[str, str]:
         """
         Runs the type checker on the specified test file and
         returns the output.
@@ -95,7 +95,7 @@ class MypyTypeChecker(TypeChecker):
         version = version.split(" (")[0]
         return version
 
-    def run_tests(self, test_files: Sequence[str]) -> dict[str, str]:
+    def run_tests(self) -> dict[str, str]:
         command = [
             sys.executable,
             "-m",
@@ -162,7 +162,7 @@ class PyrightTypeChecker(TypeChecker):
         )
         return proc.stdout.strip()
 
-    def run_tests(self, test_files: Sequence[str]) -> dict[str, str]:
+    def run_tests(self) -> dict[str, str]:
         command = [sys.executable, "-m", "pyright", ".", "--outputjson"]
         proc = run(command, stdout=PIPE, text=True, encoding="utf-8")
         output_json = json.loads(proc.stdout)
@@ -227,7 +227,7 @@ class ZubanLSTypeChecker(MypyTypeChecker):
         proc = run(["zuban", "--version"], stdout=PIPE, text=True)
         return proc.stdout.strip()
 
-    def run_tests(self, test_files: Sequence[str]) -> dict[str, str]:
+    def run_tests(self) -> dict[str, str]:
         command = [
             "zuban",
             "check",
@@ -287,7 +287,7 @@ class PyreflyTypeChecker(TypeChecker):
         version = proc.stdout.strip()
         return version
 
-    def run_tests(self, test_files: Sequence[str]) -> dict[str, str]:
+    def run_tests(self) -> dict[str, str]:
         proc = run(
             ["pyrefly", "check", "--output-format", "min-text", "--summary=none"],
             stdout=PIPE,
@@ -368,7 +368,7 @@ class TyTypeChecker(TypeChecker):
         proc = run([self.cmd, "--version"], stdout=PIPE, text=True)
         return proc.stdout.strip()
 
-    def run_tests(self, test_files: Sequence[str]) -> dict[str, str]:
+    def run_tests(self) -> dict[str, str]:
         results_dict: dict[str, str] = {}
         proc = run(
             [
@@ -378,6 +378,8 @@ class TyTypeChecker(TypeChecker):
                 "concise",
                 "--exit-zero",
                 "--ignore=assert-type-unspellable-subtype",
+                "--error=invalid-legacy-positional-parameter",
+                "--error=deprecated",
             ],
             stdout=PIPE,
             text=True,
