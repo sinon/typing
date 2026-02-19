@@ -1,0 +1,12 @@
+conformance_automated = "Fail"
+errors_diff = """
+Line 7: Unexpected errors ['directives_type_ignore_file2.py:7:1: warning[unused-type-ignore-comment] Unused blanket `type: ignore` directive']
+Line 9: Unexpected errors ['directives_type_ignore_file2.py:9:7: warning[unused-type-ignore-comment] Unused blanket `type: ignore` directive']
+Line 12: Unexpected errors ['directives_type_ignore_file2.py:12:17: warning[unused-type-ignore-comment] Unused blanket `type: ignore` directive']
+"""
+output = """
+directives_type_ignore_file2.py:7:1: warning[unused-type-ignore-comment] Unused blanket `type: ignore` directive
+directives_type_ignore_file2.py:9:7: warning[unused-type-ignore-comment] Unused blanket `type: ignore` directive
+directives_type_ignore_file2.py:12:17: warning[unused-type-ignore-comment] Unused blanket `type: ignore` directive
+directives_type_ignore_file2.py:14:10: error[invalid-assignment] Object of type `Literal[""]` is not assignable to `int`
+"""

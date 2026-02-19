@@ -8,16 +8,14 @@ Tests the warnings.deprecated function.
 # See also https://peps.python.org/pep-0702/
 
 from typing import Protocol, override
+
+import _directives_deprecated_library as library
 from typing_extensions import deprecated
 
 # > Type checkers should produce a diagnostic whenever they encounter a usage of an object
 # > marked as deprecated. [...] For deprecated classes and functions, this includes:
-
 # > * `from` imports
-
-from _directives_deprecated_library import Ham  # E: Use of deprecated class Ham
-import _directives_deprecated_library as library
-
+from ._directives_deprecated_library import Ham  # E: Use of deprecated class Ham
 
 # > * References through module, class, or instance attributes
 
@@ -50,8 +48,7 @@ spam.shape += "cube"  # E: Use of deprecated property setter Spam.shape
 
 class Invocable:
     @deprecated("Deprecated")
-    def __call__(self) -> None:
-        ...
+    def __call__(self) -> None: ...
 
 
 invocable = Invocable()
@@ -62,8 +59,7 @@ invocable()  # E: Use of deprecated method __call__
 
 
 @deprecated("Deprecated")
-def lorem() -> None:
-    ...
+def lorem() -> None: ...
 
 
 lorem()  # E: Use of deprecated function lorem
@@ -78,11 +74,9 @@ lorem()  # E: Use of deprecated function lorem
 
 class SupportsFoo1(Protocol):
     @deprecated("Deprecated")
-    def foo(self) -> None:
-        ...
+    def foo(self) -> None: ...
 
-    def bar(self) -> None:
-        ...
+    def bar(self) -> None: ...
 
 
 class FooConcrete1(SupportsFoo1):
@@ -90,8 +84,7 @@ class FooConcrete1(SupportsFoo1):
     def foo(self) -> None:  # E?: Implementation of deprecated method foo
         ...
 
-    def bar(self) -> None:
-        ...
+    def bar(self) -> None: ...
 
 
 def foo_it(f: SupportsFoo1) -> None:
@@ -100,18 +93,15 @@ def foo_it(f: SupportsFoo1) -> None:
 
 
 class SupportsFoo2(Protocol):
-    def foo(self) -> None:
-        ...
+    def foo(self) -> None: ...
 
 
 class FooConcrete2:
     @deprecated("Deprecated")
-    def foo(self) -> None:
-        ...
+    def foo(self) -> None: ...
 
 
-def takes_foo(f: SupportsFoo2) -> None:
-    ...
+def takes_foo(f: SupportsFoo2) -> None: ...
 
 
 def caller(c: FooConcrete2) -> None:

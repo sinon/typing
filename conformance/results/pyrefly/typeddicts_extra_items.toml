@@ -1,4 +1,3 @@
-conformant = "Pass"
 conformance_automated = "Pass"
 errors_diff = """
 """
@@ -17,7 +16,7 @@ ERROR typeddicts_extra_items.py:117:57-73: `NotRequired` is not allowed in this 
 ERROR typeddicts_extra_items.py:128:15-21: Key `name` in TypedDict `MovieEI` may not be deleted [unsupported-delete]
 ERROR typeddicts_extra_items.py:143:48-52: Unexpected keyword argument `year` in function `unpack_no_extra` [unexpected-keyword]
 ERROR typeddicts_extra_items.py:174:7-12: Cannot change the non-read-only extra items type of TypedDict `Parent` [bad-typed-dict]
-ERROR typeddicts_extra_items.py:185:5-9: TypedDict `MovieBase2` with non-read-only `extra_items` cannot be extended with required extra item `year` [bad-typed-dict-key]
+ERROR typeddicts_extra_items.py:185:5-9: Cannot add required field `year` to TypedDict `MovieBase2` with non-read-only `extra_items` [bad-typed-dict-key]
 ERROR typeddicts_extra_items.py:188:5-9: `int` is not consistent with `extra_items` type `int | None` of TypedDict `MovieBase2` [bad-typed-dict-key]
 ERROR typeddicts_extra_items.py:197:5-14: `str` is not assignable to `extra_items` type `int | None` of TypedDict `BookBase` [bad-typed-dict-key]
 ERROR typeddicts_extra_items.py:215:22-30: `MovieDetails` is not assignable to `MovieBase2` [bad-assignment]

@@ -1,0 +1,24 @@
+conformance_automated = "Fail"
+errors_diff = """
+Line 50: Expected 1 errors
+Line 54: Expected 1 errors
+Line 78: Expected 1 errors
+Line 87: Expected 1 errors
+Line 94: Expected 1 errors
+Line 95: Expected 1 errors
+Line 96: Expected 1 errors
+Line 14: Unexpected errors ['generics_scoping.py:14:1: error[type-assertion-failure] Type `int` does not match asserted type `Literal[1]`']
+Line 15: Unexpected errors ['generics_scoping.py:15:1: error[type-assertion-failure] Type `str` does not match asserted type `Literal["a"]`']
+Line 42: Unexpected errors ['generics_scoping.py:42:1: error[type-assertion-failure] Type `str` does not match asserted type `Literal["abc"]`']
+Line 43: Unexpected errors ['generics_scoping.py:43:1: error[type-assertion-failure] Type `bytes` does not match asserted type `Literal[b"abc"]`']
+"""
+output = """
+generics_scoping.py:14:1: error[type-assertion-failure] Type `int` does not match asserted type `Literal[1]`
+generics_scoping.py:15:1: error[type-assertion-failure] Type `str` does not match asserted type `Literal["a"]`
+generics_scoping.py:29:10: error[invalid-argument-type] Argument to bound method `meth_2` is incorrect: Expected `int`, found `Literal["a"]`
+generics_scoping.py:42:1: error[type-assertion-failure] Type `str` does not match asserted type `Literal["abc"]`
+generics_scoping.py:43:1: error[type-assertion-failure] Type `bytes` does not match asserted type `Literal[b"abc"]`
+generics_scoping.py:65:11: error[invalid-generic-class] Generic class `MyGeneric` must not reference type variables bound in an enclosing scope: `T` referenced in class definition here
+generics_scoping.py:65:11: error[invalid-generic-class] Generic class `MyGeneric` must not reference type variables bound in an enclosing scope: `T` referenced in class definition here
+generics_scoping.py:75:11: error[invalid-generic-class] Generic class `Bad` must not reference type variables bound in an enclosing scope: `T` referenced in class definition here
+"""

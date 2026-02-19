@@ -1,0 +1,17 @@
+conformance_automated = "Fail"
+errors_diff = """
+Line 28: Expected 1 errors
+Line 39: Expected 1 errors
+Line 40: Expected 1 errors
+Line 42: Expected 1 errors
+Line 45: Expected 1 errors
+Line 46: Expected 1 errors
+Line 55: Expected 1 errors
+"""
+output = """
+directives_deprecated.py:18:7: error[unresolved-import] Cannot resolve imported module `._directives_deprecated_library` - did you mean `_directives_deprecated_library`?
+directives_deprecated.py:22:9: warning[deprecated] The function `norwegian_blue` is deprecated: It is pining for the fjords
+directives_deprecated.py:23:13: warning[deprecated] The function `norwegian_blue` is deprecated: It is pining for the fjords
+directives_deprecated.py:65:1: warning[deprecated] The function `lorem` is deprecated: Deprecated
+directives_deprecated.py:91:7: warning[deprecated] The function `foo` is deprecated: Deprecated
+"""

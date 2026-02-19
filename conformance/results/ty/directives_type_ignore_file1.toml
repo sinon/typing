@@ -1,0 +1,9 @@
+conformance_automated = "Fail"
+errors_diff = """
+Line 11: Unexpected errors ['directives_type_ignore_file1.py:11:7: warning[unused-type-ignore-comment] Unused blanket `type: ignore` directive']
+Line 14: Unexpected errors ['directives_type_ignore_file1.py:14:17: warning[unused-type-ignore-comment] Unused blanket `type: ignore` directive']
+"""
+output = """
+directives_type_ignore_file1.py:11:7: warning[unused-type-ignore-comment] Unused blanket `type: ignore` directive
+directives_type_ignore_file1.py:14:17: warning[unused-type-ignore-comment] Unused blanket `type: ignore` directive
+"""

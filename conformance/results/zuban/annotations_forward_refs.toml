@@ -1,7 +1,3 @@
-conformant = "Partial"
-notes = """
-Incorrectly generates error for quoted type defined in class scope.
-"""
 conformance_automated = "Fail"
 errors_diff = """
 Line 82: Unexpected errors ['annotations_forward_refs.py:82: error: Name "str" is not defined  [name-defined]']

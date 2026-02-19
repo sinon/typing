@@ -29,6 +29,16 @@ def generate_summary_html(root_dir: Path) -> str:
     test_groups = get_test_groups(root_dir)
     test_cases = get_test_cases(test_groups, root_dir / "tests")
 
+    # Initialize counters for summary statistics
+    summary_stats = {}
+    for type_checker in TYPE_CHECKERS:
+        summary_stats[type_checker.name] = {
+            'passes': 0,
+            'partial': 0,
+            'false_positives': 0,
+            'false_negatives': 0,
+        }
+
     summary_html = ['<div class="table_container"><table><tbody>']
     summary_html.append('<tr><th class="col1">&nbsp;</th>')
 
@@ -86,6 +96,7 @@ def generate_summary_html(root_dir: Path) -> str:
                         results = {}
 
                     raw_notes = results.get("notes", "").strip()
+                    raw_errors_diff = results.get("errors_diff", "").strip()
                     conformance = results.get("conformant", "Unknown")
                     if conformance == "Unknown":
                         # Try to look up the automated test results and use
@@ -96,6 +107,16 @@ def generate_summary_html(root_dir: Path) -> str:
                     notes = "".join(
                         [f"<p>{note}</p>" for note in raw_notes.split("\n")]
                     )
+                    false_negative_count = len([l for l in raw_errors_diff.split("\n") if ": Expected " in l])
+                    false_positive_count = len([l for l in raw_errors_diff.split("\n") if ": Unexpected errors" in l])
+
+                    if conformance == "Pass":
+                        summary_stats[type_checker.name]['passes'] += 1
+                    elif conformance in ["Partial", "Unknown"]:
+                        summary_stats[type_checker.name]['partial'] += 1
+                    
+                    summary_stats[type_checker.name]['false_negatives'] += false_negative_count
+                    summary_stats[type_checker.name]['false_positives'] += false_positive_count
 
                     conformance_class = (
                         "conformant"
@@ -108,15 +129,63 @@ def generate_summary_html(root_dir: Path) -> str:
                     # Add an asterisk if there are notes to display for a "Pass".
                     if raw_notes != "" and conformance == "Pass":
                         conformance = "Pass*"
+                    
+                    if conformance == "Unknown":
+                        conformance = f"Unknown ({false_negative_count}f-/{false_positive_count}f+)"
 
                     conformance_cell = f"{conformance}"
+                    
+                    expander_content = ""
                     if raw_notes != "":
-                        conformance_cell = f'<div class="hover-text">{conformance_cell}<span class="tooltip-text" id="bottom">{notes}</span></div>'
+                        expander_content += f"<div style='margin-bottom: 10px;'><strong>Notes:</strong>{notes}</div>"
+                    if raw_errors_diff != "":
+                        errors_diff_html = raw_errors_diff.replace("\n", "<br>")
+                        expander_content += f"<div><strong>Errors Diff:</strong><br><pre style='margin: 5px 0; font-size: 0.9em; white-space: pre-wrap; word-wrap: break-word; overflow-wrap: break-word;'>{errors_diff_html}</pre></div>"
+                    
+                    if expander_content != "":
+                        conformance_cell = f'<div class="hover-text">{conformance_cell}<span class="tooltip-text" id="bottom" style="max-width: 400px; width: max-content; white-space: normal; word-wrap: break-word; overflow-wrap: break-word; text-align: left;">{expander_content}</span></div>'
 
                     summary_html.append(f'<th class="column col2 {conformance_class}">{conformance_cell}</th>')
 
                 summary_html.append("</tr>")
 
     summary_html.append("</tbody></table></div>\n")
+
+    # Add summary statistics table
+    summary_html.append('<div style="margin-top: 30px;"><h3>Summary Statistics</h3>')
+    summary_html.append('<div class="table_container"><table><tbody>')
+    
+    # Header row for summary table
+    summary_html.append('<tr><th class="col1">Type Checker</th>')
+    summary_html.append('<th class="column">Total Test Case Passes</th>')
+    summary_html.append('<th class="column">Total Test Case Partial</th>')
+    summary_html.append('<th class="column">Total False Positives</th>')
+    summary_html.append('<th class="column">Total False Negatives</th>')
+    summary_html.append('</tr>')
+    
+    # Data rows for each type checker
+    for type_checker in TYPE_CHECKERS:
+        stats = summary_stats[type_checker.name]
+        
+        # Load the version file for the type checker for display name
+        version_file = root_dir / "results" / type_checker.name / "version.toml"
+        try:
+            with open(version_file, "rb") as f:
+                existing_info = tomli.load(f)
+        except FileNotFoundError:
+            existing_info = {}
+        except tomli.TOMLDecodeError:
+            existing_info = {}
+        
+        version = existing_info.get("version", "Unknown version")
+        
+        summary_html.append(f'<tr><th class="col1">{version}</th>')
+        summary_html.append(f'<td class="column conformant">{stats["passes"]}</td>')
+        summary_html.append(f'<td class="column partially-conformant">{stats["partial"]}</td>')
+        summary_html.append(f'<td class="column">{stats["false_positives"]}</td>')
+        summary_html.append(f'<td class="column">{stats["false_negatives"]}</td>')
+        summary_html.append('</tr>')
+    
+    summary_html.append("</tbody></table></div></div>\n")
 
     return "\n".join(summary_html)

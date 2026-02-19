@@ -2,14 +2,13 @@
 Classes that abstract differences between type checkers.
 """
 
-from abc import ABC, abstractmethod
 import json
-from pathlib import Path
-import os
-import re
 import shutil
-from subprocess import PIPE, CalledProcessError, run
 import sys
+from abc import ABC, abstractmethod
+from collections import defaultdict
+from pathlib import Path
+from subprocess import PIPE, CalledProcessError, run
 from typing import Sequence
 
 
@@ -38,7 +37,7 @@ class TypeChecker(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    def run_tests(self, test_files: Sequence[str]) -> dict[str, str]:
+    def run_tests(self) -> dict[str, str]:
         """
         Runs the type checker on the specified test file and
         returns the output.
@@ -96,7 +95,7 @@ class MypyTypeChecker(TypeChecker):
         version = version.split(" (")[0]
         return version
 
-    def run_tests(self, test_files: Sequence[str]) -> dict[str, str]:
+    def run_tests(self) -> dict[str, str]:
         command = [
             sys.executable,
             "-m",
@@ -163,7 +162,7 @@ class PyrightTypeChecker(TypeChecker):
         )
         return proc.stdout.strip()
 
-    def run_tests(self, test_files: Sequence[str]) -> dict[str, str]:
+    def run_tests(self) -> dict[str, str]:
         command = [sys.executable, "-m", "pyright", ".", "--outputjson"]
         proc = run(command, stdout=PIPE, text=True, encoding="utf-8")
         output_json = json.loads(proc.stdout)
@@ -228,7 +227,7 @@ class ZubanLSTypeChecker(MypyTypeChecker):
         proc = run(["zuban", "--version"], stdout=PIPE, text=True)
         return proc.stdout.strip()
 
-    def run_tests(self, test_files: Sequence[str]) -> dict[str, str]:
+    def run_tests(self) -> dict[str, str]:
         command = [
             "zuban",
             "check",
@@ -288,7 +287,7 @@ class PyreflyTypeChecker(TypeChecker):
         version = proc.stdout.strip()
         return version
 
-    def run_tests(self, test_files: Sequence[str]) -> dict[str, str]:
+    def run_tests(self) -> dict[str, str]:
         proc = run(
             ["pyrefly", "check", "--output-format", "min-text", "--summary=none"],
             stdout=PIPE,
@@ -338,9 +337,99 @@ class PyreflyTypeChecker(TypeChecker):
         return line_to_errors
 
 
+class TyTypeChecker(TypeChecker):
+    @property
+    def cmd(self) -> str:
+        return "ty"
+
+    @property
+    def name(self) -> str:
+        return "ty"
+
+    def install(self) -> bool:
+        try:
+            # Uninstall any existing version if present.
+            run(
+                [sys.executable, "-m", "pip", "uninstall", "ty", "-y"],
+                check=True,
+            )
+
+            # Install the latest version.
+            run(
+                [sys.executable, "-m", "pip", "install", "ty"],
+                check=True,
+            )
+            return True
+        except CalledProcessError:
+            print("Unable to install ty")
+            return False
+
+    def get_version(self) -> str:
+        proc = run([self.cmd, "--version"], stdout=PIPE, text=True)
+        return proc.stdout.strip()
+
+    def run_tests(self) -> dict[str, str]:
+        results_dict: dict[str, str] = {}
+        proc = run(
+            [
+                self.cmd,
+                "check",
+                "--output-format",
+                "concise",
+                "--exit-zero",
+                "--ignore=assert-type-unspellable-subtype",
+                "--error=invalid-legacy-positional-parameter",
+                "--error=deprecated",
+            ],
+            stdout=PIPE,
+            text=True,
+            encoding="utf-8",
+        )
+        lines = proc.stdout.split("\n")
+        for line in lines:
+            file_name = line.split(":")[0].strip()
+            results_dict[file_name] = results_dict.get(file_name, "") + line + "\n"
+        return results_dict
+
+    def parse_errors(self, output: Sequence[str]) -> dict[int, list[str]]:
+        # Example error: options.py:22:11: error[missing-argument] No argument provided for required parameter `report_only`
+        line_to_errors: dict[int, list[str]] = defaultdict(list)
+        for line in output:
+            if line.count(":") < 2:
+                continue
+            parts = line.split(":", maxsplit=2)
+            if len(parts) < 3:
+                continue
+            _, lineno, rest = parts
+            if "error" not in rest and "warning" not in rest:
+                continue
+            line_to_errors[int(lineno)].append(line)
+        return line_to_errors
+
+
+class LocalTyTypeChecker(TyTypeChecker):
+    @property
+    def cmd(self) -> str:
+        home = Path().home()
+        return str(home / "dev" / "rust" / "ruff" / "target" / "debug" / "ty")
+
+    @property
+    def name(self) -> str:
+        return "ty_local"
+
+    def get_version(self) -> str:
+        proc = run([self.cmd, "--version"], stdout=PIPE, text=True)
+        return f"Local:{proc.stdout.strip()}"
+
+    def install(self) -> bool:
+        return True
+
+
 TYPE_CHECKERS: Sequence[TypeChecker] = (
     MypyTypeChecker(),
     PyrightTypeChecker(),
     ZubanLSTypeChecker(),
     PyreflyTypeChecker(),
+    TyTypeChecker(),
+    LocalTyTypeChecker(),
 )
