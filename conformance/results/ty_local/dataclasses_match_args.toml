@@ -1,0 +1,8 @@
+conformance_automated = "Fail"
+errors_diff = """
+Line 49: Unexpected errors ['dataclasses_match_args.py:49:1: error[type-assertion-failure] Type `Unknown | tuple[()]` does not match asserted type `tuple[()]`']
+"""
+output = """
+dataclasses_match_args.py:42:1: error[unresolved-attribute] Class `DC4` has no attribute `__match_args__`
+dataclasses_match_args.py:49:1: error[type-assertion-failure] Type `Unknown | tuple[()]` does not match asserted type `tuple[()]`
+"""

@@ -1,8 +1,3 @@
-conformant = "Partial"
-notes = """
-Types in quotes incorrectly refer to shadowing class member.
-Does not reject some type forms that require quotes.
-"""
 conformance_automated = "Fail"
 errors_diff = """
 Line 87: Unexpected errors ['Expected a type form, got instance of `(self: Self@ClassD) -> None` [not-a-type]']

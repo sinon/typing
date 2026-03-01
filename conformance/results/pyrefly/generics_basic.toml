@@ -1,8 +1,3 @@
-conformant = "Partial"
-notes = """
-Incorrect rejects + between two AnyStr
-Constrained type var resolves to subtype instead of explcitly listed constraint
-"""
 conformance_automated = "Fail"
 errors_diff = """
 Line 34: Unexpected errors ['`+` is not supported between `AnyStr` and `AnyStr` [unsupported-operation]', '`+` is not supported between `AnyStr` and `AnyStr` [unsupported-operation]']
